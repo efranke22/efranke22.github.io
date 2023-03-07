@@ -1,0 +1,44 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Erin Franke",
+    "section": "",
+    "text": "Hi, my name is Erin (she/her). \nI currently attend Macalester College and am majoring in Statistics with Computer Science and Economics minors. I will be graduating in May 2023 and am very excited to be joining Mayo Clinic as a Statistical Programmer. \nCurrently I am working on an independent honors project related to the intersection of gentrification and crime github here.\n\n\nBA in Statistics, 2023\nMacalester College: Saint Paul, MN"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "index.html#education",
+    "href": "index.html#education",
+    "title": "Erin Franke",
+    "section": "Education",
+    "text": "Education\nBA in Statistics, 2023 Macalester College: Saint Paul, MN\nNorthside College Preparatory High School of Chicago, IL 2015-2019\n\nThis content appears below the formatted about page content."
+  },
+  {
+    "objectID": "projects/statGen/index.html",
+    "href": "projects/statGen/index.html",
+    "title": "Statistical Genetics Summary",
+    "section": "",
+    "text": "In Fall 2022 I took Statistical Genetics, which introduced me to the field and got me really interested in pursuing a career in health/genetics related data science. I had a great time learning how to use both R and PLINK to analyze genomic data - you can check out everything I learned here."
+  },
+  {
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nStatistical Genetics Summary\n\n\nA summary of what I learned in Stat 494 Statistical Genetics in Fall 2022.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Spatial Analysis of Elevated Blood Lead Levels in the Twin Cities Metropolitan Region\n\n\nResearch using spatial techniques including SAR models, the SF package, and Matern Random Effects Modeling to study where children in the Twin Cities are testing with…\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "projects/lead/index.html",
+    "href": "projects/lead/index.html",
+    "title": "A Spatial Analysis of Elevated Blood Lead Levels in the Twin Cities Metropolitan Region",
+    "section": "",
+    "text": "In Spring 2022 I got to take Correlated Data (STAT 452) and learned about how to work with time series, longitudinal, and spatially correlated data. I enjoyed combining my passion of mapping with modeling techniques that account for spatial correlation in order to learn more about the critical issue of childhood lead exposure in the Twin Cities, which can cause damage to a child’s brain and nervous system, slowed growth and development, and even comas or death with severe exposure. To learn more about what might cause elevated blood lead levels in children and where this issue is most apparent, check out our writeup on github."
+  }
+]

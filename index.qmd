@@ -1,0 +1,33 @@
+---
+title: "Erin Franke"
+about:
+  id: intro-heading
+  template: trestles
+  image: images/blueberries.png
+  links:
+    - icon: twitter
+      href: https://twitter.com/efranke7278
+    - icon: github
+      href: https://github.com/efranke22
+
+---
+
+### Welcome to my website!
+
+:::{#intro-heading}
+
+Hi, my name is Erin (she/her). 
+<br>
+
+I currently attend Macalester College and am majoring in Statistics with Computer Science and Economics minors. I will be graduating in May 2023 and am very excited to be joining Mayo Clinic as a Statistical Programmer. 
+<br>
+
+Currently I am working on an independent honors project related to the intersection of gentrification and crime [github here](https://github.com/efranke22/honorsGentrification).
+
+## Education
+
+BA in Statistics, 2023 \
+Macalester College: Saint Paul, MN
+
+:::
+

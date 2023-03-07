@@ -1,0 +1,14 @@
+{
+  "hash": "a5dc9d0dc6ee64f14fae187011799787",
+  "result": {
+    "markdown": "---\ntitle: \"Statistical Genetics Summary\"\ndescription: \"A summary of what I learned in Stat 494 Statistical Genetics in Fall 2022.\"\nimage: gwas.png\nimage-alt: quizgrader logo\nabout:\n  template: solana\n  image: gwas.png\n---\n\n\n\n\nIn Fall 2022 I took Statistical Genetics, which introduced me to the field and got me really interested in pursuing a career in health/genetics related data science. I had a great time learning how to use both R and PLINK to analyze genomic data - you can check out everything I learned [here](https://statgensummary.netlify.app).\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

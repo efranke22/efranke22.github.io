@@ -1,0 +1,15 @@
+---
+title: "Statistical Genetics Summary"
+description: "A summary of what I learned in Stat 494 Statistical Genetics in Fall 2022."
+image: gwas.png
+image-alt: quizgrader logo
+about:
+  template: solana
+  image: gwas.png
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+In Fall 2022 I took Statistical Genetics, which introduced me to the field and got me really interested in pursuing a career in health/genetics related data science. I had a great time learning how to use both R and PLINK to analyze genomic data - you can check out everything I learned [here](https://statgensummary.netlify.app).
