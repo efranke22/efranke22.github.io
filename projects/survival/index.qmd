@@ -1,0 +1,13 @@
+---
+title: "A survival analysis of draft to debut date for MLB players"
+description: |
+  A survival analysis project completed by Erin Franke and Corey Pieper in March 2021.
+date: 5-18-2021
+image: survival_preview.png
+image-alt: quizgrader logo
+about:
+  template: solana
+  image: survival_preview.png
+---
+
+In this project we conducted a survival analysis of the time from draft date to debut date for major league baseball players. Our analysis specifically focuses on the variables of fielding position and whether a player was drafted in high school or college, and how these differences change the length of a player's time between being drafted and making their MLB debut. For the complete analysis, please use the following link to visit [our website](https://coreyjpieper.github.io/survival-capstone/index.html).

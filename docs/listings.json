@@ -3,7 +3,11 @@
     "listing": "/projects.html",
     "items": [
       "/projects/statGen/index.html",
-      "/projects/lead/index.html"
+      "/projects/lead/index.html",
+      "/projects/econometrics/index.html",
+      "/projects/bayes/index.html",
+      "/projects/woba/index.html",
+      "/projects/survival/index.html"
     ]
   }
 ]

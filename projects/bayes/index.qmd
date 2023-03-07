@@ -1,0 +1,13 @@
+---
+title: "Tommy John surgery and its Relationship to MLB Pitcher Career Trajectory"
+description: |
+  Research using Bayesian techniques aimed to understand the impacts of Tommy John surgery. 
+date: 12-15-2021
+image: slg.png
+image-alt: quizgrader logo
+about:
+  template: solana
+  image: slg.png
+---
+
+In Fall 2021 I had the opportunity to take Bayesian Statistics (STAT 454) and complete a capstone project on a topic of choice. Hearing so much about the use of Bayesian techniques in sports, I decided to learn more about career trajectory for pitchers in the MLB, with a focus especially on Tommy John surgery. Please check out [**this website**](https://tjpitchertrajectory.netlify.app/index.html) to learn more and feel free to reach out to me with questions and/or suggestions! 

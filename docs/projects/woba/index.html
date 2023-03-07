@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2021-12-15">
+<meta name="description" content="Summer research project with the goal to understanding how individual MLB players should swing to maximize their weighted OBP.">
 
-<title>Erin Franke</title>
+<title>Erin Franke - Maximizing wOBA with Launch Angle and Exit Velocity</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,21 +25,21 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -59,7 +61,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -69,7 +71,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Erin Franke</span>
     </a>
   </div>
@@ -79,11 +81,11 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">
+    <a class="nav-link" href="../../index.html">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./projects.html">
+    <a class="nav-link" href="../../projects.html">
  <span class="menu-text">Projects</span></a>
   </li>  
 </ul>
@@ -98,60 +100,40 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-
-
-<section id="welcome-to-my-website" class="level3">
-<h3>Welcome to my website!</h3>
-<div class="quarto-about-trestles">
+<div class="quarto-about-solana column-body">
   <div class="about-entity">
-    <img src="images/blueberries.png" class="about-image
-  rounded " style="width: 20em;">
-<header id="title-block-header" class="quarto-title-block default">
+    <div class="entity-contents">
+      <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Erin Franke</h1>
+<h1 class="title">Maximizing wOBA with Launch Angle and Exit Velocity</h1>
+</div>
+<div>
+  <div class="description">
+    <p>Summer research project with the goal to understanding how individual MLB players should swing to maximize their weighted OBP.</p>
+  </div>
 </div>
 <div class="quarto-title-meta">
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">December 15, 2021</p>
+    </div>
   </div>
-</header>
-    <div class="about-links">
-  <a href="https://twitter.com/efranke7278" class="about-link">
-    <i class="bi bi-twitter"></i>
-     <span class="about-link-text"></span>
-  </a>
-  <a href="https://github.com/efranke22" class="about-link">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text"></span>
-  </a>
-  <a href="https://www.linkedin.com/in/erin-franke-693057200/" class="about-link">
-    <i class="bi bi-linkedin"></i>
-     <span class="about-link-text"></span>
-  </a>
-</div>
   </div>
-  <div class="about-contents"><div id="intro-heading">
-<p>Hi, my name is Erin (she/her). <br></p>
-<p>I currently attend Macalester College and am majoring in Statistics with Computer Science and Economics minors. I will be graduating in May 2023 and am very excited to be joining Mayo Clinic as a Statistical Programmer. <br></p>
-<p>Currently I am working on an independent honors project related to the intersection of gentrification and crime <a href="https://github.com/efranke22/honorsGentrification">(github here)</a>.</p>
-<section id="education" class="level2">
-<h2 data-anchor-id="education">Education</h2>
-<p>BA in Statistics, 2023<br>
-Macalester College: Saint Paul, MN</p>
-</section>
-</div></div>
+</header> 
+      <div class="about-contents"><main class="content" id="quarto-document-content">
+<p>In summer 2021 I was lucky enough to be part of a 15 person research cohort with a focus on sports analytics through Carnegie Mellon. Not only did I get to learn so many awesome statistical techniques, but I also got to apply them to my favorite topic (baseball) with people who were equally as passionate as me. My research was done in partnership with Sarah Sult (Washington University in St.&nbsp;Louis) and Brooke Coneeny (Swarthmore College) and advised by Adam Brodie of the Houston Astros.</p>
+<p>Some of my main takeaways from this project were how deeply you have to think as a statistician about underlying assumptions. So many times we thought were proud of a model we had developed and ready to apply it, and then realized how it doesn’t take into account something crucial to the game of baseball (like how if a batter changes their swing they will be thrown different pitches). This was also my first time conducting formal team research and I learned how lucky I was to be able to work with people with different strengths than my own. Sarah and Brooke are both computer science majors and were able to use their skills to debug some of our more complicated functions while I focused on data visualization and modeling.</p>
+<p>Please check out our <a href="https://github.com/sarahsult/cmsacamp_baseball_project"><strong>project repository</strong></a> and <a href="https://sarahsult.github.io/cmsacamp_baseball_project/Presentations/CMSAConference%20Presentation/CMSAConference_presentation.html#1"><strong>most recent presentation</strong></a> to learn more about the complex relationship between launch angle/attack angle, exit velocity, and wOBA!</p>
+
+
+</main></div>
+    </div>
+    <img src="trout.png" class="about-image
+  rounded " style="width: 15em;">
+  </div>
 </div>
-
-</section>
-<section id="about-me" class="level2">
-<h2 data-anchor-id="about-me">About Me</h2>
-<p>In addition to my academics, I also enjoy running distance for Macalester Track &amp; Field and Cross Country, volunteering at my local food pantry in Chicago, hiking, and watching Major League Baseball.</p>
-
-
-
-</section>
-
-</main> <!-- /main -->
+ <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

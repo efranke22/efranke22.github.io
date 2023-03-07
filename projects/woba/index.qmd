@@ -1,0 +1,17 @@
+---
+title: "Maximizing wOBA with Launch Angle and Exit Velocity"
+description: |
+  Summer research project with the goal to understanding how individual MLB players should swing to maximize their weighted OBP. 
+date: 12-15-2021
+image: trout.png
+image-alt: quizgrader logo
+about:
+  template: solana
+  image: trout.png
+---
+
+In summer 2021 I was lucky enough to be part of a 15 person research cohort with a focus on sports analytics through Carnegie Mellon. Not only did I get to learn so many awesome statistical techniques, but I also got to apply them to my favorite topic (baseball) with people who were equally as passionate as me. My research was done in partnership with Sarah Sult (Washington University in St. Louis) and Brooke Coneeny (Swarthmore College) and advised by Adam Brodie of the Houston Astros.
+
+Some of my main takeaways from this project were how deeply you have to think as a statistician about underlying assumptions. So many times we thought were proud of a model we had developed and ready to apply it, and then realized how it doesn't take into account something crucial to the game of baseball (like how if a batter changes their swing they will be thrown different pitches). This was also my first time conducting formal team research and I learned how lucky I was to be able to work with people with different strengths than my own. Sarah and Brooke are both computer science majors and were able to use their skills to debug some of our more complicated functions while I focused on data visualization and modeling. 
+
+Please check out our [**project repository**](https://github.com/sarahsult/cmsacamp_baseball_project) and [**most recent presentation**](https://sarahsult.github.io/cmsacamp_baseball_project/Presentations/CMSAConference%20Presentation/CMSAConference_presentation.html#1) to learn more about the complex relationship between launch angle/attack angle, exit velocity, and wOBA! 

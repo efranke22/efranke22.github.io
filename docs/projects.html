@@ -70,9 +70,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -147,7 +147,7 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(2)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block column-page-left" id="quarto-document-content">
 
@@ -168,6 +168,12 @@ ul.task-list li input[type="checkbox"] {
          <option value="listing-title" data-direction="asc">
           Title
         </option>
+         <option value="listing-date-sort" data-direction="asc">
+          Date - Oldest
+        </option>
+         <option value="listing-date-sort" data-direction="desc">
+          Date - Newest
+        </option>
          <option value="listing-author" data-direction="asc">
           Author
         </option>
@@ -179,7 +185,7 @@ ul.task-list li input[type="checkbox"] {
     </div>
 </div>
 <div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-listing-file-modified-sort="1678206416715" data-listing-reading-time-sort="0.285">
+<div class="g-col-1" data-index="0" data-listing-date-sort="1670565600000" data-listing-file-modified-sort="1678227287839" data-listing-reading-time-sort="0.285">
 <a href="./projects/statGen/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -192,16 +198,19 @@ Statistical Genetics Summary
 <div class="card-text listing-description">
 A summary of what I learned in Stat 494 Statistical Genetics in Fall 2022.
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 
+</div>
+<div class="listing-date">
+Dec 9, 2022
 </div>
 </div>
 </div>
 </div>
 </a>
 </div>
-<div class="g-col-1" data-index="1" data-listing-file-modified-sort="1678206888088" data-listing-reading-time-sort="0.55">
+<div class="g-col-1" data-index="1" data-listing-date-sort="1651381200000" data-listing-file-modified-sort="1678226996128" data-listing-reading-time-sort="0.55">
 <a href="./projects/lead/index.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
@@ -214,9 +223,112 @@ A Spatial Analysis of Elevated Blood Lead Levels in the Twin Cities Metropolitan
 <div class="card-text listing-description">
 Research using spatial techniques including SAR models, the SF package, and Matern Random Effects Modeling to study where children in the Twin Cities are testing with…
 </div>
-<div class="card-attribution card-text-small start">
+<div class="card-attribution card-text-small justify">
 <div class="listing-author">
 
+</div>
+<div class="listing-date">
+May 1, 2022
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-listing-date-sort="1639548000000" data-listing-file-modified-sort="1678226388186" data-listing-reading-time-sort="0.62">
+<a href="./projects/econometrics/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./projects/econometrics/chicago.png" class="thumbnail-image card-img" style="height: 150px;" alt="quizgrader logo">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+COVID-19 and Residential Property Crime in Chicago, IL
+</h5>
+<div class="card-text listing-description">
+<p>My econometrics project seeking to understand the impact of the COVID-19 pandemic on residential property crime in Chicago’s 77 community areas.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 15, 2021
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3" data-listing-date-sort="1639548000000" data-listing-file-modified-sort="1678227536597" data-listing-reading-time-sort="0.38">
+<a href="./projects/bayes/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./projects/bayes/slg.png" class="thumbnail-image card-img" style="height: 150px;" alt="quizgrader logo">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Tommy John surgery and its Relationship to MLB Pitcher Career Trajectory
+</h5>
+<div class="card-text listing-description">
+<p>Research using Bayesian techniques aimed to understand the impacts of Tommy John surgery.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 15, 2021
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4" data-listing-date-sort="1639548000000" data-listing-file-modified-sort="1678227227955" data-listing-reading-time-sort="1.205">
+<a href="./projects/woba/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./projects/woba/trout.png" class="thumbnail-image card-img" style="height: 150px;" alt="quizgrader logo">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Maximizing wOBA with Launch Angle and Exit Velocity
+</h5>
+<div class="card-text listing-description">
+<p>Summer research project with the goal to understanding how individual MLB players should swing to maximize their weighted OBP.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+Dec 15, 2021
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5" data-listing-date-sort="1621314000000" data-listing-file-modified-sort="1678227775308" data-listing-reading-time-sort="0.375">
+<a href="./projects/survival/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="./projects/survival/survival_preview.png" class="thumbnail-image card-img" style="height: 150px;" alt="quizgrader logo">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+A survival analysis of draft to debut date for MLB players
+</h5>
+<div class="card-text listing-description">
+<p>A survival analysis project completed by Erin Franke and Corey Pieper in March 2021.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+
+</div>
+<div class="listing-date">
+May 18, 2021
 </div>
 </div>
 </div>

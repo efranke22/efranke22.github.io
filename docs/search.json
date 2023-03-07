@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Erin Franke",
     "section": "",
-    "text": "Hi, my name is Erin (she/her). \nI currently attend Macalester College and am majoring in Statistics with Computer Science and Economics minors. I will be graduating in May 2023 and am very excited to be joining Mayo Clinic as a Statistical Programmer. \nCurrently I am working on an independent honors project related to the intersection of gentrification and crime github here.\n\n\nBA in Statistics, 2023\nMacalester College: Saint Paul, MN"
+    "text": "Hi, my name is Erin (she/her). \nI currently attend Macalester College and am majoring in Statistics with Computer Science and Economics minors. I will be graduating in May 2023 and am very excited to be joining Mayo Clinic as a Statistical Programmer. \nCurrently I am working on an independent honors project related to the intersection of gentrification and crime (github here).\n\n\nBA in Statistics, 2023\nMacalester College: Saint Paul, MN"
   },
   {
     "objectID": "about.html",
@@ -32,7 +32,7 @@
     "href": "projects.html",
     "title": "Projects",
     "section": "",
-    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nStatistical Genetics Summary\n\n\nA summary of what I learned in Stat 494 Statistical Genetics in Fall 2022.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Spatial Analysis of Elevated Blood Lead Levels in the Twin Cities Metropolitan Region\n\n\nResearch using spatial techniques including SAR models, the SF package, and Matern Random Effects Modeling to study where children in the Twin Cities are testing with…\n\n\n\n\n\n\n\n\n\n\n\n\nNo matching items"
+    "text": "Order By\n       Default\n         \n          Title\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Author\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nStatistical Genetics Summary\n\n\nA summary of what I learned in Stat 494 Statistical Genetics in Fall 2022.\n\n\n\n\n\n\nDec 9, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA Spatial Analysis of Elevated Blood Lead Levels in the Twin Cities Metropolitan Region\n\n\nResearch using spatial techniques including SAR models, the SF package, and Matern Random Effects Modeling to study where children in the Twin Cities are testing with…\n\n\n\n\n\n\nMay 1, 2022\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCOVID-19 and Residential Property Crime in Chicago, IL\n\n\nMy econometrics project seeking to understand the impact of the COVID-19 pandemic on residential property crime in Chicago’s 77 community areas.\n\n\n\n\n\n\nDec 15, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nTommy John surgery and its Relationship to MLB Pitcher Career Trajectory\n\n\nResearch using Bayesian techniques aimed to understand the impacts of Tommy John surgery.\n\n\n\n\n\n\nDec 15, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nMaximizing wOBA with Launch Angle and Exit Velocity\n\n\nSummer research project with the goal to understanding how individual MLB players should swing to maximize their weighted OBP.\n\n\n\n\n\n\nDec 15, 2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nA survival analysis of draft to debut date for MLB players\n\n\nA survival analysis project completed by Erin Franke and Corey Pieper in March 2021.\n\n\n\n\n\n\nMay 18, 2021\n\n\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "projects/lead/index.html",
@@ -40,5 +40,40 @@
     "title": "A Spatial Analysis of Elevated Blood Lead Levels in the Twin Cities Metropolitan Region",
     "section": "",
     "text": "In Spring 2022 I got to take Correlated Data (STAT 452) and learned about how to work with time series, longitudinal, and spatially correlated data. I enjoyed combining my passion of mapping with modeling techniques that account for spatial correlation in order to learn more about the critical issue of childhood lead exposure in the Twin Cities, which can cause damage to a child’s brain and nervous system, slowed growth and development, and even comas or death with severe exposure. To learn more about what might cause elevated blood lead levels in children and where this issue is most apparent, check out our writeup on github."
+  },
+  {
+    "objectID": "projects/econometrics/index.html",
+    "href": "projects/econometrics/index.html",
+    "title": "COVID-19 and Residential Property Crime in Chicago, IL",
+    "section": "",
+    "text": "In Fall 2021 I took Econometrics (ECON 381) at Macalester College. With the COVID-19 pandemic still looming and consistently and feeling like doing a project related to my hometown, I decided to learn more about COVID-19 and residential property crime on the neighborhood level. Over the course of my analysis (March 2019 - Feb 2021), I found one neighborhood to have a significant increase in residential property crime (Lincoln Square) and 15 neighborhoods to have a significant decrease in residential property crime. Overall, I found significant evidence that property crime decreased for Chicago as a whole with the onset of the pandemic. My statistical methods included fixed and random effects modeling as well as Granger causality. Please check out my paper to learn more!"
+  },
+  {
+    "objectID": "projects/woba/index.html",
+    "href": "projects/woba/index.html",
+    "title": "Maximizing wOBA with Launch Angle and Exit Velocity",
+    "section": "",
+    "text": "In summer 2021 I was lucky enough to be part of a 15 person research cohort with a focus on sports analytics through Carnegie Mellon. Not only did I get to learn so many awesome statistical techniques, but I also got to apply them to my favorite topic (baseball) with people who were equally as passionate as me. My research was done in partnership with Sarah Sult (Washington University in St. Louis) and Brooke Coneeny (Swarthmore College) and advised by Adam Brodie of the Houston Astros.\nSome of my main takeaways from this project were how deeply you have to think as a statistician about underlying assumptions. So many times we thought were proud of a model we had developed and ready to apply it, and then realized how it doesn’t take into account something crucial to the game of baseball (like how if a batter changes their swing they will be thrown different pitches). This was also my first time conducting formal team research and I learned how lucky I was to be able to work with people with different strengths than my own. Sarah and Brooke are both computer science majors and were able to use their skills to debug some of our more complicated functions while I focused on data visualization and modeling.\nPlease check out our project repository and most recent presentation to learn more about the complex relationship between launch angle/attack angle, exit velocity, and wOBA!"
+  },
+  {
+    "objectID": "projects/bayes/index.html",
+    "href": "projects/bayes/index.html",
+    "title": "Tommy John surgery and its Relationship to MLB Pitcher Career Trajectory",
+    "section": "",
+    "text": "In Fall 2021 I had the opportunity to take Bayesian Statistics (STAT 454) and complete a capstone project on a topic of choice. Hearing so much about the use of Bayesian techniques in sports, I decided to learn more about career trajectory for pitchers in the MLB, with a focus especially on Tommy John surgery. Please check out this website to learn more and feel free to reach out to me with questions and/or suggestions!"
+  },
+  {
+    "objectID": "projects/survival/index.html",
+    "href": "projects/survival/index.html",
+    "title": "A survival analysis of draft to debut date for MLB players",
+    "section": "",
+    "text": "In this project we conducted a survival analysis of the time from draft date to debut date for major league baseball players. Our analysis specifically focuses on the variables of fielding position and whether a player was drafted in high school or college, and how these differences change the length of a player’s time between being drafted and making their MLB debut. For the complete analysis, please use the following link to visit our website."
+  },
+  {
+    "objectID": "index.html#about-me",
+    "href": "index.html#about-me",
+    "title": "Erin Franke",
+    "section": "About Me",
+    "text": "About Me\nIn addition to my academics, I also enjoy running distance for Macalester Track & Field and Cross Country, volunteering at my local food pantry in Chicago, hiking, and watching Major League Baseball."
   }
 ]
