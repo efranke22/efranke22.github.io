@@ -35,4 +35,4 @@ Macalester College in Saint Paul, MN\
 
 ## About Me
 
-In addition to my academics, I also enjoy running distance for Macalester Track & Field and Cross Country, volunteering at my local food pantry in Chicago, hiking, and watching Major League Baseball.
+In addition to statistics & data science, I also enjoy running distance for Macalester Track & Field and Cross Country, volunteering at my local food pantry in Chicago, hiking, and watching Major League Baseball.
