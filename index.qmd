@@ -11,28 +11,26 @@ about:
       href: https://github.com/efranke22
     - icon: linkedin
       href: https://www.linkedin.com/in/erin-franke-693057200/
-
 ---
 
 ### Welcome to my website!
 
-:::{#intro-heading}
+::: {#intro-heading}
+Hi, my name is Erin (she/her). <br>
 
-Hi, my name is Erin (she/her). 
-<br>
-
-I currently attend Macalester College and am majoring in Statistics with Computer Science and Economics minors. I will be graduating in May 2023 and am very excited to be joining Mayo Clinic as a Statistical Programmer. 
-<br>
+I currently attend Macalester College and am majoring in Statistics with Computer Science and Economics minors. I will be graduating in May 2023 and am very excited to be joining Mayo Clinic as a Statistical Programmer. <br>
 
 Currently I am working on an independent honors project related to the intersection of gentrification and crime [(github here)](https://github.com/efranke22/honorsGentrification).
 
 ## Education
 
-BA in Statistics, 2023 \
+BA in Statistics, 2023\
 Macalester College in Saint Paul, MN\
-[Resume](Erin Franke Resume 2022.pdf)\
+[Resume](Erin%20Franke%20Resume%202022.pdf)\
 :::
 
 ## About Me
 
 In addition to statistics & data science, I also enjoy running distance for Macalester Track & Field and Cross Country, volunteering at my local food pantry in Chicago, hiking, and watching Major League Baseball.
+
+![](images/hike.png){width='45%'} ![](images/running.png){width='45%'}

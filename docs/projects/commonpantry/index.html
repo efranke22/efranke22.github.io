@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.2.269">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2021-01-31">
+<meta name="description" content="What I learned during my one month internship working with Common Pantry of Chicago, IL.">
+
+<title>Erin Franke - My first experience with data analysis for the community</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Erin Franke</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html">
+ <span class="menu-text">Projects</span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">My first experience with data analysis for the community</h1>
+</div>
+
+<div>
+  <div class="description">
+    <p>What I learned during my one month internship working with Common Pantry of Chicago, IL.</p>
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">January 31, 2021</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="brief-reflection" class="level4">
+<h4 class="anchored" data-anchor-id="brief-reflection">Brief reflection</h4>
+<p>During January of 2021 I was fortunate enough to have the opportunity to complete a one credit internship analyzing data with Common Pantry, my local food pantry in Chicago, IL. This internship was very rewarding as not only did I become much more comfortable in R and learn quicker and easier ways to analyze data, but in the process I was able to help out to my local community with information that could play a part of feeding more families in the coming months.</p>
+<p>One of my main takeaways from this internship was the importance of good data. As a small nonprofit, a lot of Common Pantry’s data entry is done by hand which makes sense. Throughout my analysis, I encountered problems such as mismatched or missing units within the data, inconsistencies with data being recorded as characters or numeric entries, and simply missing information among other issues. This gave me a lot of practice cleaning the data, and learned new techniques to do so including using functions such as str_replace_all(), str_extract(), as.numeric(), and several others. I also got good practice with joining data sets horizontally and vertically, renaming columns, exporting and importing data from a variety of sources, and more.</p>
+</section>
+<section id="results" class="level4">
+<h4 class="anchored" data-anchor-id="results">Results</h4>
+<p>When COVID-19 hit in March 2020 and demand at Common Pantry spiked to about 2.11x their normal levels, Common Pantry could understandably no longer collect in depth information on clients such as their names, addresses, family size, and more. However, one piece of information they were able to collect was client zip code. I used this to create a basic density plot of the distribution of clients in Chicago. The Common Pantry service area, outlined in red, was removed once COVID-19 put many out of work.</p>
+<p><img src="cpmap.png" class="img-fluid" style="width:55.0%"></p>
+<p>The map above shows an important point, which is that a large portion of Common Pantry’s clients during COVID are coming from out of their service area and perhaps this service area needs to be enlarged for the long term (if Common Pantry can get adequate funding to do so). Four months after the conclusion of this project, one super exciting thing to note is that Common Pantry has recently announced the purchase of their own new and larger building only three blocks from the current pantry that will allow them to serve a greater amount of clients!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="newloc.JPG" class="img-fluid figure-img" style="width:55.0%"></p>
+<p></p><figcaption class="figure-caption">Common Pantry’s new location</figcaption><p></p>
+</figure>
+</div>
+<p>Outside of the zip code analysis, as a result of the limited 2020 data a large portion of my work was done with the 2019-2020 data on the donor appeal instead of information on the clients coming to the pantry. However, I was able to create the following plot which demonstrates the sheer number of clients visiting the pantry each month. Notice the spike in numbers as COVID begins and people are laid off of work in March and April.</p>
+<p><img src="clients2.JPG" class="img-fluid" style="width:55.0%"></p>
+<p>Thankfully, while much of the community was in need of increased support for the majority of 2020, other members were able to step up and support Common Pantry to a greater level than before. In 2019, Common Pantry received 1,429 total donations, with 55.7% of them being financial. Total donations more than doubled in 2020 at 3,415, with 74.8% being financial. While the average donation amount fell in 2020, it was not by much, falling from 304.23 dollars in 2019 to $275.96 in 2020. For a visual summary of how donations changed throughout 2020 itself, see below.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="numberdonations.JPG" class="img-fluid figure-img" style="width:55.0%"></p>
+<p></p><figcaption class="figure-caption">Growth in number of donations throughout 2020</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="monetarydon.JPG" class="img-fluid figure-img" style="width:55.0%"></p>
+<p></p><figcaption class="figure-caption">A comparison of the value of monetary donations in 2019 versus 2020,by month</figcaption><p></p>
+</figure>
+</div>
+<p>Another interesting thing I found when investigating the data was that despite monetary donations skyrocketing when COVID-19 hit, food donations stayed relatively constant. This makes sense - in the virtual environment, schools and businesses that may have been doing food drives in 2019 transitioned over to monetary fundraisers. This comparison of food versus monetary donations overtime can be seen below.</p>
+<p><img src="foodmoney.JPG" class="img-fluid" style="width:55.0%"></p>
+<p>The remainder of the work I did with Common Pantry is more private, as I identified their top 75 donors of 2019-2020 to better inform them who to potentially thank and/or target for additional funds in the future. I also used R to filter for frequent donors and was able to develop a list of people giving a certain amount monthly. Additionally, I identified some of Common Pantry’s most successful appeals and campaigns for raising money (unsurprisingly, the COVID-19 appeal and the I am Your Neighbor fundraisers were incredibly successful).</p>
+</section>
+<section id="conclusion" class="level4">
+<h4 class="anchored" data-anchor-id="conclusion">Conclusion</h4>
+<p>Overall, I am so happy I got to have this experience and give back in a new way to a group that I have been volunteering with since middle school. It is my hope that as I continue to learn more data science and R that I can help Common Pantry and other nonprofits in ways that I haven’t even imagined yet.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">© Erin Franke, 2023<br> All content licensed under <i class="bi-badge-cc"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">(CC BY-NC-SA 4.0)</a></div>   
+    <div class="nav-footer-right">Site built with <a href="https://quarto.org/">Quarto</a></div>
+  </div>
+</footer>
+
+
+
+</body></html>
