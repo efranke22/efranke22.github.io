@@ -1,0 +1,13 @@
+---
+title: "Does Oxygen Help? A Causal Analysis"
+description: |
+  An indepedent project to apply causal inference techniques to understand oxygen use when ascending the Himalayan Mountains.
+date: 05-01-2023
+image: causal.png
+image-alt: quizgrader logo
+about:
+  template: solana
+  image: causal.png
+---
+
+In Spring 2023 I had the opportunity to take Causal Inference (STAT 451) and complete a capstone project on a topic of choice. As a hiker, I was interested to learn about the value of oxygen when ascending the Himalayan Mountains. Please check out [**this website**](https://himalayancausality.netlify.app) to learn more about causal inference and this project. 
