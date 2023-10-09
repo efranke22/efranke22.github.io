@@ -29,7 +29,7 @@ Macalester College; Saint Paul, MN\
 
 ## About Me
 
-In addition to statistics & data science, I also enjoy marathon training, triathlons, spending time with friends and family, volunteering at my local food pantry in Chicago, hiking, rock climbing, and watching Major League Baseball.
+In addition to statistics & data science, I also enjoy marathon training, triathlons, volunteering at my local food pantry in Chicago, hiking, watching Major League Baseball, and spending time with friends and family.
 
 ![](images/hike.png){width='45%'} ![](images/running.png){width='45%'}
 ![](images/grad.png){width='45%'} ![](images/bball.png){width='45%'}
