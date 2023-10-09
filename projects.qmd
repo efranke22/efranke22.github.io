@@ -9,7 +9,6 @@ listing:
   filter-ui: true
 page-layout: full
 title-block-banner: true
-comments: false
 ---
 
 Check out my projects below to view some of my past work that has used public data. These projects showcase what I have learned in classes including Causal Inference, Statistical Genetics, Correlated Data, Econometrics, Bayesian Statistics, Computational Linear Algebra, and Survival Analysis. 
