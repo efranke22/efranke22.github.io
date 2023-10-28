@@ -1,0 +1,13 @@
+---
+title: "Confounders & Omitted Variable Bias in Linear Regression"
+description: |
+  My final group project in my Mathematical Statistics class in Spring 2022.  
+date: 05-02-2022
+image: dag.png
+image-alt: quizgrader logo
+about:
+  template: solana
+  image: dag.png
+---
+
+In Spring 2022, I took Mathematical Statistics (STAT 455) where I deepened my understanding of theoretical statistics. Two of my classmates, Vivian Powell and Cheikh Fall, and I completed a final project on a topic of our choice which we taught to the remainder of our class. Given the importance of linear regression, we chose to dive deeper in a key assumption of ordinary least squares, exogeneity, and the consequences of omitted variable bias if this assumption does not hold. Please check out our [**our paper**](OVB_Final_Draft.pdf) to learn more!
