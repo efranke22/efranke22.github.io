@@ -3,7 +3,7 @@ title: "Erin Franke"
 about:
   id: intro-heading
   template: trestles
-  image: images/profile2.png
+  image: images/profile.png
   links:
     - icon: twitter
       href: https://twitter.com/efranke7278
