@@ -16,7 +16,7 @@ about:
 ::: {#intro-heading}
 Hi, my name is Erin (she/her). Thanks for visiting my page! <br>
 
-I am currently an incoming Statistics PhD student at Carnegie Mellon. Previously, I graduated from Macalester College in May 2023 (Statistics major, Computer Science and Economics minors) and spent time at Mayo Clinic in a Statistical Programmer role. I am passionate about working with data to solve problems for the greater benefit of society, and have enjoyed applying statistical methodology to a variety of fields, including healthcare, sports, and urban studies/society. Please check out my [Projects](https://efranke22.github.io/projects.html) tab to learn more about my skills and see examples of my work.  <br>
+I am a Statistics PhD student at Carnegie Mellon University. Previously, I graduated from Macalester College in May 2023 (Statistics major, Computer Science and Economics minors) and spent time at Mayo Clinic in a Statistical Programmer role. I am passionate about working with data to solve problems for the greater benefit of society, and have enjoyed applying statistical methodology to a variety of fields, including healthcare, sports, and urban studies/society. Please check out my [Projects](https://efranke22.github.io/projects.html) tab to learn more about my skills and see examples of my work.  <br>
 
 ## Education
 
