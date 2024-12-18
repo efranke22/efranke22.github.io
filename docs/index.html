@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.555">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -70,7 +70,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="styles.css">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed fullcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -97,7 +97,8 @@ ul.task-list li input[type="checkbox"] {
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
+    <a href="./cv.pdf" title="CV" class="quarto-navigation-tool px-1" aria-label="CV"><i class="bi bi-file-person"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -106,25 +107,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#welcome" id="toc-welcome" class="nav-link active" data-scroll-target="#welcome">Welcome!</a></li>
-  <li><a href="#about-me" id="toc-about-me" class="nav-link" data-scroll-target="#about-me">About Me</a></li>
-  </ul>
-</nav>
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
 
 
-<section id="welcome" class="level3">
-<h3>Welcome!</h3>
-<div class="quarto-about-trestles content">
+<div class="quarto-about-trestles">
   <div class="about-entity">
     <img src="images/me.png" class="about-image
   rounded " style="width: 20em;">
@@ -144,24 +134,23 @@ ul.task-list li input[type="checkbox"] {
     <i class="bi bi-github"></i>
      <span class="about-link-text"></span>
   </a>
+  <a href="mailto:efranke@andrew.cmu.edu" class="about-link" rel="" target="">
+    <i class="bi bi-envelope"></i>
+     <span class="about-link-text"></span>
+  </a>
 </div>
   </div>
   <div class="about-contents"><div id="intro-heading">
-<p>Hi, my name is Erin (she/her). Thanks for visiting my page! <br></p>
-<p>I am currently an incoming Statistics PhD student at Carnegie Mellon. Previously, I graduated from Macalester College in May 2023 (Statistics major, Computer Science and Economics minors) and spent time at Mayo Clinic in a Statistical Programmer role. I am passionate about working with data to solve problems for the greater benefit of society, and have enjoyed applying statistical methodology to a variety of fields, including healthcare, sports, and urban studies/society. Please check out my <a href="https://efranke22.github.io/projects.html">Projects</a> tab to learn more about my skills and see examples of my work. <br></p>
-<section id="education" class="level2">
-<h2 data-anchor-id="education">Education</h2>
-<p>BA in Statistics, 2023<br>
-Macalester College; Saint Paul, MN<br>
-<a href="Erin Franke Resume 2023.pdf">Resume</a><br>
-</p>
-</section>
+<p>Hi, thanks for visiting my website!</p>
+<p>I am a first-year Statistics PhD student at <a href="https://www.cmu.edu/dietrich/statistics-datascience/index.html">Carnegie Mellon University</a> in Pittsburgh, PA.</p>
+<p>I am passionate about working with data to solve problems for the greater benefit of society. One of my favorite parts of statistics is getting to collaborate with experts in all different fields—my past work has touched applications including chronic lymphocytic leukemia, baseball, and gentrification. I am in the process of figuring out my primary research interests, though currently find problems with spatial data particularly interesting.</p>
+<p>As both a student and teaching assistant, I enjoy thinking about effective ways to learn and teach statistics and data science. I look forward to further exploring this and gaining additional teaching experience throughout my PhD.</p>
+<p><br></p>
 </div></div>
 </div>
 
-</section>
-<section id="about-me" class="level2">
-<h2 data-anchor-id="about-me">About Me</h2>
+<section id="about-me" class="level3">
+<h3 data-anchor-id="about-me">About Me</h3>
 <p>In addition to statistics &amp; data science, I also enjoy all things running, hiking, volunteering at my local food pantry in Chicago, following Major League Baseball, and spending time with friends and family.</p>
 <div>
 
@@ -238,18 +227,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -281,7 +259,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp('/' + window.location.host + '/');
@@ -289,7 +289,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -616,7 +616,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>© Erin Franke, 2023<br> All content licensed under <i class="bi-badge-cc"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">(CC BY-NC-SA 4.0)</a></p>
+<p>© Erin Franke, 2024<br> All content licensed under <i class="bi-badge-cc"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">(CC BY-NC-SA 4.0)</a></p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;

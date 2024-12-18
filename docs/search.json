@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Erin Franke",
     "section": "",
-    "text": "Hi, my name is Erin (she/her). Thanks for visiting my page! \nI am currently an incoming Statistics PhD student at Carnegie Mellon. Previously, I graduated from Macalester College in May 2023 (Statistics major, Computer Science and Economics minors) and spent time at Mayo Clinic in a Statistical Programmer role. I am passionate about working with data to solve problems for the greater benefit of society, and have enjoyed applying statistical methodology to a variety of fields, including healthcare, sports, and urban studies/society. Please check out my Projects tab to learn more about my skills and see examples of my work. \n\n\nBA in Statistics, 2023\nMacalester College; Saint Paul, MN\nResume"
+    "text": "Hi, thanks for visiting my website!\nI am a first-year Statistics PhD student at Carnegie Mellon University in Pittsburgh, PA.\nI am passionate about working with data to solve problems for the greater benefit of society. One of my favorite parts of statistics is getting to collaborate with experts in all different fields—my past work has touched applications including chronic lymphocytic leukemia, baseball, and gentrification. I am in the process of figuring out my primary research interests, though currently find problems with spatial data particularly interesting.\nAs both a student and teaching assistant, I enjoy thinking about effective ways to learn and teach statistics and data science. I look forward to further exploring this and gaining additional teaching experience throughout my PhD.\n\n\n\n\n\nAbout Me\nIn addition to statistics & data science, I also enjoy all things running, hiking, volunteering at my local food pantry in Chicago, following Major League Baseball, and spending time with friends and family.\n\n\n\n\n\n\n\n\n\nMy siblings and I on a hike in Washington\n\n\n\n\n\n\n\nMy first marathon!\n\n\n\n\n\n\n\n\n\nMacalester commencement with cross country teammates\n\n\n\n\n\n\n\nManitou Incline: 2,744 steps of fun!"
   },
   {
     "objectID": "about.html",
@@ -110,5 +110,12 @@
     "title": "Confounders & Omitted Variable Bias in Linear Regression",
     "section": "",
     "text": "In Spring 2022, I took Mathematical Statistics (STAT 455) where I deepened my understanding of theoretical statistics. Two of my classmates, Vivian Powell and Cheikh Fall, and I completed a final project on a topic of our choice which we taught to the remainder of our class. Given the importance of linear regression, we chose to dive deeper in a key assumption of ordinary least squares, exogeneity, and the consequences of omitted variable bias if this assumption does not hold. Please check out our our paper to learn more!"
+  },
+  {
+    "objectID": "index.html#welcome",
+    "href": "index.html#welcome",
+    "title": "Erin Franke",
+    "section": "",
+    "text": "Hi, my name is Erin (she/her). Thanks for visiting my page! \nI am a Statistics PhD student at Carnegie Mellon University. Previously, I graduated from Macalester College in May 2023 (Statistics major, Computer Science and Economics minors) and spent time at Mayo Clinic in a Statistical Programmer role. I am passionate about working with data to solve problems for the greater benefit of society, and have enjoyed applying statistical methodology to a variety of fields, including healthcare, sports, and urban studies/society. Please check out my Projects tab to learn more about my skills and see examples of my work."
   }
 ]

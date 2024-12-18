@@ -1,5 +1,6 @@
 ---
 title: "Erin Franke"
+toc: false
 about:
   id: intro-heading
   template: trestles
@@ -9,23 +10,25 @@ about:
       href: https://www.linkedin.com/in/erin-franke-693057200/
     - icon: github
       href: https://github.com/efranke22
+    - icon: envelope
+      href: mailto:efranke@andrew.cmu.edu
 ---
 
-### Welcome!
-
 ::: {#intro-heading}
-Hi, my name is Erin (she/her). Thanks for visiting my page! <br>
 
-I am a Statistics PhD student at Carnegie Mellon University. Previously, I graduated from Macalester College in May 2023 (Statistics major, Computer Science and Economics minors) and spent time at Mayo Clinic in a Statistical Programmer role. I am passionate about working with data to solve problems for the greater benefit of society, and have enjoyed applying statistical methodology to a variety of fields, including healthcare, sports, and urban studies/society. Please check out my [Projects](https://efranke22.github.io/projects.html) tab to learn more about my skills and see examples of my work.  <br>
+Hi, thanks for visiting my website!
 
-## Education
+I am a first-year Statistics PhD student at [Carnegie Mellon University](https://www.cmu.edu/dietrich/statistics-datascience/index.html) in Pittsburgh, PA. 
 
-BA in Statistics, 2023 \
-Macalester College; Saint Paul, MN\
-[Resume](Erin%20Franke%20Resume%202023.pdf)\
+I am passionate about working with data to solve problems for the greater benefit of society. One of my favorite parts of statistics is getting to collaborate with experts in all different fields---my past work has touched applications including chronic lymphocytic leukemia, baseball, and gentrification. I am in the process of figuring out my primary research interests, though currently find problems with spatial data particularly interesting.
+
+As both a student and teaching assistant, I enjoy thinking about effective ways to learn and teach statistics and data science. I look forward to further exploring this and gaining additional teaching experience throughout my PhD.
+
+<br>
+
 :::
 
-## About Me
+### About Me
 
 In addition to statistics & data science, I also enjoy all things running, hiking, volunteering at my local food pantry in Chicago, following Major League Baseball, and spending time with friends and family.
 

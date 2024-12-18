@@ -10,9 +10,13 @@ website:
         text: Home
       - text: "Projects"
         href: projects.qmd
-  page-footer:
+    tools:
+      - icon: file-person
+        text: CV
+        href: cv.pdf
+  page-footer: 
     left: |
-      &copy; Erin Franke, 2023<br>
+      &copy; Erin Franke, 2024<br>
       All content licensed under <i class='bi-badge-cc'></i>
       [(CC BY-NC-SA 4.0)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
     right: |
