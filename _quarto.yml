@@ -5,10 +5,11 @@ project:
 website:
   title: "Erin Franke"
   navbar:
+    background: '#E0EEE0'
     left:
       - href: index.qmd
         text: Home
-      - text: "Projects"
+      - text: "Undergrad"
         href: projects.qmd
     tools:
       - icon: file-person
@@ -24,7 +25,7 @@ website:
 
 format:
   html:
-    theme: flatly
+    theme: spacelab
     css: styles.css
     toc: true
 
