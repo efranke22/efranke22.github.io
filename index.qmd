@@ -5,6 +5,7 @@ about:
   id: intro-heading
   template: trestles
   image: images/me.png
+  image-width: 17em
   links:
     - icon: linkedin
       href: https://www.linkedin.com/in/erin-franke-693057200/
