@@ -1,0 +1,91 @@
+---
+title: "Tidy Tuesday! :)"
+---
+
+I first started doing Tidy Tuesday in my Intro to Data Science class in Summer 2021. While I often don't have time to participate, it is my favorite way to grow my data visualization skills! This page includes all my Tidy Tuesdays from most recent to oldest. Click on the image to see the corresponding code.
+
+## 2023
+
+::: {layout-ncol=3}
+
+[![](images/tidytuesdays/tt29.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyHolidayMovies.Rmd)
+
+[![](images/tidytuesdays/tt28.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/week30/tidyScurvy.Rmd)
+
+[![](images/tidytuesdays/tt27.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyTemps.Rmd)
+
+[![](images/tidytuesdays/tt26.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyMarkers.Rmd)
+
+[![](images/tidytuesdays/tt25.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyUfo.Rmd)
+
+[![](images/tidytuesdays/tt24.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidySafi.Rmd)
+
+[![](images/tidytuesdays/tt23.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyEnergy.Rmd)
+
+[![](images/tidytuesdays/tt22.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyOldPeople.Rmd)
+
+[![](images/tidytuesdays/tt21.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidySquirrels.Rmd)
+
+[![](images/tidytuesdays/tt20.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyTornados.Rmd)
+
+[![](images/tidytuesdays/tt19.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/artists_week3.Rmd)
+
+:::
+
+## 2022
+
+::: {layout-ncol=3}
+
+[![](images/tidytuesdays/tt18.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2022/eurovision_week20.Rmd)
+
+[![](images/tidytuesdays/tt17.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2022/wordle.Rmd)
+
+[![](images/tidytuesdays/tt16.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2022/chocolate_week3.Rmd)
+
+[![](images/tidytuesdays/tt15.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2022/bees_week2.Rmd)
+
+:::
+
+## 2021
+
+::: {layout-ncol=3}
+
+[![](images/tidytuesdays/nyeRun.gif)](https://github.com/efranke22/tidytuesday/blob/main/2021/december2021/nyeRun.gif)
+
+[![](images/tidytuesdays/tt14.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/december2021/tidytuesday_starbucks.Rmd)
+
+[![](images/tidytuesdays/yearPropCrimes.gif)](https://github.com/efranke22/tidytuesday/blob/main/2021/november2021/tidytuesday45_crimes.Rmd)
+
+[![](images/tidytuesdays/tt13.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/october2021/tidytuesday_44running.Rmd)
+
+[![](images/tidytuesdays/tt12.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/october2021/tidytuesday43_pumpkins.Rmd)
+
+[![](images/tidytuesdays/tt11.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/august2021/tidytuesday36_birdbaths.Rmd)
+
+[![](images/tidytuesdays/lemur_age2.gif)](https://github.com/efranke22/tidytuesday/blob/main/2021/august2021/tidytuesday35_lemurs.Rmd)
+
+[![](images/tidytuesdays/tt10.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/august2021/tidytuesday_week33.Rmd)
+
+[![](images/tidytuesdays/tt9.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/august2021/tidytuesday_week32.Rmd)
+
+[![](images/tidytuesdays/drought_sev_map.gif)](https://github.com/efranke22/tidytuesday/blob/main/2021/july2021/tidytuesday_week30.Rmd)
+
+[![](images/tidytuesdays/tt8.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/july2021/tidytuesday_week29.Rmd)
+
+[![](images/tidytuesdays/tt7.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/july2021/tidy_tuesday_week28.Rmd)
+
+[![](images/tidytuesdays/tt6.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/tidy_tuesday_week27.Rmd)
+
+[![](images/tidytuesdays/tt5.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/tidy_tuesday_week_26.Rmd)
+
+[![](images/tidytuesdays/city_walking.gif)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/tidy_tuesday_week_26.Rmd)
+
+[![](images/tidytuesdays/tt4.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/TidyTuesdayWeek25.Rmd)
+
+[![](images/tidytuesdays/tt3.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/Tidy%20Tuesday%20Week%2024.Rmd)
+
+[![](images/tidytuesdays/tt2.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/Tidy%20Tuesday%20week%2023.Rmd) 
+
+[![](images/tidytuesdays/tt1.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/Tidy%20Tuesday%20%231.Rmd)
+
+:::

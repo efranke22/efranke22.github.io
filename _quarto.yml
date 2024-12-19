@@ -11,6 +11,8 @@ website:
         text: Home
       - text: "Undergrad"
         href: projects.qmd
+      - text: "Tidy Tuesday"
+        href: tidytuesday.qmd
     tools:
       - icon: file-person
         text: CV
