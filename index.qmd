@@ -31,7 +31,7 @@ As both a student and teaching assistant, I enjoy thinking about effective ways 
 
 ### About Me
 
-In addition to statistics & data science, I also enjoy all things running, hiking, volunteering at my local food pantry in Chicago, following Major League Baseball, and spending time with friends and family.
+In addition to statistics & data science, I also enjoy running, volunteering at my local food pantry in Chicago, hiking, going on walks while listening to podcasts, following women's pro running & the MLB, and spending time with friends and family. I am excited to be running the 2025 Chicago Marathon [to raise money](https://give.nourishinghopechi.org/fundraiser/5972974) for Nourishing Hope food pantry!
 
 ::: {layout-nrow=2}
 ![My siblings and I on a hike in Washington](images/fam.png)
