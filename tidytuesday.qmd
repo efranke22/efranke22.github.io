@@ -1,5 +1,5 @@
 ---
-title: "Tidy Tuesday! :)"
+title: "Tidy Tuesday!"
 ---
 
 I first started doing Tidy Tuesday in my Intro to Data Science class in Summer 2021. While I often don't have time to participate, it is my favorite way to grow my data visualization skills! This page includes all my Tidy Tuesdays from most recent to oldest. Click on the image to see the corresponding code.
