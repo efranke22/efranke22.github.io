@@ -13,7 +13,7 @@ filters:
   - line-highlight
 ---
 
-Below is a collection of R code & tricks I have found helpful to have on hand. This is the smaller, more obscure pieces of code I forget and then repeatedly search online for. I hope to continue to add to this list overtime!
+Below is a collection of R code & tricks I have found helpful to have on hand. These are the smaller, more obscure pieces of code I forget and then repeatedly search online for. I hope to continue to add to this list overtime!
 
 ### Data Wrangling
 
