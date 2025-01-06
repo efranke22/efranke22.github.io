@@ -14,5 +14,11 @@
       "/projects/survival/index.html",
       "/projects/commonpantry/index.html"
     ]
+  },
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/blog/rtricks/index.html"
+    ]
   }
 ]

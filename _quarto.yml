@@ -13,6 +13,8 @@ website:
         href: projects.qmd
       - text: "Tidy Tuesday"
         href: tidytuesday.qmd
+      - text: "Blog"
+        href: blog.qmd
     tools:
       - icon: file-person
         text: CV

@@ -1,0 +1,354 @@
+---
+title: "A small collection of various R tricks"
+description: "A selection of pieces of code I find to be useful or fun :)"
+date: 01-06-2025
+author: Erin Franke
+image: images/wordcloud.png
+categories: [R]
+draft: false
+toc: true
+toc-depth: 5
+format: html
+filters:
+  - line-highlight
+---
+
+Below is a collection of R code & tricks I have found helpful to have on hand. This is the smaller, more obscure pieces of code I forget and then repeatedly search online for. I hope to continue to add to this list overtime!
+
+### Data Wrangling
+
+#### 1. `coalesce()`
+
+Source: [post](https://bsky.app/profile/appliedepi.bsky.social/post/3ldyrxy535s2l) from appliedepi@bsky.social
+
+Returns the first non-missing value from a set of columns based on the order that you specify. This is great for preventing a long series of `case_when()` calls. 
+
+![](images/coalesce.png){width='60%'}
+
+#### 2. Text
+
+##### a. Removing accents 
+
+In a situation where we are working with strings with accents (e.g. cities, names, etc), we likely want all strings to be formatted in the same. The following shows an example where some cities have accents and some do not. We can remove all accents using `stringi::stri_trans_general()`, as shown below.
+
+```{r, echo=F, warning=F, message=F}
+library(tidyverse)
+library(gt)
+cities <- data.frame(names= c("Bogotá", "Bogota", "Québec", "Quebec", "Île de la Cité", "Ile de la Cite"))
+```
+
+```{r}
+head(cities) %>% gt() # gt() just makes table look nice :) 
+```
+
+```{r}
+#| source-line-numbers: "2"
+cities %>%
+  mutate(names = stringi::stri_trans_general(names, "Latin-ASCII")) %>% 
+  count(names) %>% gt()
+```
+
+##### b. `unnest_tokens()`
+
+The `unnest_tokens()` is helpful for analyzing word counts of text, specifically that might be split up across many lines. I first used this function to analyze [historical markers data](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyMarkers.Rmd). The example below is taken from the `unnest_tokens()` [help page](https://www.rdocumentation.org/packages/tidytext/versions/0.4.2/topics/unnest_tokens).
+
+```{r}
+library(janeaustenr) # for this example
+library(tidytext) # for unnest_tokens()
+
+novel <- tibble(txt = prideprejudice)
+head(novel, 15) %>%
+  gt()
+```
+
+```{r}
+#| source-line-numbers: "2"
+novel %>%
+  tidytext::unnest_tokens(output = word, input = txt) %>%
+  head(20) %>%
+  gt()
+```
+
+We could then go on to count the number of times each word is used!
+
+##### c. Removing punctuation 
+
+Like accents, we might also want to remove punctuation. We can do this with the `[:punct:]` regular expression!
+
+```{r, echo=F}
+data <- data.frame(feelings = c("happy :)", "excited!!", "**excited**", "sad :(", "angry,", "upset?", "#mad"))
+```
+
+```{r}
+#| source-line-numbers: "2"
+data %>% gt()
+
+data %>%
+  mutate(feelings = str_replace_all(feelings, "[:punct:]", "")) %>% 
+  gt()
+```
+
+##### d. Separate list of words in a column!
+
+Many times I have ran into there being a list of words separated by a comma in a column of dataset. For example, asking participants to list the most memorable characteristics of a chocolate that they tasted (analyzed in this [tidy tuesday](https://github.com/efranke22/tidytuesday/blob/main/2022/chocolate_week3.Rmd)).
+
+This is some code to count how many time each word is used. 
+
+```{r, echo=F, message=F, warning=F}
+chocolate <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-18/chocolate.csv')
+chocolate <- chocolate %>% select(reviewer = ref, most_memorable_characteristics)
+```
+
+```{r}
+#| source-line-numbers: "3-4"
+head(chocolate) %>% gt()
+
+list_of_adjectives <- chocolate %>%
+  mutate(id = row_number(), # gives each reviewer/chocolate combination a unique id
+         most_memorable_characteristics = strsplit(as.character(most_memorable_characteristics), ",")) %>% # split on the comma to create a list of characteristics for each individual
+  unnest(most_memorable_characteristics) # unlists the list, one in each column
+
+head(list_of_adjectives) %>% gt()
+```
+
+```{r}
+# can then count the number of each adjective, or separate into separate columns:
+list_of_adjectives %>%
+  group_by(id) %>%
+  mutate(adjnum = paste0("adj", row_number(id))) %>%
+  ungroup() %>%
+  pivot_wider(id_cols = c(reviewer, id), names_from = adjnum, values_from = most_memorable_characteristics) %>%
+  head() %>% gt()
+```
+
+#### 3. Make things faster
+
+##### a. `across()`
+
+`across()` lets us apply one function to many columns at once, such as below getting the average of each respective penguin measurement column.  
+
+```{r}
+#| source-line-numbers: "4"
+library(palmerpenguins)
+
+penguins %>% 
+  summarise(across(c(bill_length_mm, bill_depth_mm, flipper_length_mm, body_mass_g), ~mean(.x, na.rm=T))) %>%
+  gt()
+```
+
+##### b. mutate if
+
+Use `mutate_if()` to apply a particular function under certain conditions. 
+
+```{r}
+#| source-line-numbers: "2"
+penguins %>% 
+  mutate_if(is.double, as.integer) %>%  # IF is numeric, make AS integer
+  head(3) %>%
+  gt()
+```
+
+##### c. data.table
+
+The `data.table` package's `fread()` function loads data into R more efficiently than many of the `read_X()` functions. When loading a large dataset, try replacing the `read_X()` with `fread()`!
+
+Example of loading in tidy tuesday data:
+
+```{r, message=F, warning=F}
+library(data.table)
+
+historical_markers <- fread('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2023/2023-07-04/historical_markers.csv')
+```
+
+### Data Visualization
+
+#### 1. Title placement
+
+##### a. Move plot title left
+
+```{r, out.width='60%', message=F, warning=F}
+#| source-line-numbers: "6"
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()+
+  labs(x="Flipper length (mm)", y="Body mass (g)", title = "Penguin flipper vs. bill length")+
+  theme_classic()+
+  theme(plot.title.position = "plot")
+```
+
+##### b. Center title/subtitle
+
+```{r, out.width='60%',  message=F, warning=F}
+#| source-line-numbers: "6"
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()+
+  labs(x="Flipper length (mm)", y="Body mass (g)", title = "Penguin flipper vs. bill length")+
+  theme_classic()+
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+#### 2. Color
+
+##### a. Change color of part of title
+
+```{r, out.width='60%',  message=F, warning=F}
+#| source-line-numbers: "5,7"
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()+
+  labs(x="Flipper length (mm)", y="Body mass (g)", 
+       title = "Penguin <strong><span style='color:navy'> flipper</span></strong></b> vs. <strong><span style='color:goldenrod3'> bill </span></strong></b>length")+
+  theme_classic()+
+  theme(plot.title = ggtext::element_markdown()) # must have element_markdown() to make this work!!
+```
+
+##### b. Color palette finder
+
+[This website](https://r-graph-gallery.com/color-palette-finder) is a super fun way to visualize a bunch of different color palettes! You can choose a type (qualitative, diverging, essential), a target color, and the palette length. You can also select for different types of color blindness. 
+
+##### c. Change plot background color
+
+```{r, out.width='60%', message=F, warning=F}
+#| source-line-numbers: "6-7"
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()+
+  labs(x="Flipper length (mm)", y="Body mass (g)", title = "Penguin flipper vs. bill length")+
+  theme_classic()+
+  theme(plot.background = element_rect(fill = "lightblue3"), 
+        panel.background = element_rect(fill = "lightblue3"))
+```
+
+#### 3. Annotate plot
+
+##### a. Text
+
+```{r, out.width='60%', message=F, warning=F}
+#| source-line-numbers: "5-6"
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()+
+  labs(x="Flipper length (mm)", y="Body mass (g)", title = "Penguin flipper vs. bill length")+
+  annotate(geom="text", x=220, y=3500, label = "There is a \nlinear relationship",
+           color = "navy", size=3)+
+  theme_classic()
+```
+
+##### b. Add an arrow
+
+```{r, out.width='60%', message=F, warning=F}
+#| source-line-numbers: "5"
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()+
+  labs(x="Flipper length (mm)", y="Body mass (g)", title = "Penguin flipper vs. bill length")+
+  geom_curve(aes(x = 220, xend = 211, y = 3500, yend = 4000),arrow = arrow(length = unit(0.03, "npc")), curvature = 0.4, color = "navy")+
+  theme_classic()
+```
+
+#### 4. Fonts
+
+I like the showtext package to change fonts. Look [here](https://fonts.google.com/) for fonts. 
+
+```{r, message=F, warning=F }
+library(showtext)
+
+font_add_google("Shadows Into Light") # choose fonts to add
+font_add_google("Imprima")
+font_add_google("Gudea")
+showtext_auto() # turns on the automatic use of showtext
+```
+
+
+```{r, out.width='60%', message=F, warning=F}
+#| source-line-numbers: "7"
+penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()+
+  labs(x="Flipper length (mm)", y="Body mass (g)", title = "Penguin flipper vs. bill length")+
+  theme_classic()+
+  theme(plot.title.position = "plot", 
+        plot.title = element_text(family = "Imprima"))
+```
+
+
+#### 5. Images
+
+##### a. general
+
+```{r, out.width='60%', message=F, warning=F}
+#| source-line-numbers: "1-2"
+library(png)
+penguin_pic <- readPNG("images/penguin.png", native=TRUE)
+```
+
+```{r, message=F, warning=F}
+#| source-line-numbers: "7-12"
+plot <- penguins %>%
+  ggplot(aes(x=flipper_length_mm, y=body_mass_g))+
+  geom_point()+
+  labs(x="Flipper length (mm)", y="Body mass (g)", title = "Penguin flipper vs. bill length")+
+  theme_classic()
+
+plot +                  
+  patchwork::inset_element(p = penguin_pic,
+                left = 0.87,
+                bottom = 0.5,
+                right = 1,
+                top = 0.7)
+```
+
+
+##### b. aes
+
+You might not want to do this for a ton of points, but you can replace a typical `geom_point()` with `geom_image()`, or think of other fun ways to use this (e.g. putting images at the end of bar chart).
+
+```{r, out.width='60%', message=F, warning=F}
+#| source-line-numbers: "3,5"
+penguins %>%
+  head(10) %>% # select 10 points
+  mutate(img = "images/penguin.png") %>%
+  ggplot()+
+  ggimage::geom_image(aes(x = flipper_length_mm, y = body_mass_g, image=img), size=0.06) +
+  labs(x="Flipper length (mm)", y="Body mass (g)", title = "Penguin flipper vs. bill length")+
+  theme_classic() 
+```
+
+### Other R tricks
+
+#### 1. Rainbow parentheses
+
+This is super useful for making sure your parentheses are in the right place with a long sequence code!  
+
+To turn on rainbow parentheses, go to *Tools* $\rightarrow$ *Global Options* $\rightarrow$ *Code* $\rightarrow$ *Display* $\rightarrow$ *Use Rainbow Parentheses* ☑
+
+#### 2. Custom Default Theme
+
+During college (and still now) I liked to modify the `theme()` of a plot a lot. This ended up with a lot of repeated code, so my advisor, Brianna Heggeseth, taught me how to setup a custom default theme. Thanks, Brianna! :) Here are the steps. 
+
+1) Open you .Rprofile file by pasting `file.edit(file.path("~", ".Rprofile"))` in the console 
+
+2) Modify this file to load your theme when a specific package is loaded (for example, `ggplot2`). Then, put your desired theme in `theme_set()`. This could be something as simple as `ggplot2::theme_classic()`. Below, I put a very simple example of a custom theme. 
+
+```{r, eval=F}
+setHook(packageEvent("ggplot2", "onLoad"), 
+        function(...) ggplot2::theme_set(ggplot2::theme_classic()+
+                                           ggplot2::theme(plot.title.position = "plot",
+                                                 plot.title = ggplot2::element_text(family = "mono"))))
+```
+
+A few notes: \
+- You must call each function you use with the appropriate library in order for this to work. \
+- When you are done, save the .Rprofile and quit RStudio in order for the changes to be saved. \
+
+Here is [a source](https://bookdown.org/rdpeng/RProgDA/building-a-new-theme.html) I used to help refresh my memory on doing this.
+
+#### 3. Highlighting code
+
+While making this blog post, I wanted to be able to highlight the lines of code that corresponded to the topic I was discussing. To do this, I installed the [line-highlight extension for Quarto](https://github.com/shafayetShafee/line-highlight#readme) and followed the directions. 
+
+### Thanks!
+
+Thanks for reading my first blog post! If you have any R tricks you know of or feedback on this post, please email me at `efranke@andrew.cmu.edu`; I'd love to hear :)
+
