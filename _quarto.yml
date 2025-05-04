@@ -18,7 +18,7 @@ website:
     tools:
       - icon: file-person
         text: CV
-        href: docs/Erin_Franke_CV.pdf
+        href: docs/cv.pdf
   page-footer: 
     left: |
       &copy; Erin Franke, 2024 <br>
