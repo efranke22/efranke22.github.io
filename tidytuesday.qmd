@@ -6,8 +6,7 @@ I first started doing Tidy Tuesday in my Intro to Data Science class in Summer 2
 
 ## 2023
 
-::: {layout-ncol=3}
-
+::: {layout-ncol="3"}
 [![](images/tidytuesdays/tt29.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyHolidayMovies.Rmd)
 
 [![](images/tidytuesdays/tt28.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/week30/tidyScurvy.Rmd)
@@ -29,13 +28,11 @@ I first started doing Tidy Tuesday in my Intro to Data Science class in Summer 2
 [![](images/tidytuesdays/tt20.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/tidyTornados.Rmd)
 
 [![](images/tidytuesdays/tt19.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2023/artists_week3.Rmd)
-
 :::
 
 ## 2022
 
-::: {layout-ncol=3}
-
+::: {layout-ncol="3"}
 [![](images/tidytuesdays/tt18.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2022/eurovision_week20.Rmd)
 
 [![](images/tidytuesdays/tt17.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2022/wordle.Rmd)
@@ -43,13 +40,11 @@ I first started doing Tidy Tuesday in my Intro to Data Science class in Summer 2
 [![](images/tidytuesdays/tt16.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2022/chocolate_week3.Rmd)
 
 [![](images/tidytuesdays/tt15.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2022/bees_week2.Rmd)
-
 :::
 
 ## 2021
 
-::: {layout-ncol=3}
-
+::: {layout-ncol="3"}
 [![](images/tidytuesdays/nyeRun.gif)](https://github.com/efranke22/tidytuesday/blob/main/2021/december2021/nyeRun.gif)
 
 [![](images/tidytuesdays/tt14.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/december2021/tidytuesday_starbucks.Rmd)
@@ -84,8 +79,7 @@ I first started doing Tidy Tuesday in my Intro to Data Science class in Summer 2
 
 [![](images/tidytuesdays/tt3.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/Tidy%20Tuesday%20Week%2024.Rmd)
 
-[![](images/tidytuesdays/tt2.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/Tidy%20Tuesday%20week%2023.Rmd) 
+[![](images/tidytuesdays/tt2.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/Tidy%20Tuesday%20week%2023.Rmd)
 
 [![](images/tidytuesdays/tt1.jpeg)](https://github.com/efranke22/tidytuesday/blob/main/2021/june2021/Tidy%20Tuesday%20%231.Rmd)
-
 :::
