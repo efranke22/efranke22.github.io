@@ -16,7 +16,7 @@ about:
 ---
 
 ::: {#intro-heading}
-Hi, thanks for visiting my website! My name is Erin and I use she/her pronouns.
+Hi, thanks for visiting my website!
 
 I am a first-year Statistics PhD student at [Carnegie Mellon University](https://www.cmu.edu/dietrich/statistics-datascience/index.html) in Pittsburgh, PA.
 
