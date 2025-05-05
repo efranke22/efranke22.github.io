@@ -9,7 +9,9 @@ draft: false
 toc: true
 toc-depth: 5
 bibliography: references.bib
-format: html
+format:
+  html:
+    css: styles.css
 filters:
   - parse-latex
 ---
