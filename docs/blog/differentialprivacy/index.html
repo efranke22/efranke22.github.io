@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Erin Franke">
+<meta name="dcterms.date" content="2025-05-04">
+<meta name="description" content="What does privacy mean in data analysis? Why is it important, and what does Differential Privacy offer?">
+
+<title>A Brief Introduction to Differential Privacy – Erin Franke</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">Erin Franke</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../projects.html"> 
+<span class="menu-text">Undergrad</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../tidytuesday.html"> 
+<span class="menu-text">Tidy Tuesday</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../blog.html"> 
+<span class="menu-text">Blog</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="../../docs/cv.pdf" title="CV" class="quarto-navigation-tool px-1" aria-label="CV"><i class="bi bi-file-person"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#what-is-privacy" id="toc-what-is-privacy" class="nav-link active" data-scroll-target="#what-is-privacy">What is Privacy?</a></li>
+  <li><a href="#historical-measures-of-privacy" id="toc-historical-measures-of-privacy" class="nav-link" data-scroll-target="#historical-measures-of-privacy">Historical Measures of Privacy</a></li>
+  <li><a href="#mathematical-definitions" id="toc-mathematical-definitions" class="nav-link" data-scroll-target="#mathematical-definitions">Mathematical Definitions</a>
+  <ul>
+  <li><a href="#properties-of-differential-privacy" id="toc-properties-of-differential-privacy" class="nav-link" data-scroll-target="#properties-of-differential-privacy">Properties of Differential Privacy</a>
+  <ul>
+  <li><a href="#composition" id="toc-composition" class="nav-link" data-scroll-target="#composition">Composition</a></li>
+  <li><a href="#post-processing-immunity" id="toc-post-processing-immunity" class="nav-link" data-scroll-target="#post-processing-immunity">Post-processing immunity</a></li>
+  <li><a href="#group-privacy" id="toc-group-privacy" class="nav-link" data-scroll-target="#group-privacy">Group Privacy</a></li>
+  </ul></li>
+  <li><a href="#the-laplace-and-exponential-mechanism" id="toc-the-laplace-and-exponential-mechanism" class="nav-link" data-scroll-target="#the-laplace-and-exponential-mechanism">The Laplace and Exponential Mechanism</a>
+  <ul>
+  <li><a href="#application-of-the-laplace-mechanism" id="toc-application-of-the-laplace-mechanism" class="nav-link" data-scroll-target="#application-of-the-laplace-mechanism">Application of the Laplace Mechanism</a></li>
+  <li><a href="#application-of-the-exponential-mechanism" id="toc-application-of-the-exponential-mechanism" class="nav-link" data-scroll-target="#application-of-the-exponential-mechanism">Application of the Exponential Mechanism</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#choosing-epsilon" id="toc-choosing-epsilon" class="nav-link" data-scroll-target="#choosing-epsilon">Choosing Epsilon</a></li>
+  <li><a href="#application-of-differential-privacy-to-health-data" id="toc-application-of-differential-privacy-to-health-data" class="nav-link" data-scroll-target="#application-of-differential-privacy-to-health-data">Application of Differential Privacy to Health Data</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">A Brief Introduction to Differential Privacy</h1>
+  <div class="quarto-categories">
+    <div class="quarto-category">Data Science</div>
+    <div class="quarto-category">Data Ethics</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    What does privacy mean in data analysis? Why is it important, and what does Differential Privacy offer?
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Erin Franke </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 4, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In this blog post, I discuss Differential Privacy, a mathematical definition of privacy that has grown in popularity over the last decade. This post is meant to give the reader an understanding of what privacy is, why historical techniques fail, and what Differential Privacy offers. I recommend checking out the references at the bottom of this page if you are interested in learning more!</p>
+<section id="what-is-privacy" class="level1">
+<h1>What is Privacy?</h1>
+<p>Society today is highly data-driven—through social media interactions, google searches, credit card transactions, healthcare visits, surveys, and other mediums, personal data is continuously collected and stored for analysis. With this comes the need for privacy and security, as many of these datasets contain sensitive information or can be used as a means to access sensitive information. Unfortunately, privacy breaches are not uncommon and can have serious effects. Take, for instance, the Yahoo data breaches in 2013 and 2014. It is estimated hackers exposed private information—including names, emails addresses, phone numbers, birth dates, and security questions—of all three billion Yahoo accounts <span class="citation" data-cites="nyt">(<a href="#ref-nyt" role="doc-biblioref">Perlroth 2017</a>)</span>. However, privacy breach does not necessarily have to be the result of a hacker gaining unauthorized data access. For example, an AI company <em>Scatter Lab</em> trained a chatbot using messaging data from users on South Korea’s largest text messaging service, KakaoTalk. This chatbot then exposed sensitive information upon implementation, reproducing conversations from the training data <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>. This demonstrates privacy breaches can also occur even without direct access to underlying datasets.</p>
+<p>The main goal of privacy protection techniques is to release data that conceal sensitive attributes at the individual level and group level, while at the same time keeping as much information as possible to allow for accurate data analysis. In the ideal world, no one would be able to learn any information about a specific individual from the privatized computation. However, this makes data analysis impossible. As a result, privacy represents the goal of learning as little as possible about individuals. In other words, the goal of privacy is to ensure one can learn almost nothing new about an individual that could not have been inferred had they not shared their data <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>.</p>
+<p>Many privacy techniques fail when they don’t properly identity particular attacks that should be resisted. Fioretto et al.&nbsp;(2024) conclude strong privacy techniques should hold four main properties: compositionality, post-processing immunity, group privacy, and quantifiable privacy accuracy tradeoffs. <strong>Compositionality</strong> signifies that repeated analyses cannot together break privacy safeguards—the protections should hold when the datasets are analyzed multiple times or datasets contain overlapping information. <strong>Post-processing immunity</strong> denotes once the original data has been privatized with a privacy-preserving mechanism, all future transformations or analysis of the privatized data cannot reduce privacy. <strong>Group privacy</strong> guarantees that the privacy mechanism still protects individuals even when data are provided at the group level. More information is able to be encoded as group size increases, and group privacy seeks to protect individuals in these groups from being identified and harmed. Finally, the privacy method should have <strong>quantifiable privacy-accuracy tradeoffs</strong>, meaning should measure how much accuracy is forgone for a given level of privacy. We further touch on each of these four components of privacy throughout the blog post.</p>
+<p>Differential Privacy, developed by Cynthia Dwork et al.&nbsp;in 2006, offers a formal and mathematical definition of privacy. It is now widely regarded as the gold standard for privacy protection in statistical analyses and dataset releases <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>. Differential Privacy guarantees that the presence or absence or any individual record in a database does not significantly affect the outcome of any computation that can be performed on the data. Perhaps the most powerful aspect of Differential Privacy is that this guarantee holds even if an adversary—an entity trying to deduce private information about individuals through data analysis—has unlimited computing power and complete knowledge of the algorithm and system used to collect and analyze the data. In other words, Differential Privacy ensures <em>future-proof protection</em> <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>.</p>
+<p>In this blog post, we start by discussing historical measures of privacy and their flaws. We then define Differential Privacy in mathematical terms, its theoretical guarantees, and explain the Laplace and Exponential mechanisms. We conclude by briefly covering the difficulty of choosing the level of privacy to guarantee, as well as discussing challenges that come with applying Differential Privacy to health data.</p>
+</section>
+<section id="historical-measures-of-privacy" class="level1">
+<h1>Historical Measures of Privacy</h1>
+<p>When thinking of privacy, what may immediately come to mind is anonymization. Anonymization—the process of removing or masking identifiers to prevent the recovery of personal identities—has been used in many applications, including the release of medical datasets under the Health Insurance Portability and Accountability Act (HIPAA) standards <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>. We can show that anonymization is not always enough to conceal the identity of those in the dataset from adversaries with a real-life example. In the mid-1990s, a Massachusetts government agency in charge of purchasing health insurance for state employees released anonymized health data with the goal of promoting medical research. They removed the names, addresses, and social security numbers of individuals, while keeping other attributes they considered unidentifiable such as sex, zip code, and date of birth. MIT graduate student, Dr.&nbsp;Latanya Sweeney, cross-referenced this datset with voter registration records and was able to identify Governor William Weld’s medical records and mail them to his home. She did this through a <em>linkage attack</em>, first finding individuals in both datasets with Governor Weld’s date of birth (6), then keeping only male individuals (3), of which only one resided in his zip code. Dr.&nbsp;Sweeney went on to conclude 87% of the United States population has reported characteristics that make them unique based on these three identifiers <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>. The released anonymized dataset could be combined with other publicly available datasets to learn private information about individuals and break the original guarantees, indicating a failure of post-processing immunity.</p>
+<p>Dr.&nbsp;Latanya Sweeney and Professor Pierangela Samarati introduced <em>k-anonymity</em> <span class="citation" data-cites="kanon">(<a href="#ref-kanon" role="doc-biblioref">Samarati and Sweeney 1998</a>)</span> in response to the failures of anonymization. A dataset is <span class="math inline">\(k\)</span>-anonymous if every record is indistinguishable from at least <span class="math inline">\(k\)</span>-1 other records for a set of quasi-identifiers. The dataset displayed in Table 1 exhibits 1-anonymity, as every individual is unique from the others on the basis of age and zip code. The first three columns of this dataset are transformed to provide 4-anonymity in Table 2, as there are four individuals of age 20-30 with zip code 15***, and four individuals of age 50-60 with zip code 60***. We are unable to distinguish between any of the <span class="math inline">\(k\)</span> individuals with the same quasi-identifiers. However, to achieve this increased level of privacy, we have a loss of utility. We no longer have exact zipcodes or ages of individuals, which could make certain analyses difficult. Additionally, <span class="math inline">\(k\)</span>-anonymization fails to provide group privacy and compositionality. In this situation, group privacy does not hold because personal details can be assumed about a person without directly identifying anyone. For instance, one could cross-reference with publicly available data (for example, voter records) to know who the four individuals of age 20-30 are in the state records from Table 2. If an adversary is trying to deduce the income of a particular person, they know it must fall in the range of $48,000-$56,000. Compositionality also does not hold. Suppose it is known that a person, call them Fred, participated in a survey that gathered income information. The results of the survey, which also has 4-anonymity, are displayed in Table 3. An adversary can cross reference the survey with the state records to find a unique match. Individual C from the survey dataset is the only individual in both datasets of age 20-30 with zip code 15*** that makes 48k. Therefore, individual C must be Fred. This example shows how privacy guarantees of <span class="math inline">\(k\)</span>-anonymity may not hold when datasets are combined, motivating the need for a more protective privacy technique.</p>
+<p><img src="tables.png" class="img-fluid"></p>
+</section>
+<section id="mathematical-definitions" class="level1">
+<h1>Mathematical Definitions</h1>
+<p>The previous examples demonstrate the need for a privacy technique that provides compositionality, post-processing immunity, and group privacy. Differential Privacy provides the answer. Differential Privacy is a mathematical framework for measuring and bounding the individuals’ privacy risks in a computation <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>. It guarantees that the presence or absence or any individual record in a database does not significantly affect the outcome of any computation that can be performed on the data. We now go through the math that allows for the guarantees that Differential Privacy provides. These results are largely drawn from <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>.</p>
+<p>First, let <span class="math inline">\(D\)</span> be a dataset and <span class="math inline">\(\mathcal{D}\)</span> be the set of all possible datasets. Let a mechanism represent any computation that can be performed on the data, and let <span class="math inline">\(\mathcal{R} \subseteq \mathbb{R}^r\)</span> be a real vector space. Two datasets, <span class="math inline">\(D\)</span> and <span class="math inline">\(D'\)</span>, are defined to be <em>adjacent</em> if, by either adding or removing the data of a single individual, the two datasets are equivalent. In other words, adjacency <span class="math inline">\(D \sim D'\)</span> holds if <span class="math inline">\(|D\Delta D'| = 1\)</span>, where <span class="math inline">\(\Delta\)</span> is the symmetric difference of two sets. In order to consider how a particular mechanism changes with the participation or absence of a given individual, adjacency is needed.</p>
+<p>Global sensitivity is the way to quantify the impact of data from a single individual on a mechanism. To do so, it measures how much the output of a function <span class="math inline">\(f: \mathcal{D} \to \mathcal{R}\)</span> can change when an individual’s data is added or removed from the dataset. Mathematically, it is defined as the maximum difference in the output <span class="math inline">\(f\)</span> over all pairs of adjacent datasets <span class="math inline">\(D \sim D' \in \mathcal{D}\)</span>, measured with respect to the <span class="math inline">\(\ell_p\)</span> norm:</p>
+<p><span class="math display">\[\Delta_p f =  \underset{D \sim D'}{\max}\Vert f(D) - f(D') \Vert_p.\]</span></p>
+<p>The result <span class="math inline">\(\Delta_p f\)</span> provides a basis for determining the amount of noise to add in order for the function’s output to obtain the desired level of privacy. For example, say the mechanism was to compute the average age in a dataset, and that the range <span class="math inline">\(A\)</span> of possible age values is 0-100. The global sensitivity of this mechanism would be</p>
+<p><span id="eq-age"><span class="math display">\[
+\Delta_p f = \frac{\max(A) - \min(A)}{|D|} = \frac{100}{|D|}
+\tag{1}\]</span></span></p>
+<p>A differentially private mechanism adds random noise—by an amount given by the global sensitivity—or makes randomized choices to map a dataset to a distribution. The differentially private output is then a single random sample taken from the distribution. More formally, a randomized mechanism <span class="math inline">\(\mathcal{M}: \mathcal{D} \to \mathcal{R}\)</span> with domain <span class="math inline">\(\mathcal{D}\)</span> and range <span class="math inline">\(\mathcal{R}\)</span> is (<span class="math inline">\(\epsilon, \delta)\)</span>-differentially private if, for any event <span class="math inline">\(S \subseteq \mathcal{R}\)</span> and any pair <span class="math inline">\(D, D' \in \mathcal{D}\)</span> of adjacent datasets:</p>
+<p><span id="eq-dp"><span class="math display">\[
+Pr[\mathcal{M}(\mathcal{D}) \in S] \leq \exp(\epsilon) Pr[\mathcal{M}(D') \in S] + \delta
+\tag{2}\]</span></span></p>
+<p>where the probability is calculated over the randomness of <span class="math inline">\(\mathcal{M}\)</span>. In <a href="#eq-dp" class="quarto-xref">Equation&nbsp;2</a>, <span class="math inline">\(\epsilon \geq 0\)</span> represents the privacy loss, with values closer to 0 indicating strong privacy. Parameter <span class="math inline">\(\delta\)</span> represents a margin of error or failure threshold.</p>
+<p>Let <span class="math inline">\(\delta=0\)</span> temporarily. If <span class="math inline">\(\epsilon=0\)</span>, <span class="math inline">\(Pr[\mathcal{M}(\mathcal{D}) \in S] = Pr[\mathcal{M}(D') \in S]\)</span>, meaning the output of <span class="math inline">\(f: \mathcal{D} \to \mathcal{R}\)</span> is independent of and does not use the input dataset <span class="math inline">\(D\)</span> or <span class="math inline">\(D'\)</span>. There is perfect privacy, but no utility—we do not gain any insight from the data. As a result, we typically think of situations where <span class="math inline">\(\epsilon\)</span> approaches zero, forcing the distributions <span class="math inline">\(\mathcal{M}(D)\)</span> and <span class="math inline">\(\mathcal{M}(D')\)</span> to be nearly identical. The choice of <span class="math inline">\(\epsilon\)</span> is further discussed in Section 4. A mechanism satisfying <span class="math inline">\((\epsilon, 0)\)</span>-differential privacy is called a <em>pure</em> differentially private or <span class="math inline">\(\epsilon\)</span>-differentially private mechanism. Parameter <span class="math inline">\(\delta\)</span> is not always chosen to be 0 and represents the maximum probability that the differential privacy guarantee does not hold. It is often chosen to be a very small value, usually much smaller than <span class="math inline">\(\frac{1}{N}\)</span>, where <span class="math inline">\(N\)</span> is the size of the dataset.</p>
+<section id="properties-of-differential-privacy" class="level2">
+<h2 class="anchored" data-anchor-id="properties-of-differential-privacy">Properties of Differential Privacy</h2>
+<p>We next discuss mathematically how Differential Privacy satisfies the desired components of privacy—composition, post-processing, and group privacy. These properties hold for any mechanism that satisfies <a href="#eq-dp" class="quarto-xref">Equation&nbsp;2</a>.</p>
+<section id="composition" class="level3">
+<h3 class="anchored" data-anchor-id="composition">Composition</h3>
+<p>Composition guarantees that Differential Privacy remains when combining multiple differentially private mechanisms. It aggregates the privacy guarantees of individual mechanisms to analyze the overall privacy loss of an algorithm, a process known as <em>privacy accounting</em>. Dwork and Roth (2014) found the following:</p>
+<p><strong>Theorem 3.1</strong>: Let <span class="math inline">\(\mathcal{M}_i: \mathcal{D} \to \mathcal{R}_i\)</span> be an <span class="math inline">\(\epsilon_i\)</span>-differentially private mechanism for <span class="math inline">\(i \in \{1, 2\}\)</span>. Then, their composition, defined as <span class="math inline">\(\mathcal{M}(D) = (\mathcal{M}_1(D), \mathcal{M}_2(D))\)</span>, is <span class="math inline">\((\epsilon_1 + \epsilon_2)\)</span>-differentially private.</p>
+<p><em>Proof</em>: For any <span class="math inline">\((R_1, R_2) \subseteq \mathcal{R}_1 \times \mathcal{R}_2\)</span> and any two neighboring datasets <span class="math inline">\(D \sim D'\)</span>,</p>
+<p><span id="eq-comp"><span class="math display">\[
+\begin{aligned}
+\frac{\text{Pr}[\mathcal{M}(D) \in (R_1, R_2)]}{\text{Pr}[\mathcal{M}(D') \in (R_1, R_2)]}
+&amp;= \frac{\text{Pr}[\mathcal{M}_1(D) \in R_1] \, \text{Pr}[\mathcal{M}_2(D) \in R_2]}{\text{Pr}[\mathcal{M}_1(D') \in R_1] \, \text{Pr}[\mathcal{M}_2(D') \in R_2]} \\
+&amp;= \left( \frac{\text{Pr}[\mathcal{M}_1(D) \in R_1]}{\text{Pr}[\mathcal{M}_1(D') \in R_1]} \right)
+   \left( \frac{\text{Pr}[\mathcal{M}_2(D) \in R_2]}{\text{Pr}[\mathcal{M}_2(D') \in R_2]} \right) \\
+   &amp;\leq \exp(\epsilon_1)\exp(\epsilon_2) \\
+   &amp;= \exp(\epsilon_1 + \epsilon_2)
+\end{aligned}
+\tag{3}\]</span></span></p>
+<p>In <a href="#eq-comp" class="quarto-xref">Equation&nbsp;3</a>, we assume independence between <span class="math inline">\(\mathcal{M}_1\)</span> and <span class="math inline">\(\mathcal{M}_2\)</span>. This assumption is usually incorrect, but in practice it is a good enough approximation <span class="citation" data-cites="ted">(<a href="#ref-ted" role="doc-biblioref">Desfontaines 2019</a>)</span>. We then use the assumption <span class="math inline">\(M_i\)</span> is <span class="math inline">\(\epsilon_i\)</span> differentially private, meaning <span class="math inline">\(\frac{\text{Pr}[\mathcal{M}_i(D) \in R_i]}{\text{Pr}[\mathcal{M}_i(D') \in R_i]} \leq \exp(\epsilon_i)\)</span>. Theorem 3.1 can be generalized to <span class="math inline">\(k\)</span> differentially private mechanisms. If <span class="math inline">\(\mathcal{M}_i: \mathcal{D} \to \mathcal{R}_i\)</span> is an <span class="math inline">\(\epsilon_i\)</span>-differentially private mechanism for <span class="math inline">\(i = 1, \dots, k\)</span>, then composition <span class="math inline">\(\mathcal{M}(D) = (\mathcal{M}_1(D), \dots, \mathcal{M}_k(D))\)</span> is <span class="math inline">\((\sum_{i=1}^k \epsilon_i)\)</span>-differentially private.</p>
+</section>
+<section id="post-processing-immunity" class="level3">
+<h3 class="anchored" data-anchor-id="post-processing-immunity">Post-processing immunity</h3>
+<p>Post-processing immunity ensures that a data analyst cannot compute a function of the output of a private algorithm <span class="math inline">\(\mathcal{M}\)</span> and make it less differentially private <span class="citation" data-cites="dwork_roth">(<a href="#ref-dwork_roth" role="doc-biblioref">Dwork and Roth 2014</a>)</span>.</p>
+<p><strong>Theorem 3.2</strong>: Let <span class="math inline">\(\mathcal{M}: \mathcal{D} \to \mathcal{R}\)</span> be an <span class="math inline">\(\epsilon\)</span>-differentially private mechanism and <span class="math inline">\(g: \mathcal{R} \to \mathcal{R}'\)</span> be a data-independent mapping. The mechanism <span class="math inline">\(g \space\circ \mathcal{M}\)</span> is <span class="math inline">\(\epsilon\)</span>-differentially private.</p>
+<p><em>Proof</em>: The proof can be done for a deterministic function <span class="math inline">\(g: \mathcal{R} \to \mathcal{R}'\)</span>. Any randomized mapping can be decomposed into a convex combination of deterministic functions. The result follows because a convex combination of differentially private mechanisms is differentially private. Fix any pair of datasets <span class="math inline">\(D\)</span> and <span class="math inline">\(D'\)</span> with <span class="math inline">\(\Vert D-D'\Vert_1 \leq 1\)</span>, and fix any event <span class="math inline">\(S \subseteq \mathcal{R}'\)</span>. Let <span class="math inline">\(T = \{r \in \mathcal{R}: g(r) \in S\}\)</span>. Then:</p>
+<p><span class="math display">\[\begin{aligned}
+    \text{Pr}[g(\mathcal{M}(D)) \in S] &amp;= \text{Pr}[\mathcal{M}(D) \in T] \\
+    &amp;\leq \exp(\epsilon)\text{Pr}[\mathcal{M}(D') \in T] + \delta \\
+    &amp;= \exp(\epsilon) \text{Pr}[g(\mathcal{M}(D')) \in S]+\delta
+\end{aligned}\]</span></p>
+<p>which is what we wanted.</p>
+</section>
+<section id="group-privacy" class="level3">
+<h3 class="anchored" data-anchor-id="group-privacy">Group Privacy</h3>
+<p>Group privacy takes a privacy guarantee from the individual level to the group level. For example, group privacy addresses privacy in surveys that include multiple family members.</p>
+<p><strong>Theorem 3.3</strong>: Let <span class="math inline">\(\mathcal{M}: \mathcal{D} \to \mathcal{R}\)</span> be an <span class="math inline">\(\epsilon\)</span>-differentially private mechanism and let datasets <span class="math inline">\(D\)</span> and <span class="math inline">\(D'\)</span> differ in <span class="math inline">\(k\)</span> entries. Then for all <span class="math inline">\(S \subseteq \mathcal{R}\)</span>:</p>
+<p><span class="math display">\[\text{Pr}[\mathcal{M}(D) \in S] \leq \exp(k\epsilon) \text{Pr}[\mathcal{M}(D') \in S].\]</span></p>
+<p><em>Proof</em>: Assume <span class="math inline">\(\mathcal{M}\)</span> satisfies <span class="math inline">\((\epsilon, 0)\)</span>-Differential Privacy. If <span class="math inline">\(D\)</span> and <span class="math inline">\(D'\)</span> are two datasets differing by <span class="math inline">\(k\)</span> rows, we can construct <span class="math inline">\(D=D^{(0)}, D^{(1)}, D^{(2)}, \dots, D' = D^{(k)}\)</span> where <span class="math inline">\(D^{(i)} \sim D^{(i+1)}\)</span> for <span class="math inline">\(i=0, \dots, k-1\)</span>. These are intermediate datasets obtained when going from <span class="math inline">\(D\)</span> to <span class="math inline">\(D'\)</span> by changing one entry at a time successively. Then, by the Differential Privacy guarantee of <span class="math inline">\(\mathcal{M}\)</span>, for any <span class="math inline">\(R \subseteq \mathcal{R}\)</span> and <span class="math inline">\(i \in [k-1]\)</span>,</p>
+<p><span class="math display">\[\begin{aligned}
+\text{Pr}[\mathcal{M}(D) \in R] &amp;= \text{Pr}[\mathcal{M}(D^{(0)}) \in R] \\
+&amp;\leq \exp(\epsilon) \text{Pr}[\mathcal{M}(D^{(1)}) \in R] \\
+&amp;\leq \exp(2\epsilon) \text{Pr}[\mathcal{M}(D^{(2)}) \in R] \\
+&amp;\quad \quad \quad \quad \quad \quad \vdots \\
+&amp;\leq \exp(k\epsilon) \text{Pr}[\mathcal{M}(D^{(k)}) \in R] \\
+&amp;= \exp(k\epsilon) \text{Pr}[\mathcal{M}(D') \in R]. \\
+\end{aligned}\]</span></p>
+</section>
+</section>
+<section id="the-laplace-and-exponential-mechanism" class="level2">
+<h2 class="anchored" data-anchor-id="the-laplace-and-exponential-mechanism">The Laplace and Exponential Mechanism</h2>
+<p>Having now introduced Differential Privacy and proved its guarantees, we discuss how noise is added to the data so that these guarantees hold. The Laplace mechanism is a differentially private mechanism based on the Laplace distribution for answering numeric queries <span class="citation" data-cites="dwork_2006b">(<a href="#ref-dwork_2006b" role="doc-biblioref">Dwork et al. 2006</a>)</span>. It functions by computing the output of query <span class="math inline">\(f\)</span> and then adding random noise drawn from the Laplace distribution independently to each of the <span class="math inline">\(d\)</span> dimensions of the query response. The Laplace distribution has mean 0, scale <span class="math inline">\(b\)</span>, and probability density function <span class="math inline">\(\text{Lap}(x|b) = \frac{1}{2b}e^{-\frac{|x|}{b}}\)</span>. Scale <span class="math inline">\(b\)</span> is calculated by the global sensitivity <span class="math inline">\(\Delta_p f\)</span> divided by <span class="math inline">\(\epsilon\)</span> <span class="citation" data-cites="main_paper">(<a href="#ref-main_paper" role="doc-biblioref">Fioretto, Hentenryck, and Ziani 2024</a>)</span>. The Laplace mechanism achieves <span class="math inline">\((\epsilon,0)\)</span>-Differential Privacy by bounding the ratio of output probabilities between <span class="math inline">\(D\)</span> and <span class="math inline">\(D'\)</span> by <span class="math inline">\(\exp(\epsilon)\)</span>.</p>
+<p>The exponential mechanism <span class="citation" data-cites="exp_mech">(<a href="#ref-exp_mech" role="doc-biblioref">McSherry and Talwar 2007</a>)</span> is capable of performing selection privately while also preserving the quality of the selection made. It is intended to be used in situations where we wish to choose the “best” response, but adding noise directly to the computed quantity can completely ruin its value. For example, at an auction, the goal is to maximize revenue. If we were to add a small amount of positive noise to the optimal price in order to protect the privacy of the bid, it could dramatically reduce the resulting revenue. The exponential mechanism takes a set of objects <span class="math inline">\(\mathcal{H}\)</span>, a dataset <span class="math inline">\(D \in \mathcal{D}\)</span>, and a utility function <span class="math inline">\(s: \mathcal{D} \times \mathcal{H} \to \mathbb{R}\)</span> and outputs <span class="math inline">\(h \in \mathcal{H}\)</span> with probability proportional to <span class="math inline">\(\exp\left(\frac{\epsilon s(D, h)}{2 \Delta s}\right)\)</span>, where the global sensitivity of the utility function is <span class="math inline">\(\Delta s \equiv \underset{h \in \mathcal{H}}{\max} \underset{D \sim D'}{\max}|s(D, h) - s(D', h)|\)</span>. The exponential mechanism achieves <span class="math inline">\((\epsilon, 0)\)</span>-Differential Privacy.</p>
+<section id="application-of-the-laplace-mechanism" class="level3">
+<h3 class="anchored" data-anchor-id="application-of-the-laplace-mechanism">Application of the Laplace Mechanism</h3>
+<p>Suppose we return to <a href="#eq-age" class="quarto-xref">Equation&nbsp;1</a> where we define the global sensitivity of a mechanism computing the average age in a dataset. We now show how the Laplace mechanism can be applied in practice, using a dataset of 1,000 individuals of ages 0 to 100 years. We first compute the global sensitivity,</p>
+<p><span class="math display">\[\Delta f = \frac{\max \text{age} - \min \text{age}}{n} = \frac{100}{1,000} = 0.1.\]</span></p>
+<p>We then select privacy parameter <span class="math inline">\(\epsilon=0.5\)</span> and add noise drawn from the Laplace distribution with the scale parameter <span class="math inline">\(\frac{\Delta f}{\epsilon}\)</span>.</p>
+<p><span class="math display">\[\text{noise} \sim \text{Lap}\left(\frac{\Delta f}{\epsilon}\right) = \left(\frac{0.1}{0.5}\right) = \text{Lap(0.2)}\]</span></p>
+<p>The differentially private query then reports <span class="math inline">\(f\)</span>(data) + noise. For instance, if the average was truly 43.8 years, and we drew 0.13563 using R’s <code>rlaplace(n = 1, location = 0, scale = 0.2)</code>, we would report the average age as 43.936 years.</p>
+</section>
+<section id="application-of-the-exponential-mechanism" class="level3">
+<h3 class="anchored" data-anchor-id="application-of-the-exponential-mechanism">Application of the Exponential Mechanism</h3>
+<p>The following situation is adapted from <span class="citation" data-cites="dwork_roth">(<a href="#ref-dwork_roth" role="doc-biblioref">Dwork and Roth 2014</a>)</span>. A retailer is selling bedframes and there are three potential buyers, <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span>, each of whom have a maximum price they are willing to pay (their <em>valuation</em>). The buyers keep their valuations to themselves to avoid disclosing private information about their finances. The retailer wants to determine a sale price to maximize their total revenue without revealing the valuations of the buyers in the process. Suppose the valuations of the buyers <span class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>, and <span class="math inline">\(C\)</span> are $400, $700, $1,000, respectively. The following prices options would give the corresponding revenues:</p>
+<ul>
+<li><p><strong>Price of $400</strong>: Revenue = $400 <span class="math inline">\(\times\)</span> 3 buyers = $1,200</p></li>
+<li><p><strong>Price of $700</strong>: Revenue = $700 <span class="math inline">\(\times\)</span> 2 buyers = $1,400</p></li>
+<li><p><strong>Price of $1,000</strong>: Revenue = $1,000 <span class="math inline">\(\times\)</span> 1 buyers = $1,000</p></li>
+</ul>
+<p>To maximize revenue, the seller should set the price at $700. If the seller added random noise to the valuations to preserve privacy, however, <span class="math inline">\(B\)</span>’s valuation could become $701 (while remaining $700 in reality), leading only <span class="math inline">\(C\)</span> to purchase the bed at the price of $701 and the seller to make $701 instead of $<span class="math inline">\(1,400\)</span>. To account for this situation, the exponential mechanism is useful. The seller can define utility function <span class="math inline">\(s(D,h)\)</span> that calculates the total revenue generated at a price <span class="math inline">\(h\)</span>, given the buyers’ valuations in dataset <span class="math inline">\(D\)</span>. The exponential mechanism then selects a price <span class="math inline">\(h\)</span> with probability proportional to <span class="math inline">\(\exp\left(\frac{\epsilon s(D, h)}{2 \Delta s}\right)\)</span>. As <span class="math inline">\(\epsilon \to 0\)</span>, all prices become equally likely independently of the buyers’ valuations <span class="math inline">\(D\)</span>, leading to perfect privacy. As <span class="math inline">\(\epsilon\)</span> increases, more importance is given to the utility function <span class="math inline">\(s(D, h)\)</span>, providing higher utility to the seller but less privacy to the buyer.</p>
+</section>
+</section>
+</section>
+<section id="choosing-epsilon" class="level1">
+<h1>Choosing Epsilon</h1>
+<p>Throughout this paper, we have discussed <span class="math inline">\(\epsilon\)</span> as the privacy tuning parameter. But how do we choose <span class="math inline">\(\epsilon\)</span>? In reality, there is little understanding of what the optimal value for <span class="math inline">\(\epsilon\)</span> is for a given system or classes of systems, purposes, data, etc <span class="citation" data-cites="expose">(<a href="#ref-expose" role="doc-biblioref">Dwork, Kohli, and Mulligan 2019</a>)</span>. Cynthia Dwork, Nitin Kohli, and Dierdre Mulligran conducted interviews with eleven employees at seven organizations known to be using Differential Privacy in 2016. Three organizations were technology companies, and the remainder were in government, telecommunications, energy, and academic research. The goal of the interviews was to learn more about the successes and challenges of Differential Privacy and how these organizations chose their <span class="math inline">\(\epsilon\)</span>. A primary challenge reiterated by the interviewees was the difficulty of explaining privacy budgets to those in their organization not familiar with the mathematical model of Differential Privacy. These non-experts may struggle to grasp what it means for the privacy budget to be exhausted. In terms of choosing <span class="math inline">\(\epsilon\)</span>, the interviewers found a wide variety of methods being implemented. One method was to use simulation to find a value of <span class="math inline">\(\epsilon\)</span> that provided sufficient utility to meet the institution’s product and business goals. Another method was to use a threat model to understand what threats to privacy the institution could face, choose epsilon based on the acceptable amount of privacy loss, and then assess accuracy. Other interviewees said that their <span class="math inline">\(\epsilon\)</span> was chosen completely arbitrarily, or they were using a value of <span class="math inline">\(\epsilon\)</span> from a previous implementation that had been passed down to them. Of these methods, only the threat model made a distinct effort to put privacy protection ahead of utility.</p>
+<p>The ability for an organization to choose <span class="math inline">\(\epsilon\)</span> is both a blessing and a curse. If chosen correctly, the organization can appropriately balance privacy and utility in the context of their data. However, it also allows organizations to state they are practicing privacy, while in reality choosing a large <span class="math inline">\(\epsilon\)</span> that offers little protection. Dwork et al.&nbsp;argue that broad knowledge of <span class="math inline">\(\epsilon\)</span> across firms is important for two reasons. First, public knowledge can support shared learning. If some individuals are choosing <span class="math inline">\(\epsilon\)</span> arbitrarily, sharing of knowledge can help promote more informed choices. Second, public sharing of <span class="math inline">\(\epsilon\)</span> can promote higher quality implementations of privacy—firms cannot hide behind a very high <span class="math inline">\(\epsilon\)</span> without criticism.</p>
+</section>
+<section id="application-of-differential-privacy-to-health-data" class="level1">
+<h1>Application of Differential Privacy to Health Data</h1>
+<p>Differential Privacy is applied across many domains, such as technology, government, education, and health. While Differential Privacy has its advantages—compositionality, post-processing immunity, group privacy, quantifiable privacy-accuracy tradeoffs—it is not without its challenges, especially as a newer privacy method. Below, we list a few challenges of the application of Differential Privacy to health data <span class="citation" data-cites="Dankar2012">(<a href="#ref-Dankar2012" role="doc-biblioref">Dankar and El Emam 2012</a>)</span>.</p>
+<ul>
+<li><p>Users of health data (e.g. biostatisticians, epidemiologists) are accustomed to data publishing, where the data is non-interactive and can be run through preexisting programs (e.g. SAS programs). It would be hard to convince analysts to move to a less understood interactive system.</p></li>
+<li><p>The healthcare sector often has specific privacy laws in many jurisdictions, which are often based on precedent. There is a significant amount of precedent for different values of <span class="math inline">\(k\)</span> for <span class="math inline">\(k\)</span>-anonymity. A data custodian can point to history to justify their choice of <span class="math inline">\(k\)</span>, whereas there is little intrinsic meaning for the value of <span class="math inline">\(\epsilon\)</span>.</p></li>
+<li><p>Many fields in health data are correlated or have natural constraints. For example, certain treatments or drugs go together. Adding noise to the data may create results that do not make practical sense.</p></li>
+<li><p>It is hard to explain differential privacy and what exactly <span class="math inline">\(\epsilon\)</span> means. Those disclosing their health data often want to know how it going to be protected, and explaining Differential Privacy and the value of <span class="math inline">\(\epsilon\)</span> to a patient is going to be difficult.</p></li>
+</ul>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>In a data driven world, having appropriate privacy guarantees and techniques is incredibly important. First developed by Cynthia Dwork and her collaborators in 2006, Differential Privacy offers a formal and mathematical definition of privacy. It guarantees that the presence or absence or any individual record in a database does not significantly affect the outcome of any computation that can be performed on the data. Offering properties including compositionality, post-processing immunity, group privacy, and quantifiable privacy accuracy guarantees, Differential Privacy is in many cases regarded as the gold standard for privacy protection in statistical analyses and dataset releases. Many fields, including government, technology, education, energy, and academia, have adopted Differential Privacy as their primary privacy technique. However, it is not without flaws. The value of <span class="math inline">\(\epsilon\)</span>, the privacy tuning parameter, is not interpretable to the general population and difficult to choose for even those with experience applying Differential Privacy in the real world. As Differential Privacy becomes more widespread, it will be interesting to see how its transparency and interpretability evolves.</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Dankar2012" class="csl-entry" role="listitem">
+Dankar, Fida Kamal, and Khaled El Emam. 2012. <span>“The Application of Differential Privacy to Health Data.”</span> In <em>Proceedings of the 2012 Joint EDBT/ICDT Workshops</em>, 158–66. ICDT ’12. ACM. <a href="https://doi.org/10.1145/2320765.2320816">https://doi.org/10.1145/2320765.2320816</a>.
+</div>
+<div id="ref-ted" class="csl-entry" role="listitem">
+Desfontaines, Damien. 2019. <span>“Almost Differential Privacy.”</span> <a href="https://desfontain.es/blog/almost-differential-privacy.html" class="uri">https://desfontain.es/blog/almost-differential-privacy.html</a>.
+</div>
+<div id="ref-expose" class="csl-entry" role="listitem">
+Dwork, Cynthia, Nitin Kohli, and Deirdre Mulligan. 2019. <span>“Differential Privacy in Practice: Expose Your Epsilons!”</span> <em>Journal of Privacy and Confidentiality</em> 9 (2). <a href="https://doi.org/10.29012/jpc.689">https://doi.org/10.29012/jpc.689</a>.
+</div>
+<div id="ref-dwork_2006b" class="csl-entry" role="listitem">
+Dwork, Cynthia, Frank McSherry, Kobbi Nissim, and Adam Smith. 2006. <span>“Calibrating Noise to Sensitivity in Private Data Analysis.”</span> In <em>Theory of Cryptography</em>, edited by Shai Halevi and Tal Rabin, 265–84. Berlin, Heidelberg: Springer Berlin Heidelberg.
+</div>
+<div id="ref-dwork_roth" class="csl-entry" role="listitem">
+Dwork, Cynthia, and Aaron Roth. 2014. <span>“The Algorithmic Foundations of Differential Privacy.”</span> <em>Found. Trends Theor. Comput. Sci.</em> 9: 211–407. <a href="https://api.semanticscholar.org/CorpusID:207178262">https://api.semanticscholar.org/CorpusID:207178262</a>.
+</div>
+<div id="ref-main_paper" class="csl-entry" role="listitem">
+Fioretto, Ferdinando, Pascal Van Hentenryck, and Juba Ziani. 2024. <span>“Differential Privacy Overview and Fundamental Techniques.”</span> <a href="https://arxiv.org/abs/2411.04710">https://arxiv.org/abs/2411.04710</a>.
+</div>
+<div id="ref-exp_mech" class="csl-entry" role="listitem">
+McSherry, Frank, and Kunal Talwar. 2007. <span>“Mechanism Design via Differential Privacy.”</span> In <em>48th Annual IEEE Symposium on Foundations of Computer Science (FOCS’07)</em>, 94–103. <a href="https://doi.org/10.1109/FOCS.2007.66">https://doi.org/10.1109/FOCS.2007.66</a>.
+</div>
+<div id="ref-nyt" class="csl-entry" role="listitem">
+Perlroth, Nicole. 2017. <span>“All 3 Billion Yahoo Accounts Were Affected by 2013 Attack.”</span> <em>The New York Times</em>. <a href="https://www.nytimes.com/2017/10/03/technology/yahoo-hack-3-billion-users.html">https://www.nytimes.com/2017/10/03/technology/yahoo-hack-3-billion-users.html</a>.
+</div>
+<div id="ref-kanon" class="csl-entry" role="listitem">
+Samarati, Pierangela, and Latanya Sweeney. 1998. <span>“Generalizing Data to Provide Anonymity When Disclosing Information (Abstract).”</span> In <em>Proceedings of the Seventeenth ACM SIGACT-SIGMOD-SIGART Symposium on Principles of Database Systems</em>. SIGMOD/PODS98. ACM. <a href="https://doi.org/10.1145/275487.275508">https://doi.org/10.1145/275487.275508</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Erin Franke, 2024 <br> All content licensed under <i class="bi-badge-cc"></i> <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">(CC BY-NC-SA 4.0)</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+<p>Site built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

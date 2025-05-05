@@ -10,4 +10,4 @@ page-layout: full
 title-block-banner: true 
 ---
 
-Thanks for visiting my blog! There isn't much here right now, but I hope to (slowly) add to this overtime :)
+Thanks for visiting my blog!

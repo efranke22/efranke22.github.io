@@ -19,15 +19,15 @@ Below is a collection of R code & tricks I have found helpful to have on hand. T
 
 #### 1. `coalesce()`
 
-Source: [post](https://bsky.app/profile/appliedepi.bsky.social/post/3ldyrxy535s2l) from appliedepi@bsky.social
+Source: [post](https://bsky.app/profile/appliedepi.bsky.social/post/3ldyrxy535s2l) from appliedepi\@bsky.social
 
-Returns the first non-missing value from a set of columns based on the order that you specify. This is great for preventing a long series of `case_when()` calls. 
+Returns the first non-missing value from a set of columns based on the order that you specify. This is great for preventing a long series of `case_when()` calls.
 
-![](images/coalesce.png){width='60%'}
+![](images/coalesce.png){width="60%"}
 
 #### 2. Text
 
-##### a. Removing accents 
+##### a. Removing accents
 
 In a situation where we are working with strings with accents (e.g. cities, names, etc), we likely want all strings to be formatted in the same. The following shows an example where some cities have accents and some do not. We can remove all accents using `stringi::stri_trans_general()`, as shown below.
 
@@ -71,7 +71,7 @@ novel %>%
 
 We could then go on to count the number of times each word is used!
 
-##### c. Removing punctuation 
+##### c. Removing punctuation
 
 Like accents, we might also want to remove punctuation. We can do this with the `[:punct:]` regular expression!
 
@@ -92,7 +92,7 @@ data %>%
 
 Many times I have ran into there being a list of words separated by a comma in a column of dataset. For example, asking participants to list the most memorable characteristics of a chocolate that they tasted (analyzed in this [tidy tuesday](https://github.com/efranke22/tidytuesday/blob/main/2022/chocolate_week3.Rmd)).
 
-This is some code to count how many time each word is used. 
+This is some code to count how many time each word is used.
 
 ```{r, echo=F, message=F, warning=F}
 chocolate <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2022/2022-01-18/chocolate.csv')
@@ -125,7 +125,7 @@ list_of_adjectives %>%
 
 ##### a. `across()`
 
-`across()` lets us apply one function to many columns at once, such as below getting the average of each respective penguin measurement column.  
+`across()` lets us apply one function to many columns at once, such as below getting the average of each respective penguin measurement column.
 
 ```{r}
 #| source-line-numbers: "4"
@@ -138,7 +138,7 @@ penguins %>%
 
 ##### b. mutate if
 
-Use `mutate_if()` to apply a particular function under certain conditions. 
+Use `mutate_if()` to apply a particular function under certain conditions.
 
 ```{r}
 #| source-line-numbers: "2"
@@ -205,7 +205,7 @@ penguins %>%
 
 ##### b. Color palette finder
 
-[This website](https://r-graph-gallery.com/color-palette-finder) is a super fun way to visualize a bunch of different color palettes! You can choose a type (qualitative, diverging, essential), a target color, and the palette length. You can also select for different types of color blindness. 
+[This website](https://r-graph-gallery.com/color-palette-finder) is a super fun way to visualize a bunch of different color palettes! You can choose a type (qualitative, diverging, essential), a target color, and the palette length. You can also select for different types of color blindness.
 
 ##### c. Change plot background color
 
@@ -249,7 +249,7 @@ penguins %>%
 
 #### 4. Fonts
 
-I like the showtext package to change fonts. Look [here](https://fonts.google.com/) for fonts. 
+I like the showtext package to change fonts. Look [here](https://fonts.google.com/) for fonts.
 
 ```{r, message=F, warning=F }
 library(showtext)
@@ -259,7 +259,6 @@ font_add_google("Imprima")
 font_add_google("Gudea")
 showtext_auto() # turns on the automatic use of showtext
 ```
-
 
 ```{r, out.width='60%', message=F, warning=F}
 #| source-line-numbers: "7"
@@ -271,7 +270,6 @@ penguins %>%
   theme(plot.title.position = "plot", 
         plot.title = element_text(family = "Imprima"))
 ```
-
 
 #### 5. Images
 
@@ -299,7 +297,6 @@ plot +
                 top = 0.7)
 ```
 
-
 ##### b. aes
 
 You might not want to do this for a ton of points, but you can replace a typical `geom_point()` with `geom_image()`, or think of other fun ways to use this (e.g. putting images at the end of bar chart).
@@ -319,17 +316,17 @@ penguins %>%
 
 #### 1. Rainbow parentheses
 
-This is super useful for making sure your parentheses are in the right place with a long sequence code!  
+This is super useful for making sure your parentheses are in the right place with a long sequence code!
 
 To turn on rainbow parentheses, go to *Tools* $\rightarrow$ *Global Options* $\rightarrow$ *Code* $\rightarrow$ *Display* $\rightarrow$ *Use Rainbow Parentheses* ☑
 
 #### 2. Custom Default Theme
 
-During college (and still now) I liked to modify the `theme()` of a plot a lot. This ended up with a lot of repeated code, so my advisor, Brianna Heggeseth, taught me how to setup a custom default theme. Thanks, Brianna! :) Here are the steps. 
+During college (and still now) I liked to modify the `theme()` of a plot a lot. This ended up with a lot of repeated code, so my advisor, Brianna Heggeseth, taught me how to setup a custom default theme. Thanks, Brianna! :) Here are the steps.
 
-1) Open you .Rprofile file by pasting `file.edit(file.path("~", ".Rprofile"))` in the console 
+1)  Open you .Rprofile file by pasting `file.edit(file.path("~", ".Rprofile"))` in the console
 
-2) Modify this file to load your theme when a specific package is loaded (for example, `ggplot2`). Then, put your desired theme in `theme_set()`. This could be something as simple as `ggplot2::theme_classic()`. Below, I put a very simple example of a custom theme. 
+2)  Modify this file to load your theme when a specific package is loaded (for example, `ggplot2`). Then, put your desired theme in `theme_set()`. This could be something as simple as `ggplot2::theme_classic()`. Below, I put a very simple example of a custom theme.
 
 ```{r, eval=F}
 setHook(packageEvent("ggplot2", "onLoad"), 
@@ -338,17 +335,16 @@ setHook(packageEvent("ggplot2", "onLoad"),
                                                  plot.title = ggplot2::element_text(family = "mono"))))
 ```
 
-A few notes: \
-- You must call each function you use with the appropriate library in order for this to work. \
-- When you are done, save the .Rprofile and quit RStudio in order for the changes to be saved. \
+A few notes:\
+- You must call each function you use with the appropriate library in order for this to work.\
+- When you are done, save the .Rprofile and quit RStudio in order for the changes to be saved.\
 
 Here is [a source](https://bookdown.org/rdpeng/RProgDA/building-a-new-theme.html) I used to help refresh my memory on doing this.
 
 #### 3. Highlighting code
 
-While making this blog post, I wanted to be able to highlight the lines of code that corresponded to the topic I was discussing. To do this, I installed the [line-highlight extension for Quarto](https://github.com/shafayetShafee/line-highlight#readme) and followed the directions. 
+While making this blog post, I wanted to be able to highlight the lines of code that corresponded to the topic I was discussing. To do this, I installed the [line-highlight extension for Quarto](https://github.com/shafayetShafee/line-highlight#readme) and followed the directions.
 
 ### Thanks!
 
 Thanks for reading my first blog post! If you have any R tricks you know of or feedback on this post, please email me at `efranke@andrew.cmu.edu`; I'd love to hear :)
-
