@@ -9,12 +9,14 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - text: "Undergrad"
-        href: projects.qmd
-      - text: "Tidy Tuesday"
-        href: tidytuesday.qmd
+      - href: research.qmd
+        text: Research
       - text: "Blog"
         href: blog.qmd
+      - text: "Tidy Tuesday"
+        href: tidytuesday.qmd
+      - text: "Undergrad"
+        href: projects.qmd
     tools:
       - icon: file-person
         text: CV
