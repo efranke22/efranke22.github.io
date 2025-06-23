@@ -8,22 +8,21 @@ website:
     background: '#E0EEE0'
     left:
       - href: index.qmd
-        text: Home
       - href: research.qmd
-        text: Research
-      - text: "Blog"
-        href: blog.qmd
-      - text: "Tidy Tuesday"
-        href: tidytuesday.qmd
-      - text: "Undergrad"
-        href: projects.qmd
+        text: "Research"     
+      - href: blog.qmd
+        text: "Blog" 
+      - href: tidytuesday.qmd
+        text: "Tidy Tuesday"
+      - href: projects.qmd
+        text: "Undergrad"
     tools:
       - icon: file-person
         text: CV
         href: docs/cv.pdf
   page-footer: 
     left: |
-      &copy; Erin Franke, 2024 <br>
+      &copy; Erin Franke, 2025 <br>
       All content licensed under <i class='bi-badge-cc'></i>
       [(CC BY-NC-SA 4.0)](http://creativecommons.org/licenses/by-nc-sa/4.0/)
     right: |
