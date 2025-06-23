@@ -39,7 +39,7 @@ In addition to statistics & data science, I also enjoy running, volunteering at 
 
 ![My first marathon!](images/marathon.png)
 
-![Run with Kara Goucher (!) and cohortmates](images/kara.png)
+![Run with Kara Goucher and cohortmates](images/kara.png)
 
 ![Schenely Park: My favorite place in Pittsburgh!](images/schenely.png)
 :::
