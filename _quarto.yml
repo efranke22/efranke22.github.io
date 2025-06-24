@@ -8,6 +8,7 @@ website:
     background: '#E0EEE0'
     left:
       - href: index.qmd
+        text: "Home"
       - href: research.qmd
         text: "Research"     
       - href: blog.qmd
