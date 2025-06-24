@@ -123,7 +123,7 @@
     "href": "tidytuesday.html",
     "title": "Tidy Tuesday!",
     "section": "",
-    "text": "I first started doing Tidy Tuesday in my Intro to Data Science class in Summer 2021. While I often don’t have time to participate, it is my favorite way to grow my data visualization skills! This page includes all my Tidy Tuesdays from most recent to oldest. Click on the image to see the corresponding code."
+    "text": "Tidy Tuesday is a weekly data project from the Data Science Learning Community. The data is shared every Monday here and on these social media platforms. If you are new to working with data, it is a great way to get practice! There are clear instructions for how to load each dataset to R, Python, and Julia. Tidy Tuesday also has a supportive online presence and it is encouraged to share what you create on social media—just follow these guidelines.\nI first started doing Tidy Tuesday when I took my first data science class in 2021. Challenging myself to find creative ways to visualize data and tell a story remains one of my favorite aspects of statistics. This page includes all my Tidy Tuesdays from most recent to oldest. Feel free to click on the image to see the corresponding code. I have also compiled a blog post with some obscure pieces of data wrangling and visualization code that have come in handy for many of my Tidy Tuesdays. While I often don’t have time to participate, I enjoy following #TidyTuesday on Bluesky to get inspiration. One of my favorite Tidy Tuesday creators is Nicola Rennie, check out her respository to see some pretty cool visualizations!"
   },
   {
     "objectID": "tidytuesday.html#section",
@@ -144,7 +144,7 @@
     "href": "tidytuesday.html#section-2",
     "title": "Tidy Tuesday!",
     "section": "2021",
-    "text": "2021"
+    "text": "2021\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ntesting"
   },
   {
     "objectID": "blog.html",
@@ -208,5 +208,19 @@
     "title": "Research",
     "section": "",
     "text": "Currently under construction, coming July 2025 🚧.\n\n\n\n\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "teaching.html",
+    "href": "teaching.html",
+    "title": "Teaching",
+    "section": "",
+    "text": "Currently under construction, coming July 2025 🚧."
+  },
+  {
+    "objectID": "tidytuesday.html#what-is-tidy-tuesday",
+    "href": "tidytuesday.html#what-is-tidy-tuesday",
+    "title": "Tidy Tuesday!",
+    "section": "",
+    "text": "Tidy Tuesday is a weekly data project from the Data Science Learning Community. The data is shared every Monday here and on these social media platforms. If you are new to working with data, it is a great way to get practice! There are clear instructions for how to load each dataset to R, Python, and Julia. Tidy Tuesday also has a supportive online presence and it is encouraged to share what you create on social media—just follow these guidelines.\nI first started doing Tidy Tuesday when I took my first data science class in 2021. Challenging myself to find creative ways to visualize data and tell a story remains one of my favorite aspects of statistics. This page includes all my Tidy Tuesdays from most recent to oldest. Feel free to click on the image to see the corresponding code. I have also compiled a blog post with some obscure pieces of data wrangling and visualization code that have come in handy for many of my Tidy Tuesdays. While I often don’t have time to participate, I enjoy following #TidyTuesday on Bluesky to get inspiration. One of my favorite Tidy Tuesday creators is Nicola Rennie, check out her respository to see some pretty cool visualizations!"
   }
 ]

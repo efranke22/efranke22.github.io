@@ -10,13 +10,17 @@ website:
       - href: index.qmd
         text: "Home"
       - href: research.qmd
-        text: "Research"     
+        text: "Research" 
+      - href: teaching.qmd
+        text: "Teaching"
       - href: blog.qmd
         text: "Blog" 
-      - href: tidytuesday.qmd
-        text: "Tidy Tuesday"
-      - href: projects.qmd
-        text: "Undergrad"
+      - text: Other
+        menu: 
+          - href: tidytuesday.qmd
+            text: "Tidy Tuesday"
+          - href: projects.qmd
+            text: "Undergrad"
     tools:
       - icon: file-person
         text: CV
