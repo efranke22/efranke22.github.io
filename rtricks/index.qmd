@@ -320,7 +320,7 @@ To turn on rainbow parentheses, go to *Tools* $\rightarrow$ *Global Options* $\r
 
 #### 2. Custom Default Theme
 
-One of the aspects of my plots that I modify the most is the `theme()`. During college, I often found myself copying and pasting my custom theme to the end of every plot. To make less work for myself and my code more readable, I learned to permanently load my custom theme when I open R. Special thanks to my undergrad advisor Brianna Heggeseth for helping me figure this out :) Here are the steps.
+One of the aspects of my plots that I modify the most is the `theme()`. During college, I often found myself copying and pasting my custom theme to the end of every plot. To make less work for myself and my code more readable, I learned to permanently load my custom theme when I open R. Special thanks to my undergrad advisor, Brianna Heggeseth, for helping me figure this out :) Here are the steps.
 
 1)  Open you .Rprofile file by pasting `file.edit(file.path("~", ".Rprofile"))` in the console
 
@@ -334,6 +334,7 @@ setHook(packageEvent("ggplot2", "onLoad"),
 ```
 
 A few notes:\
+
 * You must call each function you use with the appropriate library in order for this to work.\
 * When you are done, save the .Rprofile and quit RStudio in order for the changes to be saved.\
 
