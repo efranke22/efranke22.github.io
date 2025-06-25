@@ -17,10 +17,7 @@
   },
   {
     "listing": "/blog.html",
-    "items": [
-      "/blog/differentialprivacy/index.html",
-      "/blog/rtricks/index.html"
-    ]
+    "items": []
   },
   {
     "listing": "/research.html",

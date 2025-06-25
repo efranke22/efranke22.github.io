@@ -1,10 +1,8 @@
 ---
 title: "A small collection of various R tricks"
-description: "A selection of pieces of code I find to be useful or fun :)"
 date: 01-06-2025
 author: Erin Franke
-image: images/wordcloud.png
-categories: [R]
+#image: images/wordcloud.png
 draft: false
 toc: true
 toc-depth: 5
@@ -322,7 +320,7 @@ To turn on rainbow parentheses, go to *Tools* $\rightarrow$ *Global Options* $\r
 
 #### 2. Custom Default Theme
 
-During college (and still now) I liked to modify the `theme()` of a plot a lot. This ended up with a lot of repeated code, so my advisor, Brianna Heggeseth, taught me how to setup a custom default theme. Thanks, Brianna! :) Here are the steps.
+One of the aspects of my plots that I modify the most is the `theme()`. During college, I often found myself copying and pasting my custom theme to the end of every plot. To make less work for myself and my code more readable, I learned to permanently load my custom theme when I open R. Special thanks to Brianna Heggeseth for helping my figure this out :) Here are the steps.
 
 1)  Open you .Rprofile file by pasting `file.edit(file.path("~", ".Rprofile"))` in the console
 
@@ -344,7 +342,3 @@ Here is [a source](https://bookdown.org/rdpeng/RProgDA/building-a-new-theme.html
 #### 3. Highlighting code
 
 While making this blog post, I wanted to be able to highlight the lines of code that corresponded to the topic I was discussing. To do this, I installed the [line-highlight extension for Quarto](https://github.com/shafayetShafee/line-highlight#readme) and followed the directions.
-
-### Thanks!
-
-Thanks for reading my first blog post! If you have any R tricks you know of or feedback on this post, please email me at `efranke@andrew.cmu.edu`; I'd love to hear :)

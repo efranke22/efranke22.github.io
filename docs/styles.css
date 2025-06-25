@@ -4,3 +4,20 @@ a {
   text-decoration: none;
 }
 
+.link {
+  background-color: #f2f8fc;
+  padding: 0.5em;
+  border-radius: 10px;
+  border: 0.05em solid #364f7a;
+  /* border-left: 0.2em solid #364f7a; */
+}
+
+.link-container {
+  margin-top:0px;
+  width: 750px;
+  height: 60px;
+  padding: 5px;
+  color: rgba(0, 0, 0, 0.8);
+  background-color: #f2f8fc;
+  border-bottom-right-radius: 10px;
+}

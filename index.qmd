@@ -21,11 +21,12 @@ format:
 ::: {#intro-heading}
 Hi, thanks for visiting my website!
 
-I am a first-year Statistics PhD student at [Carnegie Mellon University](https://www.cmu.edu/dietrich/statistics-datascience/index.html) in Pittsburgh, PA. I graduated from [Macalester College](https://www.macalester.edu/mscs/) in 2023, majoring in Statistics and minoring Computer Science and Economics. 
+I am a first-year Statistics PhD student at [Carnegie Mellon University](https://www.cmu.edu/dietrich/statistics-datascience/index.html) in Pittsburgh, PA. I graduated from [Macalester College](https://www.macalester.edu/mscs/) in 2023, majoring in Statistics and minoring Computer Science and Economics.
 
-I am passionate about using statistics as a tool to better understand and solve complex interdisciplinary problems for societal good. I am currently working with [Weijing Tang](https://sites.google.com/andrew.cmu.edu/weijingtang/home?authuser=0) (CMU Stats & DS) and Phoebe Lam (CMU Psychology) to integrate existing studies in order to understand the influence of psychological stress on disease vulnerability, and whether social relationships, at what age, buffer this association. 
+I am passionate about using statistics as a tool to better understand and solve complex interdisciplinary problems for societal good. I am currently working with [Weijing Tang](https://sites.google.com/andrew.cmu.edu/weijingtang/home?authuser=0) (CMU Stats & DS) and Phoebe Lam (CMU Psychology) to integrate existing studies in order to understand the influence of psychological stress on disease vulnerability, and whether social relationships, at what age, buffer this association.
 
-As both a student and teaching assistant, I like thinking about effective ways to learn and teach statistics and data science. Currently, I am enjoying working with my cohort-mate, [Sara Colando](https://scolando.github.io/), on two projects. The first project aims to understand how the trajectory of undergraduate statistics student writing has changed since the introduction of ChatGPT, and the second focuses teaching data manipulation with the [data.table](https://www.rdocumentation.org/packages/data.table/versions/1.17.0) R package. I look conducting further pedagogical research and gaining additional teaching experience throughout my PhD.
+As both a student and teaching assistant, I enjoy thinking about effective ways to learn and teach statistics and data science. Visit my [Teaching](https://efranke22.github.io/teaching.html) page to learn more about some recent projects.
+
 
 <br>
 :::
@@ -39,7 +40,7 @@ In addition to statistics & data science, I also enjoy running, volunteering at 
 
 ![My first marathon!](images/marathon.png)
 
-![Run with Kara Goucher and cohortmates](images/kara.png)
+![Pirates game with cohortmates](images/pirate.png)
 
 ![Schenely Park: My favorite place in Pittsburgh!](images/schenely.png)
 :::

@@ -13,4 +13,4 @@ format:
     css: styles.css
 ---
 
-Thanks for visiting my blog!
+Currently under construction! 🚧
