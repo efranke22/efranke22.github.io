@@ -1,0 +1,292 @@
+---
+title: "My Reflections from USCOTS 2025"
+date: 07-21-2025
+image: lightbulb.png
+categories: [Education]
+draft: false
+toc: true
+toc-depth: 5
+format:
+  html:
+    css: styles.css
+---
+
+I'm so grateful to have had the opportunity to attend the 2025 United States Conference on Teaching Statistics (USCOTS) in Ames, Iowa! Before jumping into my general reflections, I want to thank Kelly Bodwin and the rest of team behind the [POSE: Phase II: Expanding the data.table ecosystem for efficient big data manipulation in R](https://www.nsf.gov/awardsearch/showAward?AWD_ID=2303612) NSF grant for funding my trip, as well as [CAUSE](https://www.causeweb.org/cause/about) for generously waiving the registration fee. I am also want to thank the many people that organized this conference, including Allan Rossman, Kelly McConville, Laura Ziegler, and Matt Beckman. The conference was incredibly well run and I cannot imagine how much work went it.
+
+This was my first conference, and it was such a privilege to listen to talks and have discussions with many of the leaders in statistics and data science education. This was very inspiring, and also a bit overwhelming---these individuals have done so much and have so many smart and creative ideas. Both at the conference and typing up these reflections, it was hard to not feel some level of imposter syndrome---unlike the majority of attendees, I have never even taught a class! All of this is just to say, I have lots of to learn, and I feel so lucky to have gotten a chance to jumpstart that learning process by connecting with so many smart people (and am very grateful for how kind and welcoming they all were)!
+
+# Liberal Arts Symposium
+
+I think this was my favorite part of USCOTS (ok, maybe aside from the Amusing presentations which made me laugh too much), largely due to how discussion based and interactive it was. Special thanks to Alicia Johnson (yay Macalester!) and Paul Roback for organizing it! There were a few parts that especially stood out to me: Paul Roback's talk *Life as a liberal arts statistician: joys and challenges*, and then the discussion sessions I attended: *Authentic assessment with oral exams* led by Jonathan Wells from Grinnell College and *Project Design* by Joe Roith from St. Olaf College. Below are some of the notes I took during the sessions; these are mostly just for me to look back on in the future.
+
+## Life as a liberal arts statistician: joys and challenges
+
+**Ideas for success in the classroom**\
+
+-   Survey the class periodically and discuss the results (both things to change and why particular aspects will remain the same) with the students\
+-   Learn from others, both in your department and others\
+    -   Sit in on classes\
+-   Take notes after class on what worked and what didn't for the future\
+
+**Be active professionally**
+
+-   Pre-tenure, make strategic choices. Play the odds to get research that students can help with.\
+-   Post-tenure, focus on what nourishes you (e.g. publishing an open source textbook)\
+-   Collaborate with non-statistical collegues\
+-   Adapt research question (and timeline for undergrads)
+
+**Serve others**
+
+-   Jump into service early, both internally and externally\
+-   Be happy and proactive with "yeses", then you can say "no" to things not as interesting to you
+
+**Growing a program**
+
+-   Helpful to have a customizable concentration/minor\
+-   Having a center for interdisciplinary research is a good way to create community and can lead to research collaborations\
+-   Add modern courses to curriculum (e.g. add a data science course and remove an advanced modeling requirement)\
+-   Find projects everywhere! Examples: a bagel shop running out of your favorite flavor, library checkout data
+
+**Many aspects are constantly changing**
+
+-   Classroom dynamics and design\
+-   Technology (classroom tech, programming languages)\
+-   Rising popularity of statistics and data science in recent years\
+-   Relationship with math and computer science\
+-   Data ethics\
+
+**Challenges**
+
+-   Semesters are hectic\
+-   Salary\
+-   Grading\
+-   5% of students\
+-   Slow changes in academia\
+-   Lifelong learning can be exhausting\
+
+**Joys**
+
+-   It usually doesn't feel like work\
+-   Awesome colleagues\
+-   Students want to make world better\
+-   Creating a good learning environment\
+-   Constant renewal\
+-   Collaborating with experts in different fields\
+-   Taking pride in your institution\
+-   Lifelong learning can be exhilarating\
+
+**Short reflection**: The group I was in talked a lot about growing a program and the interaction between math, statistics, and computer science. Some people in the group were in a statistics/mathematics department separate from computer science, and mentioned this being a point of tension. Right now, when data science is so popular, it is ideal to have these departments collaborating and working together on what courses should count for credits to particular majors or minors (as well as just to maximize student learning). Having a combined department at Macalester, this was not something I'd thought about before, but it must make conversations about forming a data science major or minor, for instance, easier. Some other issues mentioned were struggle to find a form of service people find exciting, and issues with institutional financials. I hadn't previously thought about either of these topics when thinking about a liberal arts career, so it was nice to listen to what others had to say.
+
+## Authentic assessment with oral exams
+
+With students now being able to offload parts of "writing to learn" assignments (e.g. data analysis reports) to LLMs, many people at this conference were interested in discussing alternative forms of assessment. One option that has potential in liberal arts classrooms is oral exams. While the potential benefit of oral exams is high, the primary concern seems to be time, both for the professor and students.
+
+**Pros**
+
+-   Personal connection between professor and student.
+-   Professors having used oral exams noted they could tell level of the student's understanding with just a couple of minutes.
+    -   Going off this, the students did not refute their score. The student could tell if they weren't matching the professor's expectation for level of understanding.
+-   Opportunity to understand the student's misunderstandings and redirect them.
+    -   For example, if a student said, "The probability of the null being false is 95%", you could ask a follow up question like, "Wait, can you explain a little more why that is the case?".
+-   No option for student to offload thinking to LLMs.
+-   Good practice for job interviews.
+-   Opportunity to meet the student where they are at. For students less comfortable with the material, you can redirect and ask them different questions than a student clearly grasping the concepts.
+
+**Cons**
+
+-   Time. With 2-3 sections of a class with 20 students, you are trying to schedule 40-60 fifteen minute blocks. That is a lot of time out of the professor's week, and it is also hard to find time outside of class for students with busy schedules.
+    -   Can we do paired oral exams to cut down on that?
+        -   How are students then graded as a pair? What if one partner dominates the conversation? *Side note*: in an ungrading scenario, this would not be as much of an issue and something the students could reflect on themselves after the fact.
+        -   Idea: Have the pair have a conversation between themselves based on a set of prompts given to them.
+-   Student anxiety. The idea of an oral exam is daunting for many students.
+    -   Paired exams could potentially help reduce this anxiety.
+    -   Certain students may understand the concepts well but not be able to verbally communicate on the spot.
+        -   Alternatively, you could say that some students have test anxiety, but this is just a common form of assessment so we typically ignore this issue.
+-   Fairness and equity: can we ensure students are evaluated the same?
+
+**Other notes**
+
+-   As opposed to an exam, how much material can you assess? If, for example, an exam were to cover machine learning methods such as LASSO, clustering, splines, random forests, and GAMs, are you assessing all of these methods in a 15 minute oral exam but sacrificing depth, or vice versa?
+-   One professor found no correlation between student oral exam scores and test scores in a semester where they used both as modes of assessment.
+    -   I found this really interesting, and don't think is necessarily a pro or a con, but maybe a reason to utilize multiple forms of assessment within a semester.
+
+## Project Design
+
+In this discussion, we covered some ideas make sure students are getting the most they can out of class projects.
+
+**Project setup**
+
+-   Providing a sample report: should we or should we not?
+    -   Useful so that students understand expectations, but they may follow a sample report too closely and not build their own writing style.
+    -   Idea: provide a report with several flaws, and take class time to critique the report and discuss potential changes.
+-   Peer reviews: tell students it is not a time to be "MN nice". Give honest feedback to help your classmate get a better grade.
+-   For group projects, have formal meetings with each project group to discuss next modeling steps, what is going well or what they are struggling with, etc.
+    -   *Personal note*: I think effectively communicating what I have done and have questions on in an organized matter in a one-on-one meeting was one of the things I struggled with transitioning out of undergrad (both working at Mayo Clinic and starting research in my PhD). Maybe this could help prepare students for that.
+
+**Project Ideas**
+
+-   Class time activity: story boarding with data. Have students introduce an idea, most important aspects from EDA, conflict/main characters.
+    -   Students don't necessarily have to even have data, just have them sketch and type of plot that they might expect.
+    -   Have them decide on an ideal storyboard: this is a good way to get them to think about the project workflow and communicating big ideas (perhaps to a nonstatistical audience too).
+-   Podcast (\~10 minutes) where you encourage students to write a script (so they think through what they will say) and the verbally communicate their findings with a partner.
+    -   Have students send pdf of visualizations that they talk about.
+    -   One professor found a student that didn't typically participate in class was great at this.
+
+# Keynotes and Workshops
+
+Following the rest the liberal arts symposium, it was great to attend a variety of workshops and keynote presentations. Below are some of my notes and reflections on a few of them.
+
+## Doing data science in Positron
+
+[This workshop](https://posit-dev.github.io/positron-workshop/) by Mine Cetinkaya-Rundel and Hadley Wickham a great first introduction to **Positron**, which I didn't know anything about prior to this conference.
+
+**What is it?**
+
+-   A next-generation data science IDE that feels like a fusion of RStudio and VS Code.
+    -   Happy note: RStudio is not going away!
+
+**Benefits of Positron**
+
+-   Main benefit: easily combine R and Python in one document
+    -   Personally not currently a Python user, but I know a lot of people that are and I think this could be great for classes or research where groups are using both!
+-   Ability to effortlessly switch between versions of R (e.g. R 4.3.3, 4.5.0)
+-   Command palette (Ctrl/Cmd + Shift + P) makes searching for and executing commands easy
+-   Easy to customize layout and split screen between files.
+-   Multiple concurrent interpreter sessions, which can be a mix of different R versions, mix of R and Python sessions, or multiple instances of a single R version
+    -   Allows you to run different code while something is taking a while to run! This is awesome to me.
+-   Can sort your environment (e.g. by most recent)
+-   Air: an extension that automatically formats your code nicely
+-   You can *Preview* (Render) your document and it will appear in the viewer pane instead of opening in your internet browser---easy to make side by side changes
+-   Area for previewing $\LaTeX$ equations
+-   Easy to save and share plots
+
+**Other differences**
+
+-   No inline plots
+    -   Outputs to "plots" pane, which I think I agree with most people is nice because the inline plots can make your document a bit laggy.
+-   Run button is different/a bit smaller? Personally like the RStudio version better this is not a big deal.
+-   Positron automatically updates (good, I think?)
+
+**Things for me to learn more about**
+
+-   rig
+-   Air
+-   Snippets
+-   Positron Assistant
+
+**Overall reflections**
+
+Very cool, also a bit overwhelming---there are just so many features. Hadley and Mine mentioned when you see someone's RStudio, you can easily become acquainted with their setup, but Positron is completely customizable (which is mostly a pro, but can perhaps be a con in a teaching setting?). At the same time, so many of these features seem useful and Mine and Hadley did an awesome job motivating and explaining the tool. I really like the ability to continue to run smaller code jobs while another piece is running in the background. The mix of versions of R is also great. I am not sure if/when I will be fully doing my coding in Positron over RStudio, but I am excited to get more experience with it.
+
+## A no bullshit guide to programming with LLMs in R
+
+This talk by Hadley Wickham introduced the `ellmer` R package, which he developed to interact with LLMs in R. As someone that enjoys the challenges and satisfaction of coding and figuring out little tricks, I don't love the idea of offloading parts of that process to LLMs. But I know this is a part of the current reality that we live in, and can make some dreadful tasks much faster, so I wanted to listen with an open mind.
+
+One of Hadley's first motivating examples had us discuss at our table how we'd extract name and age from text data, such as the following:
+
+```{r}
+prompts <- c("I go by Alex. 42 years on planet Earth and counting.", 
+             "Hey, I'm turning 27 and my name is Jamal", 
+             "I'm Lei Wei and nineteen years young.",
+             "My name is Brett and I'm turning the big 5-0 this year.")
+```
+
+Clearly, this is not a simple regex expression due the mix of age being typed and numeric, names being 1-2 words, and the fact that there is no global pattern in sentence structure. I learned that this is something an LLM could do with essentially the following code:
+
+```{r, eval=F}
+library(ellmer)
+chat <- chat_anthropic()
+chat$chat("Extract the name and age from each sentence I give you")
+
+chat$chat(prompts[[1]])
+```
+
+And this essentially returned the name and age for each prompt. I am not running the code above because you do have to obtain an API Key (which according to [the package](https://ellmer.tidyverse.org/reference/chat_anthropic.html) requires a developer account that you have to sign up and pay for, which poses its own challenges), but nonetheless this definitely caught my attention as a motivating example for LLMs. Writing regex to *successfully* get name and age from large data like this would be super difficult.
+
+Hadley then went on to talk about `ellmer`'s ability to interact with external tools defined by the caller. One downfall of LLMs is that they may not know current information, such as the time of day. Defining an R function that knows the time and registering that tool with the LLM can solve that problem and allow you to answer queries like "How long ago exactly did the Chicago Cubs win the World Series?". See [this article](https://ellmer.tidyverse.org/articles/tool-calling.html) for more information.
+
+I would assume if I were to use these tools for my research, I would want to understand how accurate they are. Hadley mentioned the [vitals](https://vitals.tidyverse.org/) package which I will have to look at more if/when I work with any of these LLMs in R.
+
+More interesting to me right now is the conversation around the pros and cons of using these tools, and also the impact they may have in education. These are the following things I caught from Hadley's talk:
+
+**Pros**
+
+-   LLMs are amazing for quickly generating demos, shiny apps, example data
+    -   Hadley showed an example of a rough sketch of a histogram, which he fed to Positron Assistant and told it to create a Shiny app using the Palmer Penguins data.
+        -   This worked... which was kind of frightening to me. At the same time it is cool because you get this base Shiny app code working right away (often the most frustrating part) and can go on to make modifications to your preference.
+-   Good at translations (e.g. latex $\rightarrow$ quarto, R code $\rightarrow$ stan, SQL $\rightarrow$ `dplyr`, json $\rightarrow$ to unit tests)
+    -   All I could think about was how many hours of my life I could saved instead of translating code from SAS to R at Mayo Clinic by hand...🥲
+        -   While honestly this task was miserable to me, it was a big part of my job, and it definitely makes me scared for me entry level stats/data science positions which are places where people learn lots and gain skills that allow them to learn and move up in the field (or better understand what type of career they want).
+-   Explaining and critiquing code
+
+**Cons/concerns**
+
+-   Cost and equity of access: These tools do cost money, even if not that much. According to Hadley, \$5 on Claude can get you pretty far and Gemini has a generous free tier.
+-   Environmental concerns: Hadley implied these are worth considering but small and decreasing on the individual level, and that flying to this conference, for example, is a much more detrimental environmental impact.
+    -   I am sure that is true, but I just can't help to think about the overarching impact if *millions and millions* of people are using these tools on a daily basis. This isn't going to be a no impact situation.
+-   Data privacy: a definite concern on the individual level. Not a problem for most bigger organizations as most data already lives in some cloud, and cloud providers run LLMs.
+-   Replacing artists: a definite risk at societal level. Hadley mentioned he is trying to supplement, not replace.
+-   Evil billionaires: we are just giving more money to evil tech people...there weren't really any ideas for how to get around that.
+
+So at the end of this I wasn't really sure what to think. It was slightly encouraging to hear Hadley mention that there are many drawbacks of LLMs and in many ways coding is still a useful tool (e.g. making small changes, thinking critically, programming can still be faster than asking LLMs to do stuff for you), but in many ways, these tools make me feel bleh, and I think a lot more discussion about the place of these tools in statistics research and education is needed.
+
+## Leveraging LLMs for student feedback in introductory data science courses
+
+After Hadley's talk I went right into another LLM talk by Mine Cetinkaya-Rundel, which covered leveraging LLMs for student feedback in STA 199, an introductory data science and statistical thinking course at Duke (no prerequistes). The class had two exams (20% each), but the largest component of the student grade was once weekly lab assignments graded for accuracy (35%).
+
+**AI policy for class**
+
+-   Students could use AI tools but must explicitly cite them, and the prompt could not be copied and pasted directly from the assignment (the students had to create the prompt themselves).
+-   Students were *not* allowed to copy and paste the AI narrative verbatim to answer questions.
+-   Students were welcome to ask AI questions to enhance their learning and understanding.
+
+**Project 1**
+
+-   **Goal**: A chatbot that hopefully generates good, helpful, and correct answers that come from course content and prefers terminology/methods taught in the course.
+-   Two motivating reasons for this
+    -   Students don't read previous questions on online forums that their classmates have asked, even if the instructor asks them to do this before posting.
+    -   ChatGPT usually dosen't generate answers in line with course content (for example, may give a base R response when tidyverse is taught).
+-   Technical details
+    -   Uses Retrevial Augmented Generation (RAG) to focus chatbot on course content and give it context. The chatbot gives the student direction to specific pages of interest in the course textbooks.
+        -   This is accomplished through combining semantic similarity and knowledge graph searches.
+-   SQL database of student results (completely anonymized to professor)
+    -   Some good interactions, some copy-and-paste directly from assignment, some "fix my code" questions.
+        -   Evidence that the AI policy was a bit too optimistic
+    -   Cannot say the majority of answers it gives is better than other LLMs, but no credit card and the fact that it points to course materials are both pluses.
+-   A kind of sad question: Is the chatbot to read from textbook more motivating to the student than the professor telling them they should? Unknown.
+
+**Project 2**
+
+-   **Goal**: A feedback chatbot that hopefully generates good, helpful, and correct feedback based on an instructor designed rubric and suggests terminology/methods taught in the course.
+-   Motivating reasons
+    -   Students use AI tools as a first step before thinking about how to approach the task.
+        -   A chatbot could be like a friend in the classroom that you turn to for helping thinking through a problem.
+        -   But also, if it gives them code to run and it works, no thinking will happen. See Microsoft study [The Impact of Generative AI on Critical Thinking](https://www.microsoft.com/en-us/research/publication/the-impact-of-generative-ai-on-critical-thinking-self-reported-reductions-in-cognitive-effort-and-confidence-effects-from-a-survey-of-knowledge-workers/).
+    -   Maybe AI can help TAs redistribute their time toward higher value and more enjoyable touch points with students, and away from repetitive and error-prone tasks which often go unread (giving feedback).
+    -   TAs don't want to provide detailed feedback to answers generated with AI (not that everyone is doing their hw with AI, but some students are)
+    -   If very detailed rubrics are already being written to ensure grading equivalency across TAs, it is easy to hand these to LLMs.
+
+**Activity and Thoughts**
+
+We then went into an activity where we prompted an LLM (ChatGPT) with the question and the student response and asked it to give feedback. The feedback was very verbose, and commented on several things not part of the question (e.g. the year column is a character, it should be numeric). All of this was technically true, but perhaps not the main point of the question. With a rubric and telling it to be to the point, it was better, but still a lot to parse through for a fairly simple question (which was a pivot longer essentially).
+
+We had the following thoughts at my table:
+
+-   Should we be giving feedback on things not part of the question?
+    -   On a similar note, the LLM might comment on small things that do not matter, making it difficult for the student to identify important concepts from small ones
+-   For a topic I am fairly comfortable with, the more feedback there is, the less likely I am going to be to read it (personally). LLMs just seem way to verbose to me.
+    -   Can we ask students to fill out a form about what type of feedback they prefer? Do they want the "compliment sandwich", or just straight to the point what is wrong? Is an LLM even capable of being straight to the point?
+-   I think we are assuming that goal of the LLM giving feedback that aligns with what is taught in the course is met, otherwise this would be an issue (e.g. the LLM says to use `names_transform` in pivot longer when in the course teaches students to modify names in a `mutate` statement).
+-   I could have misunderstood, but the start of the session, a point was made about using these LLMs for feedback, not grading. If the TAs are still grading, is the amount of time saved by the TAs in not providing feedback worth the faults that come with using an LLM? Does the grading align with the feedback?
+
+While I personally wouldn't be ready to use LLMs for feedback if I was teaching, I am generally interested to learn more about how this evolves. The idea itself kind of blew my mind, and I think it could be quite useful (particularly for low stakes assignments in courses with hundreds of students). Mine mentioned that a few of the next steps were to continue model evaluation (e.g. cost, speed, accuracy) and tradeoffs as new LLMs are released, and to measure learning outcomes for students using the LLM feedback to understand the effectiveness of this approach.
+
+## Topics Workshops
+
+Two other breakout sessions I attended were Jo Hardin and Nick Horton's **Leveraging data technologies to model bigger datasets** and Paul Roback and Laura Boehm Vock's **Integrating Poisson regression into the undergraduate curriculum**. Both of these were great! Personally I was not familiar with SQL and DuckDB together prior to the workshop, so it was fun to learn something new that could be really helpful when working with large data/databases. In the other workshop, I really liked the way Paul and Laura explained Poisson regression visually and with very minimal math. If I am able to co-instruct/instruct the CMU REU program at some point, I think it would be fun to have a couple sessions on a portion of the materials from both of these workshops.
+
+# Final Reflections
+
+Again, in some ways I feel silly writing this long reflection because I don't have much experience and am quite a ways off from fully teaching a class. But in the spirit of "writing to learn", writing and thinking back on all these sessions was helpful to process and reflect on some of what I learned and I think it will be helpful to look back on this later on :)
+
+This was an amazing first conference and I am very grateful to have gotten a chance to connect with and learn from many smart, very kind, and passionate people. Special thanks to Peter Freeman and Ron Yurko for being so supportive and kind throughout the conference :) It was also a great experience to present and get feedback on my work with [Sara Colando](https://scolando.github.io/) at the Research Satellite and Posters and Beyond. Overall, I am feeling pretty confident that I want to try out a career teaching at a liberal arts college. Seeing all the cool things people are doing and ideas they have was very motivating for me to work hard on classes, research, and TA duties, so that one day I can maybe contribute a little bit in these conversations as well.

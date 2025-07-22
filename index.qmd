@@ -27,7 +27,6 @@ I am passionate about using statistics as a tool to better understand and solve 
 
 As both a student and teaching assistant, I enjoy thinking about effective ways to learn and teach statistics and data science. Visit my [Teaching](https://efranke22.github.io/teaching.html) page to learn more about some recent projects.
 
-
 <br>
 :::
 

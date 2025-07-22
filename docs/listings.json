@@ -17,7 +17,9 @@
   },
   {
     "listing": "/blog.html",
-    "items": []
+    "items": [
+      "/blog/uscots2025/index.html"
+    ]
   },
   {
     "listing": "/research.html",
