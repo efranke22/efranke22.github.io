@@ -21,3 +21,7 @@ a {
   background-color: #f2f8fc;
   border-bottom-right-radius: 10px;
 }
+
+figcaption{
+   text-align: center;
+}
