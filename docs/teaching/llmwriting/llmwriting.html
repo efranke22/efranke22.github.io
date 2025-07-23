@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="dcterms.date" content="2021-12-15">
-<meta name="description" content="Research using Bayesian techniques aimed to understand the impacts of Tommy John surgery.">
+<meta name="dcterms.date" content="2025-07-23">
+<meta name="description" content="A writeup of joint work with Sara Colando presented at the Research Satellite of the 2025 United States Conference on Teaching Statistics.">
 
-<title>Tommy John surgery and its Relationship to MLB Pitcher Career Trajectory – Erin Franke</title>
+<title>Analyzing Statistics Students’ Writing Before and After the Emergence of Large Language Models – Erin Franke</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -35,6 +55,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-html/quarto.js"></script>
 <script src="../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
@@ -134,38 +155,146 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     
 <!-- main -->
-<div class="quarto-about-solana column-body">
-  <div class="about-entity">
-    <div class="entity-contents">
-      <header id="title-block-header" class="quarto-title-block default">
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Tommy John surgery and its Relationship to MLB Pitcher Career Trajectory</h1>
+<h1 class="title">Analyzing Statistics Students’ Writing Before and After the Emergence of Large Language Models</h1>
 </div>
+
 <div>
   <div class="description">
-    <p>Research using Bayesian techniques aimed to understand the impacts of Tommy John surgery.</p>
+    A writeup of joint work with <a href="https://scolando.github.io/">Sara Colando</a> presented at the Research Satellite of the 2025 United States Conference on Teaching Statistics.
   </div>
 </div>
+
+
 <div class="quarto-title-meta">
+
+    
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">December 15, 2021</p>
+      <p class="date">July 23, 2025</p>
     </div>
   </div>
+  
+    
   </div>
-</header> 
-      <div class="about-contents"><main class="content" id="quarto-document-content">
-<p>In Fall 2021 I had the opportunity to take Bayesian Statistics (STAT 454) and complete a capstone project on a topic of choice. Hearing so much about the use of Bayesian techniques in sports, I decided to learn more about career trajectory for pitchers in the MLB, with a focus especially on Tommy John surgery. Please check out <a href="https://tjpitchertrajectory.netlify.app/index.html"><strong>this website</strong></a> to learn more and feel free to reach out to me with questions and/or suggestions!</p>
+  
 
 
-</main></div>
-    </div>
-    <img src="slg.png" alt="quizgrader logo" class="about-image
-  rounded " style="width: 15em;">
-  </div>
+</header>
+
+
+<p>Large Language Models (LLMs) have become ubiquitous in academic settings, particularly for writing <span class="citation" data-cites="baek">(<a href="#ref-baek" role="doc-biblioref">Baek, Tate, and Warschauer 2024</a>)</span>. Recently, <span class="citation" data-cites="Reinhart_2025">Reinhart et al. (<a href="#ref-Reinhart_2025" role="doc-biblioref">2024</a>)</span> identified systematic differences between LLM and human writing by leveraging Biber feature and lemma usage rates.</p>
+<ul>
+<li><strong>Biber features</strong> are 67 rhetorical features (e.g.&nbsp;past tense, participial clauses, mean word length) used to characterize texts <span class="citation" data-cites="Biber_1988">(<a href="#ref-Biber_1988" role="doc-biblioref">Biber 1988</a>)</span>.</li>
+<li><strong>Lemma usage</strong> implies the usage of the root form of a word (e.g.&nbsp;<em>ensure</em>, <em>ensured</em>, and <em>ensures</em> all have the same lemma form of <em>ensure</em>).</li>
+</ul>
+<p>The overarching goal of our project is to identify whether (and if so, how) students’ statistics writing has systematically shifted toward being more similar to LLM academic writing since LLMs became widely accessible in 2022.</p>
+<p>Our data contains two corpora. The <strong>HAP-E Corpus</strong> contains 1,227 documents for which <em>ChatGPT-4o</em> (August 2024) was asked to generate the next 500 words (in the same tone and style) when prompted with a piece of academic writing <span class="citation" data-cites="Brown">(<a href="#ref-Brown" role="doc-biblioref">Brown 2024</a>)</span>. The <strong>Student Corpus</strong> contains 2,353 student reports from three undergraduate statistics courses at Carnegie Mellon University. <em>36-202: Methods for Statistics &amp; Data Science</em> is typically the second statistics course students take. <em>36-401: Modern Regression</em> and <em>36-402: Advanced Methods for Data Analysis</em> are advanced courses students take in their junior or senior year. Students are given a dataset and asked to answer a domain question with a report in the IMRaD format. The average report length is 1,700 words. All reports are anonymized and collected under an IRB.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="chatgpteachstat.png" class="img-fluid figure-img" style="width:50.0%" alt="Number of student reports per course. 36-202 has the most reports, with a total of 1,413 across 2021-2025. 36-401 has 473 reports, all of which were from 473. 36-402 has 467 reports between 2021 and 2022."></p>
+<figcaption>Table 1: Number of student reports by course and year</figcaption>
+</figure>
 </div>
- <!-- /main -->
+<section id="comparing-rhetorical-features" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-rhetorical-features">Comparing Rhetorical Features</h2>
+<p>We start by extracting Biber feature rates (per 1,000 words) for each document in the HAP-E and Student Corpora. We then conduct <em>linear discriminant analysis (LDA)</em> on the ChatGPT and student reports from 2021 using standardized Biber feature rates across all documents. Throughout our analysis, we treat 2021 as a “pre-LLM era”, 2022 as an intermediate year, and 2023-2025 reports as being from a time when LLMs were utilized by and accesible to students. Using the standardized Biber feature rates, we then project 2022-2025 writing onto the first linear discriminant (LD1) space and observe the resulting distribution of LD1 scores. We do this process separately for introductory (36-202) and advanced classes (36-401/402). Due to the advanced classes having fewer reports—particularly none in 2024-2025—the remainder of our analysis focuses on 36-202.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="yearly.png" class="img-fluid figure-img" style="width:70.0%" alt="Ridge plot showing the distribution of LD1 scores each year (2021-2025) for 36-202. On average, each year the mean of the density is shifting closer to the LD1 distribution of ChatGPT. The distribution of LD1 scores has also become wider over the years."></p>
+<figcaption>Figure 1: Distribution of LD1 scores by year for 36-202. The dashed line represents the mean LD1 score for each distribution.</figcaption>
+</figure>
+</div>
+<p>Key takeaways from Figure 1 include (a) 36-202 students are writing more like ChatGPT with each year, on average. We also observe more variability in LD1 scores in more recent years, suggesting that some students rely on ChatGPT for writing portion(s) of their report while other may not use it all.</p>
+<p>In order to better understand what portions of the report students may use LLMs for, we break the report into five sections. We let the first 20% of sentences represent the introduction of the report, 20-80% represent the middle (EDA/methods) of the report, and the final 20% of sentences represent the conclusion. The results are displayed in Figure 2.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="section.png" class="img-fluid figure-img" style="width:70.0%" alt="Ridges plot showing the distribution of LD1 scores for each section of the report. For each section, there is a density plot for 2021 and an another overlaid density plot for 2023-2025. The distribution for LD1 scores is wider for 2023-2025, as well as closer to the ChatGPT LD1 distribution. The introduction and conclusion distributions are most shifted toward the ChatGPT writing."></p>
+<figcaption>Figure 2: Distribution of LD1 scores by section of the report, with 2021 reports in orange and 2023-2025 reports in blue.</figcaption>
+</figure>
+</div>
+<p>Figure 2 displays that across all sections of the report, students’ writing style is more similiar to ChatGPT’s writing style in 2023-2025 than it was in 2021, aligning with Figure 1. Breaking it down by section, even in 2021 (pre LLMs), the style of writing for the introduction and conclusion was more similar to ChatGPT’s style of writing than the methods section of the report. However, going from 2021 to 2023-2025, we see the distribution of LD1 scores shift toward ChatGPT’s LD1 distribution the most for the introduction and conclusion of the report. This implies these sections of the report are likely where students are using LLMs the most<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>You may be wondering what features of writing are more ChatGPT-like and what features are more human-like. Table 2 displays our top ten standardized Biber features that proved to be most helpful for classifying ChatGPT and student writing in our linear discriminant analysis. A negative LD1 coefficient indicates that the feature is more prevalent in ChatGPT writing than 2021 student writing, while a postive feature indicates the opposite. A few features that make sense to me: on average, ChatGPT uses longer words and more attributive adjectives, while students tend use <em>be</em> as a main verb and use first-person pronouns more often. Note that Biber features do not take punctuation into account, which I mention because LLMs like to use em dashes. This would be something additional to look into in the future.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="handout.png" class="img-fluid figure-img" style="width:80.0%" alt="Table with 10 most important Biber features. In order of importance, they are mean word length, be as main verb, first-person pronouns, attributive adjectives, seem and appear, nominalizations, gerunds, other nouns, private verbs, and the pronoun it. Increases in mean word length, attributive adjectives, nominalizations, gerunds, other nouns, and the pronoun it are all associated with ChatGPT."></p>
+<figcaption>Table 2: Top 10 Biber features most important for classifying ChatGPT and and student writing in linear discriminant analysis. Some descriptions and examples are taken directly from Reinhart et al.&nbsp;(2024).</figcaption>
+</figure>
+</div>
+</section>
+<section id="comparing-lemma-usage" class="level2">
+<h2 class="anchored" data-anchor-id="comparing-lemma-usage">Comparing Lemma Usage</h2>
+<p>We have looked at rhetorical features, but what about the words themselves? After hearing that LLMs at one point used words like <em>delve</em>, <em>tapestry</em>, or <em>commraderie</em> a lot, we were curious to see if our student writing saw an uptick in any of ChatGPT’s favorite verbs. To do so, we identify ChatGPT’s top 50 favorite verbs by doing a simple count of how many times each verb was used in the HAP-E corpus, removing auxiliary verbs. We then find the rate (per 1000 words) at which these verbs are used in the student corpus each year. Figure 3 displays how the frequency of usage of ChatGPT’s top ten favorite verbs have changed in student reports over recent years. Several of these verbs (e.g.&nbsp;provide, remain, ensure, reduce, address, enhance, offer) have seen noticeable increases.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="wordfreq.png" class="img-fluid figure-img" style="width:70.0%" alt="Line graph of frequency of usage (per 1000 words) for ChatGPT`s top favorite verbs."></p>
+<figcaption>Figure 3: Frequency of ChatGPT’s top 10 favorite verbs in student writing since 2021.</figcaption>
+</figure>
+</div>
+<p>We go on to perform a <em>keyness analysis</em> to identify which of the 50 verb lemmas have a significant positive frequency change from 2021 to 2023-2025 in the student writing. A keyness analysis is a special kind of chi-square test to compare observed and expected frequencies in text. We find that 75% of these 50 verb lemmas increased frequency in 36-202 student reports from 2021 to 2023-2025, and 33% of these positive changes were statistically significant after adjusting for multiple testing using the Bonferroni correction.</p>
+<p>We want to make sure that the topic of the report does not play into student word choice (e.g.&nbsp;a prompt “analyze the effect of a reduction in required classes on…” may have the word <em>reduce</em> used very often). Luckily, in 36-202, students were given the same set of datasets and prompts to choose from each year. We additionally conduct a <em>concordance analysis</em>, pulling out the four words prior to and following each of top ten verbs in order to ensure the usage of these verbs is not context dependent. Figure 4 shows a sample of the ways in which <em>provide</em> was used in 36-202 reports in 2025. We see the usage does not appear to be context dependent, and we additionally observe repeated use cases such as “provide evidence-based recommendations”.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="concordance.png" class="img-fluid figure-img" style="width:70.0%" alt="About 15 ways in which provide was used in a sentence are shown."></p>
+<figcaption>Figure 4: Concordance analysis for <em>provide</em>.</figcaption>
+</figure>
+</div>
+</section>
+<section id="concluding-thoughts" class="level2">
+<h2 class="anchored" data-anchor-id="concluding-thoughts">Concluding Thoughts</h2>
+<p>We see there has been a systematic shift in both the style and vocabulary of students’ statistics reports toward ChatGPT in both lower and upper division courses at Carnegie Mellon in the era of LLMs. The writing style for students’ introductions and conclusions has particularly become more similar to ChatGPT’s writing style, on average.</p>
+<p>We are still figuring out the next steps for this project, but it might be interesting to compose a ChatGPT corpus where each text is a report generated by the prompt of the assignment. This may be a more fair comparison to the student writing, as opposed to text generated by ChatGPT to meet the style and tone of expert academic writing. If this corpus was used in the linear discrminant analysis, I would expect an even larger shift of the distribution of LD1 scores for 2023-2025 reports toward to the ChatGPT distribution. Additionally, I would be curious to see if ChatGPT writing is “good”. If, using Biber features and linear discriminant analysis, we were to compare both student reports in the LLM and pre-LLM era to expert academic writing, would one perform better than the other? Finally, while it would be difficult to make happen, it would also be interesting to see how these results vary by institution (e.g.&nbsp;liberal arts versus R1 institutions).</p>
+<p>While the extensions above may help provide more information, that isn’t going to change what is clear—students are using LLMs for writing. Sara and I are more curious about what the means. We both went to liberal arts colleges where writing (e.g.&nbsp;data analysis projects, reports, portfolios, etc) was at the center of our learning. Personally, <em>writing-to-learn</em> assignments were the place where I would process concepts and immediately figure out my pitfalls when I could not figure out how to explain something. The big question (that I think everyone has) is: do these assignments need modification in an era of LLMs? If so, how do we restructure these assignments to better support student learning?</p>
+<p>At USCOTS, it was really interesting to hear ideas on this. Some thoughts:</p>
+<ul>
+<li>Turn to alternative forms of assessment, such as oral exams. See <a href="https://efranke22.github.io/blog/uscots2025/">my USCOTS reflections</a> for a discussion the pros and cons of oral exams.
+<ul>
+<li>In short, I think this could be a good option for advanced capstone classes at liberal arts colleges, but it still may not offer the all of the same benefits as take home data analysis projects (the student has less freedom in topic, cannot produce something they can share to network or look back on to learn from, may have oral exam anxiety).</li>
+</ul></li>
+<li>Have students write a data analysis report during classtime—or more realistically, part of a report. We observed that students are most likely to offload writing the introduction and conclusion to LLMs, so potentially we could provide some already done EDA plots, methods, and results to the student and have them write the introduction or conclusion during classtime on paper.
+<ul>
+<li>There could also be a class discussion where as a group you read some pieces of writing and critique them (kind of like a peer review) so students think more about carefully about their writing style and process. Again, this does not yield all the same benefits as a take home data analysis project, but it is an idea.</li>
+</ul></li>
+<li>Try some AI policy—I liked Nick Horton’s idea where he asked the students in his class to develop an AI policy on the first day of the semester, he refined it, then they discussed it as a group again and students were expected to adhere to it.
+<ul>
+<li>Not be pessimisstic, I personally don’t this would work at a non-liberal arts college. I might be biased though…</li>
+</ul></li>
+<li>Finally and optimistically, maybe some form of pitching the laundry list of reasons why we shouldn’t use LLMs for writing reports could help solve the problem.</li>
+</ul>
+<p>These are all just my thoughts, I can’t say I know much about teaching or what I would actually do if I were a professor, so I am curious to learn more and continue to hear other people’s thoughts! Thanks so much for reading if you got this far, and please feel free to reach out to me at efranke@andrew.cmu.edu if you have any thoughts :)</p>
+</section>
+<section id="acknowledgements" class="level2">
+<h2 class="anchored" data-anchor-id="acknowledgements">Acknowledgements</h2>
+<p>Thanks so much to Alex Reinhart for his support on this project. We are also grateful to the TeachStat working group at Carnegie Mellon for their valuable feedback and suggestions, and Eric Shau for pre-processing the student reports.</p>
+
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-baek" class="csl-entry" role="listitem">
+Baek, Clare, Tamara Tate, and Mark Warschauer. 2024. <span>“<span>‘ChatGPT Seems Too Good to Be True’</span>: College Students’ Use and Perceptions of Generative AI.”</span> <em>Computers and Education: Artificial Intelligence</em> 7: 100294. https://doi.org/<a href="https://doi.org/10.1016/j.caeai.2024.100294">https://doi.org/10.1016/j.caeai.2024.100294</a>.
+</div>
+<div id="ref-Biber_1988" class="csl-entry" role="listitem">
+Biber, Douglas. 1988. <em>Variation Across Speech and Writing</em>. Cambridge University Press.
+</div>
+<div id="ref-Brown" class="csl-entry" role="listitem">
+Brown, David. 2024. <span>“Browndw/Human-Ai-Parallel-Corpus · Datasets at Hugging Face.”</span> <em>Browndw/Human-Ai-Parallel-Corpus · Datasets at Hugging Face</em>. <a href="https://huggingface.co/datasets/browndw/human-ai-parallel-corpus">https://huggingface.co/datasets/browndw/human-ai-parallel-corpus</a>.
+</div>
+<div id="ref-Reinhart_2025" class="csl-entry" role="listitem">
+Reinhart, Alex, Ben Markey, Michael Laudenbach, Kachatad Pantusen, Ronald Yurko, Gordon Weinberg, and David West Brown. 2024. <span>“Do LLMs Write Like Humans? Variation in Grammatical and Rhetorical Styles.”</span> <em>Proceedings of the National Academy of Sciences</em> 122 (8). <a href="https://doi.org/10.1073/pnas.2422455122">https://doi.org/10.1073/pnas.2422455122</a>.
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Anecdotally, this makes sense. I have had at least four people tell me they are using LLMs for their introductions/conclusions in the last couple of months.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -186,6 +315,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
   toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
   const isCodeAnnotation = (el) => {
     for (const clz of el.classList) {
       if (clz.startsWith('code-annotation-')) {                     
