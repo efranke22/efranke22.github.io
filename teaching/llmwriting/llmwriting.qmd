@@ -70,8 +70,8 @@ At USCOTS, it was really interesting to hear ideas on this. Some thoughts:
     -   Not be pessimisstic, I personally don't this would work at a non-liberal arts college. I might be biased though...
 -   Finally and optimistically, maybe some form of pitching the laundry list of reasons why we shouldn't use LLMs for writing reports could help solve the problem.
 
-These are all just my thoughts, I can't say I know much about teaching or what I would actually do if I were a professor, so I am curious to learn more and continue to hear other people's thoughts! Thanks so much for reading if you got this far, and please feel free to reach out to me at efranke\@andrew.cmu.edu if you have any thoughts :)
-
+These are all just thoughts. Right now I don't have experience teaching a class or know what I'd do if I were a professor, but I am excited to keep learning! Thanks so much for reading, and please feel free to reach out to me at efranke\@andrew.cmu.edu with feedback, questions, or ideas :)
+ 
 ## Acknowledgements
 
 Thanks so much to Alex Reinhart for his support on this project. We are also grateful to the TeachStat working group at Carnegie Mellon for their valuable feedback and suggestions, and Eric Shau for pre-processing the student reports.
