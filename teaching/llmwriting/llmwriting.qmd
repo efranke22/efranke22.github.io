@@ -26,7 +26,7 @@ We start by extracting Biber feature rates (per 1,000 words) for each document i
 
 ![Figure 1: Distribution of LD1 scores by year for 36-202. The dashed line represents the mean LD1 score for each distribution.](yearly.png){fig-alt="Ridge plot showing the distribution of LD1 scores each year (2021-2025) for 36-202. On average, each year the mean of the density is shifting closer to the LD1 distribution of ChatGPT. The distribution of LD1 scores has also become wider over the years." width="70%" fig-align="center"}
 
-Key takeaways from Figure 1 include (a) 36-202 students are writing more like ChatGPT with each year, on average. We also observe more variability in LD1 scores in more recent years, suggesting that some students rely on ChatGPT for writing portion(s) of their report while other may not use it all.
+Key takeaways from Figure 1 include that 36-202 students are writing more like ChatGPT with each year, on average. We also observe more variability in LD1 scores in more recent years, suggesting that some students rely on ChatGPT for writing portion(s) of their report while other may not use it all.
 
 In order to better understand what portions of the report students may use LLMs for, we break the report into five sections. We let the first 20% of sentences represent the introduction of the report, 20-80% represent the middle (EDA/methods) of the report, and the final 20% of sentences represent the conclusion. The results are displayed in Figure 2.
 
@@ -67,7 +67,7 @@ At USCOTS, it was really interesting to hear ideas on this. Some thoughts:
 -   Have students write a data analysis report during classtime---or more realistically, part of a report. We observed that students are most likely to offload writing the introduction and conclusion to LLMs, so potentially we could provide some already done EDA plots, methods, and results to the student and have them write the introduction or conclusion during classtime on paper.
     -   There could also be a class discussion where as a group you read some pieces of writing and critique them (kind of like a peer review) so students think more about carefully about their writing style and process. Again, this does not yield all the same benefits as a take home data analysis project, but it is an idea.
 -   Try some AI policy---I liked Nick Horton's idea where he asked the students in his class to develop an AI policy on the first day of the semester, he refined it, then they discussed it as a group again and students were expected to adhere to it.
-    -   Not be pessimisstic, I personally don't this would work at a non-liberal arts college. I might be biased though...
+    -   Not to be pessimisstic, I personally don't this would work at a non-liberal arts college. I might be biased though...
 -   Finally and optimistically, maybe some form of pitching the laundry list of reasons why we shouldn't use LLMs for writing reports could help solve the problem.
 
 These are all just thoughts. Right now I don't have experience teaching a class or know what I'd do if I were a professor, but I am excited to keep learning! Thanks so much for reading, and please feel free to reach out to me at efranke\@andrew.cmu.edu with feedback, questions, or ideas :)
