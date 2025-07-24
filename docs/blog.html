@@ -78,7 +78,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-image','listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
@@ -233,18 +233,7 @@ window.Quarto = {
 <h5 class="no-anchor card-title listing-title">
 My Reflections from USCOTS 2025
 </h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Education'); return false;">
-Education
-</div>
-</div>
-<div class="card-text listing-description">
-I’m so grateful to have had the opportunity to attend the 2025 United States Conference on Teaching Statistics (USCOTS) in Ames, Iowa! Before jumping into my general…
-</div>
-<div class="card-attribution card-text-small justify">
-<div class="listing-author">
-
-</div>
+<div class="card-attribution card-text-small end">
 <div class="listing-date">
 Jul 21, 2025
 </div>
