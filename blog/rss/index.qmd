@@ -1,0 +1,587 @@
+---
+title: "Sole searching: How super shoes have changed marathoning"
+date: 08-15-2025
+description: "In May, I entered the 2025 RSS Competition for Statistical Excellence in Early Career Writing. I really enjoyed applying statistics to my favorite hobby (running) in order to analyze a question at the forefront of the sport!"
+bibliography: Library.bib
+image: trajectory.png
+categories: [Sports]
+draft: false
+toc: true
+toc-depth: 5
+format:
+  html:
+    css: styles.css
+---
+
+```{r, echo=F, message=F, warning=F}
+library(tidyverse)
+library(quantreg)
+library(regressinator)
+library(splines)
+library(ggeffects)
+library(broom)
+library(lme4)
+library(maps)
+library(countrycode)
+library(scales)
+library(ggridges)
+```
+
+```{r, echo=F, message=F, warning=F}
+#plot_data <- read_csv("mod_results.csv")
+weather <- read_csv("chicago/weather.csv")
+chicago <- read_csv("chicago/results.csv") %>%
+  group_by(Year, Gender) %>%
+  arrange(Finish, .by_group = T) %>%
+  mutate(Gender_place = row_number(Finish)) %>%
+  ungroup() %>%
+  mutate(international = case_when(Country != "USA" ~ 1, TRUE ~0), 
+         super_era = case_when(Year >= 2019 ~ "Yes", TRUE ~ "No"),
+         super_era_elite = case_when(Year >= 2017 ~ "Yes", TRUE ~ "No"),
+         time_min = Finish/60, 
+         id = row_number(), 
+         Age = as.factor(Age)) %>%
+  left_join(weather %>% select(Year, temp9 = `9AM Temp`, dew9= `9AM Dew`, wind9 = `9AM Wind`), by = "Year")
+
+# remove times over 6:30 
+chicago <- chicago %>% 
+  filter(Finish <= 23400)
+
+
+# getting the elites 
+dups <- chicago %>% filter((Name == "Ryan Hall" & Year == 2011) | (Name == "Jesse Davis" & Year <=2014) |(Name == "Michael Eaton" & Year == 2019) |
+                     (Name == "Carlos Trujillo" & Year %in% c(2012, 2014)) | (Name == "Michael Shelley" & Year %in% c(2013, 2017)) | 
+                     (Name == "Sean Quigley" & Overall < 100) | (Name == "Mike Morgan" & Overall < 100) | 
+                     (Name == "Amy Hastings" & Year == 2014) | (Name == "Melissa White" & Year %in% c(2013, 2014)) |
+                     (Name == "Sara Hall" & Year %in% c(2015, 2021)) | (Name == "Diego Estrada" & Country == "USA")|
+                     (Name == "Tom Anderson" & Year == 2016) | (Name == "Caitlin Chrisman" & Year %in% c(2016, 2017)) | 
+                     (Name == "Aaron Braun" & Year %in% c(2017, 2018)) | (Name == "Scott Smith" & Year == 2019) | 
+                     (Name == "Lindsey Anderson" & Year %in% c(2018, 2019)) | (Name == "Matt McDonald" & Overall < 100)|
+                     (Name == "Paul Hogan" & Year == 2022) | (Name == "Oscar Medina" & Overall < 100) |
+                     (Name == "Hiroaki Sano" & Year == 2013) | (Name == "Rob Watson" & Overall < 100))
+
+elite <- chicago %>%
+  filter(Name %in% c("Evans Cheruiyot", "Dickson Chumba", "Bekana Daba", "Bernard Kipyego", "Wesley Korir", 
+                     "Moses Mosop", "Takayuki Matsumiya", "Takashi Horiguchi", "Kouji Gokaya", "Joseph Chirlee",
+                     "Hironori Arai", "Masaki Shimoju", "Yuuki Moriwaki", "Tyler McCandless",  "Michael McKeeman", 
+                     "Mario Macias", "Shawn Forrest", "Levy Matebo", "Tsegaye Kebede", "Feyisa Lilesa", "Dadi Yami",
+                     "Shami Dawit", "Laban Korir", "Michael Kipyego", "Samuel Ndungu", "Sammy Ndungu", "Dathan Ritzenhein",
+                     "Takeshi Kumamoto", "Yuki Moriwaki", "Hiroki Kadota", "Jimmy Grabow", "Naoki Okamoto",
+                     "Koji Kobayashi", "Jeffrey Eggleston", "Patrick Rizzo", "Drew Polley", "Patrick Smyth",
+                     "Craig Leon", "Malcolm Richards", "Tim Tollefson", "Stephen Muturi", "Thomas Frazer",
+                     "Sammy Kitwara", "Tilahun Regassa", "Stephen Pifer", "Dennis Kimetto", "Ayele Abshero",
+                     "Emannuel Mutai", "Yoshinori Oda", "Zersenay Tadese", "Michael Shelley", "Kenji Higashino",
+                     "Yoshiki Otsuka", "Hiroki Tanaka", "Norihide Fujimori", "Matt Dewald",
+                     "Christopher Pannone", "Eric Loeffler", "Chris Siemers", "Brandon Mull", "Dan Kremske",
+                     "Matt Tegenkamp", "Eliud Kipchoge", "Bernard Koech", "Kenenisa Bekele", "Satoru Sasaki",
+                     "Ryosuke Fukuyama", "Rui Yonezawa", "Bobby Curtis", "Luke Humphrey", "Christo Landry",
+                     "Tim Young", "Jameson Mora", "Gabe Proctor", "Bayron Piedra", "Bayron Piedra Aviles", 
+                     "Matt Llano", "Brendan Gregg", "Jake Riley", "Lucas Rotich", "Abera Kuma", "Satoshi Yoshii", 
+                     "Liam Adams", "Fernando Cabada", "Abel Kirui", "Micah Kogo", "Paul Lonyangata",
+                     "Gideon Kipketer", "Koji Gokaya", "Takuya Fukatsu", "Luke Puskedra", "Elkanah Kibet", "Kazuya Ishida",
+                     "Ryoichi Matsuo", "Tim Young", "David Nilsson", "Jose Madera", "Tony Migliozzi", "Jonathan Mott", 
+                     "Kevin Havel", "Dustin Emerick", "Andrew Epperson", "Stephen Sambu", "Kiya Dandena", "Daniel Wallis",
+                     "Kohei Matsumura", "Galen Rupp", "Chihiro Miyawaki", "Andrew Bumbalough", "Sam Chelanga",
+                     "Chris Derrick", "Noah Droddy", "Mosinet Geremew Bayih", "Birhanu Legese", "Kenneth Kipkemoi",
+                     "Mo Farah", "Geoffrey Kirui", "Suguru Osako", "Bedan Karoki", "Yuki Kawauchi", "Mohamed Reda El Aaraby",
+                     "Tyler McCandless", "Kiya Dandena", "Yohei Suzuki", "Taku Fujimoto", "Johnny Crain", "Jonas Hampton",
+                     "Pardon Ndhlovu", "Andrew Epperson", "Lawrence Cherono", "Minato Oishi", "Ryoma Takeuchi", 
+                     "Tsubasa Hayakawa", "Chris Derrick", "Jacob Riley", "Brendan Gregg", "Brian Shrader", "Nico Montanez",
+                     "Parker Stinson", "Ryan Root", "Alan Peterson", "Jackson Neff", "Dan Kremske", "Reed Fischer",
+                     "Jerrell Mock", "Seifu Tura", "Seifu Tura Abdiwak", "Shifera Tamru Aredo", "Eric Kiptanui",
+                     "Eric Kiprono Kiptanui", "Colin Mickow", "Wilkerson Given", "Chris Derrick", "Josh Izewski",
+                     "Mike Sayenko", "Nico Montanez", "Alan Peterson", "Dan Kremske", "Brett Lustgarten", "Kurt Roeser",
+                     "Clayton Young", "Abdisamed Abdi", "Ben Kendell", "Zachery Panning", "Dawit Wolde", "Stephen Kissa", 
+                     "Benson Kipruto", "Kyohei Hosoya", "Hamza Sahli", "Hiroto Fujimagari", "Kiyoshi Koga", "Riki Nakanishi",
+                     "John Korir", "Frank Lara", "Reid Buchanan", "Turner Wiley", "Chase Weaverling", "John Dressel", 
+                     "Jp Flavin", "Conner Mantz", "Kelvin Kiptum", "Bashir Abdi", "Yuki Matsumura", "Takashi Ichida", 
+                     "Masashi Nonaka", "Masaki Tsuda", "Mizuki Higashi", "Andrew Colley", "Kevin Salvano", "Joel Reichow",
+                     "Brian Shrader", "Wesley Kiptoo", "Connor Winter", "Alec Sandusky",
+                     "Askale Tafa", "Christelle Daunay", "Belainesh Zemedkun Gebre", "CHallissey", "Jeannette Faber", 
+                     "Leah Thorvilson", "Kayoko Fukushi", "Ejegayehu Dibaba", "Malika Mejdoub", "Cruz Nonata da Silvab",
+                     "Lucy Kabuu", "Atsede Baysa", "Rita Jeptoo", "Caroline Rotich", "Fatuma Sado", "Dot McMahan", "Laurie Knowles",
+                     "Deanna Ardrey", "Addie Bracy", "Stephanie Pezzullo", "Jemima Sumgong Jelegat", "Ehitu Kiros Reda",
+                     "Abebech Afework", "Yukiko Akaba", "Clara Santucci", "Amanda Rice", "Gabriela Trana", "Gina Slaby",
+                     "Florence Kiplagat", "Mare Dibaba", "Birhane Dibaba", "Gelete Burka", "Wendy Thomas", "Laura Portis", "Sarah Cummings",
+                     "Lauren Jimison", "Yuri Yoshizumi", "Whitney Bevins-Lazzara", "Heidi Greenwood",
+                     "Sarah Crouch", "Lindsey Scherf", "Lisa Uhl", "Mulu Seboka", "Fionnuala Britton", "Susan Partridge", "Diane Nukuri",
+                     "Jessica Draskau Petersson", "Deena Kastor", "Tera Moody", "Valentine Kipketer", "Yebrgual Melese",
+                     "Purity Rionoripo", "Meskerem Assefa", "Serena Burla", "Freya Ross", "Agnieszka Mierzejewska", "Sarah Cummings",
+                     "Alia Gray", "Julia Roman-Duval", "Rachel Hyland", "Emma Polley", "Tirunesh Dibaba",
+                     "Madai Perez", "Jordan Hasay", "Lisa Weightman", "Becky Wade", "Michelle Lilienthal", "Danna Herrick", "Kristen Heckert",
+                     "Roza Dereje", "Brigid Kosgei", "Shure Demise", "Laura Thweatt",
+                     "Alyson Dixon", "Veronicah Nyaruai", "Taylor Ward", "Katie Matthews", "Melanie Myrand", "Gwen Jorgensen", 
+                     "Alexi Pappas", "Betsy Saina", "Fionnuala McCormack", "Anke Esser", "Emma Bates", "Stephanie Bruce", "Lindsay Flanagan",
+                     "Taylor Ward", "Maegan Krifchin", "Christina Vergara-Aleshire", "Sarah Sellers", "Alyssa Schneider",
+                     "Ruth Chepngetich", "Keira D'Amato", "Bria Wetsch", "Daiana Ocampo", "Jane Bareikis", "Georgia Porter", 
+                     "Anne-Marie Blaney", "Megan O'Neil", "Olivia Pratt", "Carrie Verdon", "Jessica Watychowicz", "Vivian Jerono Kiplagat",
+                     "Emily Sisson", "Sara Vaughn", "Susanna Sullivan", "Krista DuChene", "Maggie Montoya", "Rachel Hannah",
+                     "Brittney Feivor", "Meriah Earle", "Marie-Ange Brumelot", "Jessie Cardin", "Makena Morley",
+                     "Tadu Teshome Nare", "Joyciline Jepkosgei", "Genzebe Dibaba Keneni", "Sutume Asefa Kebede", "Sifan Hassan",
+                     "Desiree Linden", "Molly Seidel", "Dakotah Lindwurm", "Tristin Van Ord", "Gabriella Rooker", "Dominique Scott",
+                     "Annmarie Tuxbury", "Stacy Ndiwa", "Lindsey Scherf", "Ghirmay Ghebreslassie", "Lani Rutto", "Girmay Birhanu Gebru", 
+                     "Edna Kiplagat", "Abayneh Ayele", "Sisay Lemma", "Ezekiel Chebii", "Kate Landau", "Marci Klimek", "Ababel Yeshaneh", 
+                     "Fionnuala Mccormack", "Dejene Debela", "Asefa Mengstu", "Sarah Pagano", "Meseret Belete Tola", 
+                     "Kengo Suzuki", "Reuben Kiprop Kipyego", "Ruti Aga Sora", "Waganesh Mekasha Amare", "Sarah Inglis", 
+                     "Dong Guojian", "Megertu Alemu", "Rose Harvey", "Pat Tiernan", "Matthew Mcdonald", "Nicolas Montanez", 
+                     "Abayneh Degu Tsehay", "Amanuel Mesel Tikue")) %>%
+  mutate(Name = case_when(Name == "Yuki Moriwaki" ~ "Yuuki Moriwaki", 
+                          Name == "Sammy Ndungu" ~ "Samuel Ndungu",
+                          Name == "Seifu Tura" ~ "Seifu Tura Abdiwak",
+                          Name == "Bayron Piedra Aviles" ~ "Bayron Piedra", 
+                          Name == "Eric Kiprono Kiptanui" ~ "Eric Kiptanui", 
+                          Name == "Matthew Mcdonald" ~ "Matt McDonald",
+                          TRUE ~ Name)) %>%
+  rbind(dups) %>%
+  filter(Year >= 2011, Age %in% c("24", "29", "34", "39")) %>% # remove 19, 44, 49 (10 total)
+  distinct_all()
+
+chicago_sub <- chicago %>% 
+  filter(!id %in% elite$id) %>% 
+  filter(Year >= 2014)
+```
+
+"All you need is a pair of shoes." It's a simple phrase---maybe one a friend has used either to encourage you to try running or to simply claim it as one of the world’s most accessible sports. But over the last eight years, it has become abundantly clear that for competitive runners, not all shoes are created equal. In 2016, Nike released the *Vaporfly 4%*, the world's first *super shoe*, changing the trajectory of running forever[@nyt]. Most broadly, a super shoe is a lightweight running shoe with a carbon-fiber plate through the middle of the sole. The stiffness of the plate rolls your foot forward with each step, decreasing the amount you need to push off the ground. The result is better running economy---less energy is needed to run the same pace, meaning runners can conserve that energy to run farther, or expend it to run faster[@Goldstein_2023].
+
+The impact of super shoes has been most prevalent in long distance events, specifically the marathon, a popular 42.195 kilometer (26.2 mile) road race. The top 11 men's and top 5 women's marathon times have all come since the introduction of super shoes in 2016. @fig-record displays the progression of the men's and women's world marathon record dating back to 1950 [@Wikipedia_2025]. Dennis Kimetto held the men's world record prior to the introduction of super shoes, completing the 2014 Berlin Marathon in 2:02:57. Since then, the men's world record has fallen three times and is currently 2:00:35, set by Kelvin Kiptum at the 2023 Chicago Marathon. That's a pace of 2:51 per kilometer (4:36 per mile)! On the women's side, Paula Radcliffe held the pre-super shoe marathon world record with a time of 2:15:25, set at the 2003 London Marathon. This record remained intact until 2019. Today, Ruth Chepng'etich sits atop the leaderboard with a time of 2:09:56, set at the 2024 Chicago Marathon.
+
+```{r, echo=F, message=F, warning=F}
+#| label: fig-record
+#| fig-cap: "Progression of men's (top) and women's (bottom) world marathon record since 1950."
+#| fig-pos: H
+library(data.table)
+records <- rowwiseDT(time = , date=, name =, venue=, division=,
+          140.7, "06-14-1952", "Jim Peters", "Polytechnic Marathon", "M",
+          138.67, "06-13-1953", "Jim Peters", "Polytechnic Marathon","M",
+          138.58, "10-4-1953", "Jim Peters", "Turku Marathon","M",
+          137.66, "06-26-1954", "Jim Peters", "Polytechnic Marathon","M",
+          135.28, "08-24-1958", "Sergei Popov", "European Athletics Championships", "M",
+          135.26, "09-10-1960", "Abebe Bikila", "Rome Olympics","M",
+          135.25, "02-17-1963", "Toru Terasawa", "Beppu-Oita Marathon","M",
+          134.47, "06-15-1963", "Leonard Edelen", "Polytechnic Marathon", "M",
+          133.92, "06-13-1964", "Basil Heatley", "Polytechnic Marathon","M",
+          132.18, "10-21-1964", "Abebe Bikila", "Tokyo Olympics","M",
+          132.0, "06-12-1965", "Morio Shigematsu", "Polytechnic Marathon", "M",
+          129.6, "12-03-1967", "Derek Clayton", "Fukuoka Marathon","M",
+          128.56, "05-30-1969", "Derek Clayton", "Antwerp","M",
+          128.3, "12-6-1981", "Robert De Castella", "Fukuoka Marathon","M",
+          128.08, "10-21-1984", "Steve Jones", "Chicago Marathon","M",
+          127.2, "04-20-1985", "Carlos Lopez", "Rotterdam Marathon","M",
+          126.83, "04-17-1988", "Belayneh Dinsamo", "Rotterdam Marathon", "M",
+          126.08, "09-20-1988", "Ronaldo da Costa", "Berlin Marathon","M",
+          125.7, "10-24-1999", "Khalid Khannouchi", "Chicago Marathon","M",
+          125.63, "04-14-2002", "Khalid Khannouchi", "London Marathon","M",
+          124.92, "09-28-2003", "Paul Tergat", "Berlin Marathon","M",
+          124.43, "09-30-2007", "Haile Gebrselassie", "Berlin Marathon","M",
+          123.98, "09-28-2008", "Haile Gebreselassie", "Berlin Marathon", "M",
+          123.63, "09-25-2011", "Patrick Makau", "Berlin Marathon", "M",
+          123.38, "09-29-2013", "Wilson Kipsang", "Berlin Marathon","M",
+          122.95, "09-28-2014", "Dennis Kimetto", "Berlin Marathon","M",
+          121.65, "09-16-2018", "Eliud Kipchoge", "Berlin Marathon","M",
+          121.15, "09-25-2022", "Eliud Kipchoge", "Berlin Marathon","M",
+          120.58, "10-08-2023", "Kelvin Kiptum", "Chicago Marathon", "M",
+          217.12, "12-16-1963", "Merry Lepper", "Culver City", "F",
+          207.75, "05-23-1964", "Dale Greig", "Ryde", "F",
+          199.55, "07-21-1964", "Mildred Simpson", "Auckland", "F",
+          194.38, "05-06-1967", "Maureen Wilton", "Toronto", "F",
+          187.45, "09-16-1967", "Anni Pede-Erdkamp", "Waldniel", "F",
+          182.88, "02-28-1970", "Caroline Walker", "Seaside", "F",
+          181.7, "05-09-1971", "Elizabeth Bonner", "Philadelphia", "F",
+          175.37, "09-19-1971", "Elizabeth Bonner", "New York City Marathon", "F",
+          169.67, "12-05-1971", "Cheryl Bridges", "Culver City", "F",
+          166.6, "12-02-1973", "Michiko Gorman", "Culver City", "F",
+          166.4, "10-27-1974", "Chantal Langlace", "Neuf-Brisach", "F",
+          163.9, "12-01-1974", "Jacqueline Hansen", "Culver City", "F",
+          162.4, "04-21-1975", "Liane Winter", "Boston Marathon", "F",
+          160.25, "05-03-1975", "Christa Vahlensieck", "Dulmen", "F",
+          158.32, "10-12-1975", "Jacqueline Hansen", "Eugene", "F",
+          155.25, "05-01-1977", "Chantal Langlace", "Oiartzun", "F",
+          154.8, "09-10-1977", "Christa Vahlensieck", "Berlin Marathon","F",
+          152.5, "10-22-1978", "Grete Waitz", "New York City Marathon", "F",
+          147.54, "10-21-1979", "Grete Waitz", "New York City Marathon","F",
+          145.69, "10-26-1980", "Grete Waitz", "New York City Marathon","F",
+          145.48, "10-25-1981", "Allison Roe", "New York City Marathon","F",
+          145.47, "04-17-1983", "Grete Waitz", "London Marathon", "F",
+          142.72, "04-18-1983", "Joan Benoit", "Boston Marathon", "F",
+          141.1, "04-21-1985", "Ingrid Kristiansen", "London Marathon", "F",
+          140.79, "04-19-1998", "Tegla Loroupe", "Rotterdam Marathon", "F",
+          140.72, "09-26-1999", "Tegla Loroupe", "Berlin Marathon", "F",
+          139.77, "09-30-2001", "Naoko Takahashi", "Berlin Marathon", "F",
+          138.78, "10-07-2001", "Catherine Ndereba", "Chicago Marathon","F",
+          137.3, "10-13-2002", "Paula Radcliffe", "Chicago Marathon", "F",
+          135.42, "04-23-2003", "Paula Radcliffe", "London Marathon", "F",
+          134.07,"10-13-2019", "Brigid Kosgei", "Chicago Marathon", "F",
+          131.88, "09-24-2023", "Tigst Assefa", "Berlin Marathon", "F",
+          129.93, "10-13-2024", "Ruth Chepngetich", "Chicago Marathon", "F") %>% 
+  mutate(date = as.Date.character(date, tryFormats = c("%m-%d-%Y")))
+
+minutes_to_hm2 <- function(x) {
+  hours <- floor(x / 60)
+  mins <- round(x %% 60)
+  sprintf("%d:%02d", hours, mins)
+}
+
+a <- records %>%
+  filter(division == "M") %>%
+  ggplot(aes(x=date, y=time))+
+  geom_vline(xintercept = as.Date.character("06-01-2016", tryFormats = c("%m-%d-%Y")),
+             linetype = "dashed")+
+  annotate("text",x = as.Date("2009-06-01"),y = 140, color = "black",
+           label = "First super shoe\nreleased",
+           hjust = 0.5, vjust = 1, size = 2.5, fontface = "italic") +
+  geom_point(alpha=0.6, color = "#3FA0FF")+
+  geom_step(direction = "hv", color = "#3FA0FF", alpha = 0.3)+
+  scale_y_continuous(labels = minutes_to_hm2)+
+  scale_x_date(limits = as.Date(c("1950-01-01", "2025-01-01")))+
+  theme_bw()+
+  theme(axis.title = element_blank())
+
+b <- records %>%
+  filter(division == "F") %>%
+  ggplot(aes(x=date, y=time))+
+  geom_vline(xintercept = as.Date.character("06-01-2016", tryFormats = c("%m-%d-%Y")),
+             linetype = "dashed")+
+  geom_vline(xintercept = as.Date.character("01-01-1973", tryFormats = c("%m-%d-%Y")),
+             linetype = "dashed", color = "gray47")+
+  geom_point(alpha=0.6, color ="#F76D5E")+
+  annotate("text",x = as.Date("1985-01-01"),y = 220, color = "gray47",
+           label = "1972-1974: Major marathons\nbegin allowing women",
+           hjust = 0.5, vjust = 1, size = 2.5, fontface = "italic") +
+  geom_step(direction = "hv", color = "#F76D5E", alpha = 0.3)+
+  scale_y_continuous(labels = minutes_to_hm2, breaks = c(130, 150, 170, 190, 210))+
+  scale_x_date(limits = as.Date(c("1950-01-01", "2025-01-01")))+
+  theme_bw()+
+  theme(axis.title = element_blank())
+
+library(patchwork)
+a/b
+```
+
+In addition to elite runners, the marathon is a popular event for those running as a hobby, whom we will refer to as everyday runners. The marathon's popularity has grown noticeably since the COVID-19 pandemic, with many picking up running as a way to find community or routine. The 2025 London Marathon recently set the world record with a total 56,640 finishers---and over 800,000 individuals had applied to run the race[@london]. Super shoes have become popular among the everyday runner, though their benefit is less certain, specifically at slower paces (such as above 6:00/km). In these cases, some runners may stop saving energy and instead need additional energy to get up and over the carbon plate, though more research is needed[@slow].
+
+## Sweet Home Chicago
+
+In order to better understand the role that super shoes play for both elite and everyday runners, we use a publicly available dataset of all Chicago Marathon finishers from 1996-2023[@kaggle]. Home to both the men's and women's marathon world records, the Chicago Marathon is a flat and fast course. Elite runners often bring pacers to the race to help them strive for a goal time, whether that be a personal best or a world record. This makes the Chicago marathon ideal for an analysis on super shoes, as hillier races (such as the Boston Marathon or New York City Marathon) can end up being quite tactical with the finishing times varying greatly year to year. Another benefit is the worldwide presence of the Chicago Marathon. @fig-map displays a map indicating the home countries of finishers from the 2023 Chicago Marathon. These finishers come from 137 different countries, with over 1,000 finishers from Mexico, the United Kingdom, Canada, Brazil, and China, in addition to the United States.
+
+```{r, echo=F, message=F, warning=F}
+world <- map_data("world") %>% filter(region != "Antarctica")
+worldplot <- ggplot() +
+  geom_polygon(data = world, aes(x=long, y = lat, group = group)) + 
+  coord_fixed(1.3)
+
+country_counts <- chicago %>%
+  filter(Year == 2023) %>% count(Country) %>%
+  mutate(country_name = countrycode(Country,  origin = "iso3c", destination = "country.name")) %>%
+  mutate(country_name = case_when(Country == "ALG" ~ "Algeria",
+                                  Country == "ANG" ~ "Angola",
+                                  Country == "ARU" ~ "Aruba",
+                                  Country == "BAH" ~ "Bahamas",
+                                  Country == "BAN" ~ "Bahrain",
+                                  Country == "BAR" ~ "Barbados",
+                                  Country == "BER" ~ "Bermuda",
+                                  Country == "BRU" ~ "Brunei",
+                                  Country == "BUL" ~ "Bulgaria",
+                                  Country == "CAM" ~ "Cameroon",
+                                  Country == "CAY" ~ "Cayman Islands",
+                                  Country == "CHI" ~ "China", 
+                                  Country == "CRC" ~ "Costa Rica",
+                                  Country == "CRO" ~ "Croatia",
+                                  Country == "DEN" ~ "Denmark",
+                                  Country == "ESA" ~ "El Salvador", 
+                                  Country == "GER" ~ "Germany",
+                                  Country == "GRE" ~ "Greece",
+                                  Country == "GRN" ~ "Grenada",
+                                  Country == "GUA" ~ "Guatemala",
+                                  Country == "HON" ~ "Honduras",
+                                  Country == "INA" ~ "Indonesia",
+                                  Country == "IRI" ~ "Iran",
+                                  Country == "ISV" ~ "Virgin Islands", 
+                                  Country == "KOS" ~ "Kosovo", 
+                                  Country == "KSA" ~ "Saudi Arabia", 
+                                  Country == "KUW" ~ "Kuwait", 
+                                  Country == "LAT" ~ "Latvia", 
+                                  Country == "MAS" ~ "Maldives", 
+                                  Country == "MGL" ~ "Mongolia", 
+                                  Country == "MRI" ~ "Mauritius", 
+                                  Country == "MYA" ~ "Myanmar", 
+                                  Country == "NCA" ~ "Nicaragua", 
+                                  Country == "NED" ~ "Netherlands", 
+                                  Country == "NEP" ~ "Nepal", 
+                                  Country == "NGR" ~ "Nigeria", 
+                                  Country == "PAR" ~ "Paraguay", 
+                                  Country == "PHI" ~ "Philippines", 
+                                  Country == "PLE" ~ "Palestine", 
+                                  Country == "POR" ~ "Portugal", 
+                                  Country == "PUR" ~ "Puerto Rico", 
+                                  Country == "RSA" ~ "South Africa", 
+                                  Country == "SKN" ~ "Saint Kitts", 
+                                  Country == "SLO" ~ "Slovakia", 
+                                  Country == "SRI" ~ "Sri Lanka", 
+                                  Country == "SUD" ~ "Sudan", 
+                                  Country == "SUI" ~ "Switzerland", 
+                                  Country == "TAN" ~ "Tanzania", 
+                                  Country == "TPE" ~ "China", 
+                                  Country == "URU" ~ "Uruguay", 
+                                  Country == "VIE" ~ "Vietnam", 
+                                  Country == "ZAM" ~ "Zimbabwe", 
+                                  Country == "BIH" ~ "Bosnia and Herzegovina", 
+                                  Country == "CZE" ~ "Czech Republic",
+                                  Country == "GBR" ~ "UK",
+                                  Country == "HKG" ~ "China", 
+                                  Country == "LCA" ~ "Saint Lucia", 
+                                  Country == "MAC" ~ "China", 
+                                  Country == "TTO" ~ "Trinidad", 
+                                  Country == "USA" ~ "USA",
+                                  TRUE ~ country_name)) %>% 
+  filter(!is.na(country_name)) %>%
+  group_by(country_name) %>%
+  summarize(participants = sum(n))
+
+combined <- country_counts %>% right_join(world, by = c("country_name" = "region")) %>% filter(!is.na(long))
+```
+
+```{r, echo=F}
+#| label: fig-map
+#| fig-cap: "Home countries of the 2023 Chicago Marathon finishers. Countries in gray had no participants. 137 countries were represented, making the Chicago Marathon an international event."
+#| fig-pos: H
+library(ggnewscale)
+ggplot(combined %>% mutate(`Number of participants` = participants)) + 
+  coord_fixed(1.3)+
+  geom_polygon(aes(x = long, y = lat, group = group, fill = `Number of participants`), color = "white", linewidth=0.1) + 
+  scale_fill_gradient(low = "#FFE5C9", high = "#EF8737", na.value = "gray90", limits = c(0, 2700), label = comma, breaks = c(900, 1800, 2700), guide = guide_colorbar(order=1))+
+  new_scale_fill()+
+  geom_polygon(data = subset(combined %>% mutate(`Number of participants` = participants),`Number of participants` > 20000),
+               aes(x = long, y = lat, group = group, fill = "#9E3D22"), color = "white", linewidth=0.1)+
+  scale_fill_manual(name = NULL, labels = "27,000+ (US)", values = "#9E3D22", guide = guide_legend(order = 2))+
+  theme(axis.text = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(), 
+    axis.title = element_blank(),
+    panel.background = element_rect(fill = "white"),
+    legend.title = element_text(size = 8), 
+    legend.position = "bottom",
+    legend.text = element_text(size = 7))
+```
+
+## *Super* shoes, *elite* gains
+
+We start by looking at the progression of elite runners since the start of the super-shoe era. @fig-elite plots the average finishing time for the top ten finishers of the men's and women's division of the Chicago marathon each year, with the dashed vertical line denoting 2017, the year most elite runners began using super shoes. While there is a substantial amount of variation in the average finishing time year to year, there is evidence of elite times getting faster over the years, particularly in the women's division. However, @fig-elite makes it clear there may be other factors at play for how quickly the top elite athletes finish. For example, there is a noticeable spike in average finishing time in both divisions in 2007. The Chicago marathon is held the second Sunday in October, and weather can be a major factor in results. In 2007, the temperature peaked at 31.1°C (88°F) raceday afternoon. While the elite race begins at 7:30 am, the temperature was already 24°C (75°F) mid-race at 9:00 am. For most runners, the optimal marathon temperature is roughly 7°C (45°F). To accurately quantify the impact of super shoes, we will need to account for weather differences year to year.
+
+```{r}
+#| label: fig-elite
+#| fig-cap: "Averaging finishing time of the top 10 athletes of the men's and women's division of the Chicago Marathon each year. The shaded portion represents one standard deviation, so in years with a smaller buffer, the top 10 runners finished closer together. The dashed line denotes the start of the elite super-shoe era in 2017."
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| fig-pos: H
+# elite %>%
+#   group_by(Year, Gender) %>%
+#   summarize(avg_time = mean(Finish)/60, se_time = sd(Finish)/60, .groups = "drop") %>%
+#   ggplot(aes(x = Year, y = avg_time, color = Gender, fill = Gender)) +
+#   geom_vline(color = "black", linetype = "dashed", xintercept = 2017)+
+#   geom_line(size = 1) +
+#   geom_point()+
+#   geom_ribbon(aes(ymin = avg_time - se_time, ymax = avg_time + se_time), alpha = 0.2, color = NA) +
+#   labs(title = "Elite Marathon Finish Times by Year and Gender",
+#        y = "Average Finish Time (min)",
+#        x = "Year") +
+#   theme_minimal()
+
+minutes_to_hm <- function(x) {
+  hours <- floor(x / 3600)
+  mins <- round((x / 60) %% 60)
+  sprintf("%d:%02d", hours, mins)
+}
+
+chicago %>%
+  filter(Gender_place <= 10) %>%
+  group_by(Year, Gender) %>%
+  summarize(avg_time = mean(`Finish Time`), se_time = sd(`Finish Time`), .groups = "drop") %>%
+  mutate(Gender = case_when(Gender == "F" ~ "Women", TRUE ~ "Men"), 
+         Gender = factor(Gender, levels = c("Women", "Men"))) %>%
+  ggplot(aes(x = Year, y = avg_time, color = Gender, fill = Gender)) +
+  geom_vline(color = "black", linetype = "dashed", xintercept = 2016.5)+
+  geom_line() +
+  geom_point()+
+  geom_ribbon(aes(ymin = avg_time - se_time, ymax = avg_time + se_time), alpha = 0.2, color = NA) +
+  scale_y_continuous(labels = minutes_to_hm, breaks = c(7800, 8400, 9000, 9600))+
+  scale_color_manual(values = c("#F76D5E", "#3FA0FF"))+
+  scale_fill_manual(values = c("#F76D5E", "#3FA0FF"))+
+  theme_test()+
+  theme(plot.title.position = "plot", 
+        legend.position = "bottom") +
+  labs(y = "Average Finish Time",
+       x = "Year", color = "Division", fill = "Division")
+```
+
+In order to understand the impact of super shoes on elite marathon times, we take the elite marathon fields from 2011-2023. This gives an equal number of years in the pre-super-shoe era (2011-2016) and the super-shoe era (2017-2023, with no race in 2020). Across 338 athletes, there are 525 finishing times, as several elite runners competed at the Chicago Marathon multiple years. For instance, Ruth Chepng'etich of Kenya took first on the women's side in 2021 and 2022, and second in 2023. For this reason, we use a mixed effects model to account for any repeated measures within participants[@mixed]. The model includes random intercepts to account for differences in baseline athlete capabilities, recognizing that some elite runners are naturally faster or slower than others. In our model, we control for athlete age on race day, which is a binned variable with five-year age buckets (e.g. 24-28, 29-33, 34-38, etc). We also control for participant sex (male versus female) and the temperature at 9:00 am on race morning. Lastly, we include year in the model. @fig-record displays that runners are getting better over time regardless of the shoes, as quite a few men's and women's world records were set in the decades leading up the super-shoe era. Including the year in the model attempts to isolate the super shoe effect. Our variable of interest is whether the race took place in the super-shoe era, and our outcome is the athlete's finishing time in minutes.
+
+```{r, include=F, echo=F}
+model <- lmer(time_min ~ super_era_elite + Year + Age + Gender + temp9 +
+                (1 | Name), data = elite %>% mutate(Year = Year - 2017), REML=F)
+model2 <- lmer(time_min ~ Age + Gender + temp9 +
+                (1 | Name), data = elite, REML=F)
+model3 <- lmer(time_min ~ super_era_elite*Gender+Age + temp9 +
+                (1 | Name), data = elite, REML=F)
+library(gt)
+library(gtsummary)
+tbl_regression(model)
+summary(model)
+confint(model)
+#a(model2, model)
+#anova(model, model3)
+
+runner_effect <- ranef(model)$Name["Dennis Kimetto", "(Intercept)"]
+
+dennis <- elite[elite$Name == "Dennis Kimetto", ]
+
+new_pre <- data.frame(
+  super_era_elite = "No",
+  Age = dennis$Age,
+  Gender = "M",
+  temp9 = dennis$temp9,
+  Year = -4
+)
+
+new_post <- new_pre
+new_post$super_era_elite <- "Yes"
+new_post$Year <- 6
+
+pred_pre_fixed <- predict(model, newdata = new_pre, re.form = NA)
+pred_post_fixed <- predict(model, newdata = new_post, re.form = NA)
+
+pred_pre <- pred_pre_fixed + runner_effect
+pred_post <- pred_post_fixed + runner_effect
+
+resid_sd <- sigma(model)
+
+prob_pre <- pnorm(120, mean = pred_pre, sd = resid_sd)
+prob_post <- pnorm(120, mean = pred_post, sd = resid_sd)
+prob_post/prob_pre
+```
+
+Our results show an estimate of -2.69 and a 95% confidence interval of (-4.38, -0.99) on the super-shoe era coefficient. This means we are 95% confident that, on average, an elite marathoner's finishing time in the super-shoe era is between 59 seconds and 4 minutes and 23 seconds faster than the pre-super-shoe era. This estimate accounts for differences in weather and the composition of the elite field between the two time periods, as well as the overarching trajectory of running improvement over time.
+
+While the estimated reduction of roughly 2 minutes and 41 seconds with super shoes may not seem like much, this is substantial in the context of elite running. For instance, a current topic in the running world is the possibility of a man breaking two hours in the marathon. While Eliud Kipchoge ran 1:59:40 in 2019, it is not officially recognized as a world record because it was not done under race conditions[@kip]. Using our model, we can estimate the probability of Dennis Kimetto---the fastest man in the pre-super-shoe era---breaking two hours in the super-shoe era, had the conditions (his age and the raceday weather) been equivalent. Kimetto's Chicago Marathon winning time in 2013 was 2:03:45. Our model estimates Kimetto would have a 12.2% chance of breaking two hours in 2023, as compared to 2.3% in the pre-super-shoe era. There is evidence super shoes are a key factor in achieving this goal that pushes the boundaries of human capability.
+
+## Boost or bust for everyday runners?
+
+We have seen that super shoes have benefits for elite runners, but what about the everyday runner? @fig-everyday displays the average finishing time over the years for runners in the men's and women's division that are not a part of the elite field. In both divisions, the average finishing time increases over time, until around 2018 when it starts to drop off. We note that 2021 was another hot year, with the temperature being 24°C (75°F) at noon when many non-elite runners were still out on the course. @fig-everyday also includes a bar chart of the number of the finishers by year. We see the field size growing steadily over time, aside from 2021 and 2022 when field sizes were smaller due to the COVID-19 pandemic. This could be a major reason for the rise in the average finishing time over the early 21st century---the popularity of running has been growing, and more runners, of all skill levels, are participating in the marathon. In @fig-everyday we choose to denote the super-shoe era as beginning in 2019 for everyday runners. This is to account for the price tag of super shoes, which average roughly \$250 a pair[@nyt]. Many runners, especially those that are not hyper-competitive, likely waited to purchase the shoes until they became more popular.
+
+```{r}
+#| label: fig-everyday
+#| fig-cap: "Average Chicago Marathon finishing time by year for the non-elite women's and men's divisions. The vertical dashed line at 2019 represents the start of the super-shoe era for everyday runners. The total number of finishers each year, which steadily increases over time, is displayed by the light gray bar chart. "
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| fig-pos: H
+finisher_df <- chicago %>%
+  filter(!id %in% elite$id) %>%
+  group_by(Year) %>%
+  count() %>%
+  ungroup() %>%
+  mutate(n2 = n/max(n)*4000 + 14000)
+
+avg_df <- chicago %>%
+  filter(!id %in% elite$id) %>%
+  group_by(Gender, Year) %>%
+  summarize(avg_time = mean(`Finish Time`)) %>%
+  mutate(Gender = case_when(Gender == "F" ~ "Women", 
+                            TRUE ~ "Men"), 
+         Gender = factor(Gender, levels = c("Women", "Men")))
+   
+ggplot() +
+  geom_vline(color = "black", linetype = "dashed", xintercept = 2018.5)+
+  geom_point(data=avg_df, aes(x=Year, y = avg_time, color = Gender))+
+  geom_col(data=finisher_df, aes(x=Year, y=n2), fill = "lightgray", alpha=0.4)+
+  geom_line(data=avg_df, aes(x=Year, y = avg_time, color = Gender)) +
+  scale_y_continuous(labels = minutes_to_hm, 
+                     breaks = c(14400, 15300, 16200, 17100, 18000),
+                     sec.axis = sec_axis(trans = ~(.-14000)*(46656/4000),
+      name = "Total Finishers", labels = comma))+
+  coord_cartesian(ylim = c(14000, 18001))+
+  scale_color_manual(values = c("#F76D5E", "#3FA0FF"))+
+  labs(title = "",
+       y = "Average Finish Time",
+       x = "Year", color = "Division", fill = "Division") +
+  theme_test()+
+  theme(legend.position = "bottom", 
+        axis.title.y.right = element_text(color = "darkgray"), 
+        axis.text.y.right = element_text(color = "darkgray")) 
+```
+
+Part of the hypothesis around super shoes for non-elite runners is that there is a tapering effect, meaning slower runners will not benefit as much from the shoes as faster runners. In order to better understand this, we run a quantile regression, which allows us to model the relationship between our predictor variables across different locations in the distribution of our response variable[@quantile]. In the context of our data, we estimate how the effect of super shoes differs for faster and slower runners. For instance, we can estimate the effect of super-shoe era for the 60% quantile of finishing time (around 4 hours and 40 minutes), given our additional covariates participant age, participant sex, and raceday temperature at 9:00 am. For these models, we use data from 2014-2023. We do not have any information on participant training, and therefore have nothing to account for the confounding variable of the potential compositional shift in runners from 1996-2023. Using a smaller number of years for the model will remove much of the period of growth in field size, hopefully making the skill levels of those in the pre-super-shoe era comparable to runners in the super-shoe era. We run separate regressions for each quantile from 10% to 90% in increments of 5%.
+
+The results of our regressions are shown in @fig-quant. We see evidence of the hypothesized tapering effect, with the top 30% of runners, or those running sub-4 hour marathons, seeing the most gain from the super shoes. Given equivalent age, sex, and raceday weather, we would estimate these runners to complete the race in about nine minutes less than the equivalent runners in the pre-super-shoe era, on average. On the other hand, runners in higher quantiles of finishing time see less of a gain. For instance, those in the 85% quantile of finishing times, or those running around a 5.5 hour marathon, are estimated to see only about a 3 minute time reduction in the super-shoe era, given equivalent age, sex, and raceday weather.
+
+```{r, eval=F, echo=F}
+library(quantreg)
+
+taus <- seq(0.1, 0.9, by = 0.05)  
+qr_models <- lapply(taus, function(tau) {
+  rq(time_min ~ super_era + Age + Gender + temp9, tau = tau, data = chicago_sub)
+})
+qr_summaries <- lapply(qr_models, function(model) summary(model))
+coef_super_shoe <- sapply(qr_summaries, function(s) s$coefficients["super_eraYes", 1])
+lower <- sapply(qr_summaries, function(s) {
+  est <- s$coefficients["super_eraYes", 1]
+  se <- s$coefficients["super_eraYes", 2]
+  est - 1.96 * se
+})
+upper <- sapply(qr_summaries, function(s) {
+  est <- s$coefficients["super_eraYes", 1]
+  se <- s$coefficients["super_eraYes", 2]
+  est + 1.96 * se
+})
+
+plot_data <- data.frame(
+  quantile = taus,
+  coef = coef_super_shoe,
+  lower = lower,
+  upper = upper
+)
+```
+
+```{r}
+#| label: fig-quant
+#| fig-cap: "Estimate on the reduction in finishing time (minutes) for each quantile regression model. The corresponding finishing time of each quantile is plotted in gray. There is evidence that those finishing in 3-4 hours see greater benefits of the super shoes than those finishing in 5-6 hours."
+#| echo: FALSE
+#| message: FALSE
+#| warning: FALSE
+#| fig-pos: H 
+plot_data <- read_csv("chicago/everyday_output.csv") %>%
+  mutate(coef = abs(coef), 
+         lower = abs(lower), 
+         upper = abs(upper))
+
+quantiles <- seq(0.1, 0.9, by = 0.05)
+val <- quantile(chicago_sub$Finish, probs = quantiles)
+quant_df <- data.frame(quantile = quantiles, value = as.numeric(val))  %>%
+  mutate(scaled = (value-120*60)/(28*60))
+
+ggplot() +
+  geom_line(data = plot_data, aes(x = quantile, y = coef), color = "navy") +
+  geom_ribbon(data = plot_data, aes(x = quantile, y = coef, ymin = abs(lower), ymax = abs(upper)), alpha = 0.1, fill = "navy") +
+  geom_col(data=quant_df, aes(x=quantile, y=scaled), fill = "lightgray", alpha=0.4)+
+  scale_y_continuous(name = "Estimate of Reduction in Finish Time (minutes)",
+                     breaks = c(2, 4, 6, 8, 10),
+    sec.axis = sec_axis(breaks = c(10800, 14400, 18000, 21600),
+      trans = ~ . * 28*60 + 120*60,
+      name = "Finishing time of quantile", labels = minutes_to_hm)) +
+  scale_x_continuous(breaks = c(0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9),
+                     labels = percent)+
+  coord_cartesian(ylim = c(0, 10))+
+  labs(x = "Quantile") +
+  theme_test()+
+  theme(axis.title.y.left = element_text(color = "navy"), 
+        axis.title.y.right = element_text(color = "darkgray"), 
+        axis.text.y.right = element_text(color = "darkgray"))
+```
+
+## Not so fast
+
+Before hanging up the shoes on this analysis, we must acknowledge a few of its limitations. While we can control for characteristics such as the runners' age, sex, and raceday weather, a key limitation to our analysis is that we do not have information on their training leading up to the marathon or their baseline fitness level. Different runners of the same age and sex will have very different finishing times based on their baseline fitness and how their training went. Additionally, it is possible that the training and baseline fitness for the runners as a whole look different in the pre- and post-super-shoe era, making these confounding variables. For instance, in the elite field, there have likely been advancements to training theory in recent years, or better recovery technology that allows athletes to get in a higher volume or intensity of training. This could be part of what is contributing to the average reduction in elite finishing times in the post-super-shoe era. On the everyday runner side, the composition of runners in the Chicago Marathon may have changed. In order to run the Chicago Marathon, runners can qualify by time, raise money for charity, or enter a lottery. In both 2024 and 2025, the Chicago Marathon made the qualifying standards more difficult. This provides evidence that in recent years, the number of runners meeting the time standards has increased. Given that the popularity of running has surged since the COVID-19 pandemic, this leveling up is likely not entirely due to super shoes. A second limitation is that we are assuming all runners are wearing super shoes in the super-shoe era. While this is a fair assumption in the elite field, this will not hold in the everyday runner field.
+
+There is still plenty of research to be done to understand the impact of super shoes on marathon finishing times, especially as super shoe technology continues to evolve. However, our results show promise for the benefits of super shoes, especially for faster athletes striving to break a 2, 3, or 4 hour marathon barrier. So, if you are considering a marathon, just remember: "All you need is a pair of shoes"---but not all shoes are created equal.
+
+# References
