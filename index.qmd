@@ -41,5 +41,5 @@ In addition to statistics & data science, I also enjoy running, volunteering at 
 
 ![Pirates game with cohortmates](images/pirate.png)
 
-![Schenely Park: My favorite place in Pittsburgh!](images/schenely.png)
+![Hiking at Peyto Lake in Banff, Summer 2025](images/peyto.png)
 :::
