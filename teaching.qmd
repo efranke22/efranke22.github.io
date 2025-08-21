@@ -2,7 +2,7 @@
 title: "Teaching"
 ---
 
-I did my undergrad at Macalester College, a teaching focused institution. The time and energy my professors devoted to their classes and to helping students were key components in my development as a statistician and in giving me the confidence to explore different areas of the field. Eventually, I hope to take on a similar role in both mentoring and instruction. In the meantime, I am excited to gain teaching experience and conduct teaching-related research throughout my PhD. 
+I did my undergrad at Macalester College, a teaching focused institution. The time and energy my professors put into their classes and to mentoring students were key components in my development as a statistician and in giving me the confidence to explore different areas of the field. Eventually, I hope to take on a similar role. In the meantime, I am excited to gain teaching experience and conduct teaching-related research throughout my PhD. 
 
 This past summer, I attended my first conference, the United States Conference on Teaching Statistics. This was a fantastic experience; in addition to learning so much (see my [blog post](https://efranke22.github.io/blog/uscots2025/)), I presented two projects with my cohortmate [Sara Colando](https://scolando.github.io/).
 
