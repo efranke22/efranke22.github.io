@@ -2,17 +2,20 @@
 title: "Teaching"
 ---
 
-Throughout my PhD, I am excited to gain teaching experience and conduct teaching-related research. This summer, I am enjoying TAing for the Carnegie Mellon Sports Analytics Camp, which I was a student at in 2021 (full-circle moment!). I also [attended my first conference](https://efranke22.github.io/blog/uscots2025/), the United States Conference on Teaching Statistics, where I learned lots and presented two projects with my cohortmate [Sara Colando](https://scolando.github.io/).
+I did my undergrad at Macalester College, a teaching focused institution. The time and energy my professors devoted to their classes and to helping students were key components in my development as a statistician and in giving me the confidence to explore different areas of the field. Eventually, I hope to take on a similar role in both mentoring and instruction. In the meantime, I am excited to gain teaching experience and conduct teaching-related research throughout my PhD. 
+
+This past summer, I attended my first conference, the United States Conference on Teaching Statistics. This was a fantastic experience; in addition to learning so much (see my [blog post](https://efranke22.github.io/blog/uscots2025/)), I presented two projects with my cohortmate [Sara Colando](https://scolando.github.io/).
 
 -   Our first project aims to understand how the trajectory of undergraduate statistics student writing has changed since the introduction of ChatGPT. [\[Writeup here\]](./teaching/llmwriting/llmwriting.qmd).
 
--   Our second project focuses teaching data wrangling with the [data.table](https://www.rdocumentation.org/packages/data.table/versions/1.17.0) R package.
+-   Our second project focused on teaching data wrangling with the [data.table](https://www.rdocumentation.org/packages/data.table/versions/1.17.0) R package.
 
 ## Teaching Experience
 
 **Teaching Assistant**\
 
--   *36-401*: Modern Regression (Fall 2024)\
--   *36-236*: Probability and Statistical Inference II (Spring 2025)\
+-   *36-707*: Regression Analysis & *36-617*: Applied Linear Models (Fall 2025)\
 -   Carnegie Mellon Sports Analytics Camp (Summer 2025)\
     -   Co-Guest Lecturer for four sessions
+-   *36-236*: Probability and Statistical Inference II (Spring 2025)\
+-   *36-401*: Modern Regression (Fall 2024)\
