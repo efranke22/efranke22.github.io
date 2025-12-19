@@ -78,9 +78,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-image','listing-title','listing-date','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-date',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-title-sort'] }],
       
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+      searchColumns: ["listing-date","listing-title","listing-author"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -221,57 +221,43 @@ window.Quarto = {
 
 
 
-<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Sports" data-listing-date-sort="1755230400000" data-listing-file-modified-sort="1755299996115" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="51" data-listing-word-count-sort="10157">
-<a href="./blog/rss/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/rss/trajectory.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Sole searching: How super shoes have changed marathoning
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Sports'); return false;">
-Sports
+<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="listing-actions-group">
+    <div class="input-group input-group-sm quarto-listing-filter">
+      <span class="input-group-text"><i class="bi bi-search"></i></span>
+      <input type="text" class="search form-control" placeholder="Filter">
+    </div>
 </div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Aug 15, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Education" data-listing-date-sort="1753070400000" data-listing-file-modified-sort="1753384178949" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4708">
-<a href="./blog/uscots2025/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<p class="card-img-top">
-<img loading="lazy" src="./blog/uscots2025/lightbulb.png" class="thumbnail-image card-img" style="height: 150px;">
-</p>
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-My Reflections from USCOTS 2025
-</h5>
-<div class="listing-categories">
-<div class="listing-category" onclick="window.quartoListingCategory('Education'); return false;">
-Education
-</div>
-</div>
-<div class="card-attribution card-text-small end">
-<div class="listing-date">
-Jul 21, 2025
-</div>
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
+<table class="quarto-listing-table table">
+<thead>
+<tr>
+<th>
+Title
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody class="list">
+<tr data-index="0" data-categories="Sports" data-listing-date-sort="1755234000000" data-listing-file-modified-sort="1755299996115" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="51" data-listing-word-count-sort="10157" data-listing-title-sort="Sole searching: How super shoes have changed marathoning" data-listing-filename-sort="index.qmd">
+<td>
+<a href="./blog/rss/index.html" class="title listing-title">Sole searching: How super shoes have changed marathoning</a>
+</td>
+<td>
+<span class="listing-date">Aug 15, 2025</span>
+</td>
+</tr>
+<tr data-index="1" data-categories="Education" data-listing-date-sort="1753074000000" data-listing-file-modified-sort="1753384178949" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="24" data-listing-word-count-sort="4708" data-listing-title-sort="My Reflections from USCOTS 2025" data-listing-filename-sort="index.qmd">
+<td>
+<a href="./blog/uscots2025/index.html" class="title listing-title">My Reflections from USCOTS 2025</a>
+</td>
+<td>
+<span class="listing-date">Jul 21, 2025</span>
+</td>
+</tr>
+</tbody>
+</table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>

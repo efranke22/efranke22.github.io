@@ -3,10 +3,11 @@ title: "Blog"
 listing:
   contents: blog
   sort: "date desc"
-  type: grid # default, table
+  type: table # grid, table
   categories: true
   sort-ui: false
-  fields: [image,title, date, categories]
+  #fields: [image,title, date, categories]
+  fields: [title, date]
 page-layout: full
 title-block-banner: true 
 format:

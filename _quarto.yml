@@ -5,7 +5,7 @@ project:
 website:
   title: "Erin Franke"
   navbar:
-    background: '#E0EEE0'
+    background: '#FFFFFF'
     left:
       - href: index.qmd
         text: "Home"
