@@ -6,10 +6,9 @@ This page is a hodgepodge of blog posts and notes on statistics concepts that in
 
 #### Statistics
 
-- [Sole searching: How super shoes have changed marathoning](blog/rss/index.qmd) (August 15, 2025) 
+- [Regression Recipes](blog/regression/regression.qmd) (December 20, 2025)
+- [Sole searching: How super shoes have changed marathoning](blog/rss/index.qmd) (August 15, 2025)
 
-
-#### Education 
+#### Education
 
 - [Reflections from USCOTS 2025](blog/uscots2025/index.qmd) (July 21, 2025)
-

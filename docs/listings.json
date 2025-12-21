@@ -18,6 +18,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/blog/regression/regression.html",
       "/blog/rss/index.html",
       "/blog/uscots2025/index.html"
     ]
