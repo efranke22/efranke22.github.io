@@ -1,7 +1,7 @@
 ---
 title: "Gentrification and Crime in the Twin Cities: Insights and Challenges through a Statistical Lens"
 description: |
-  An independent honors project in statistics completed over my senior at Macalester College.  
+  An independent honors project in statistics completed over my senior year at Macalester College.  
 date: 05-01-2023
 image: gent.png
 image-alt: quizgrader logo
@@ -10,4 +10,4 @@ about:
   image: gent.png
 ---
 
-Over the course of my senior year, I completed an independent research project in correspondence with my advisor, Victor Addona. Given that gentrification is highly contested phenomenon in today's society and the neighborhood just north of Macalester has seen rapid redevelopment of the past several years, I chose to study the relationship between gentrification and crime in the Twin Cities. Using mapping, Poisson generalized linear models, and spatial modeling techniques, we did not find gentrification to yield meaningful decreases in violent crime or theft. To learn more, please download the completed paper [**here**](https://github.com/efranke22/honorsGentrification/blob/main/FinalHonorsPaperEF.pdf). 
+Over the course of my senior year, I completed an independent research project in correspondence with my advisor, Victor Addona. Given that gentrification is highly contested phenomenon in today's society and the neighborhood just north of Macalester has seen rapid redevelopment of the past several years, I chose to study the relationship between gentrification and crime in the Twin Cities. Using mapping, Poisson generalized linear models, and spatial modeling techniques, we did not find gentrification to yield meaningful decreases in violent crime or theft. To learn more, please download the completed paper [**here**](https://github.com/efranke22/honorsGentrification/blob/main/FinalHonorsPaperEF.pdf).
