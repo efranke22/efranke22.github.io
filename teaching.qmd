@@ -2,19 +2,19 @@
 title: "Teaching"
 ---
 
-My undergraduate experience at Macalester College sparked my interest in teaching and helped motivate my decision to pursue a PhD. I've continued to find my experiences teaching and mentoring at Carnegie Mellon especially rewarding, and plan on pursuing a career in academia following my PhD. 
+My undergraduate experience at Macalester College sparked my interest in teaching and helped motivate my decision to pursue a PhD. I've continued to find my experiences teaching and mentoring at Carnegie Mellon especially rewarding, and plan on pursuing a career in academia following my PhD.
 
 ## Teaching-Related Research
 
-1. [Teaching Data Cleaning and Wrangling with R’s data.table Package](https://www.causeweb.org/cause/uscots/uscots25/program/posters/poster25). Presented in collaboration with [Sara Colando](https://scolando.github.io/) as part of *Posters and Beyond* at USCOTS 2025. This work was generously funded by [NSF Award Abstract # 2303612 ](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2303612).
+1.  [Teaching Data Cleaning and Wrangling with R’s data.table Package](https://www.causeweb.org/cause/uscots/uscots25/program/posters/poster25). Presented in collaboration with [Sara Colando](https://scolando.github.io/) as part of *Posters and Beyond* at USCOTS 2025. This work was generously funded by [NSF Award Abstract \# 2303612](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2303612).
 
-2. [Analyzing Statistics Students’ Writing Before and After the Emergence of Large Language Models](./teaching/llmwriting/llmwriting.qmd). Presented in collaboration with Sara Colando as part of the Research Satellite poster session at USCOTS 2025. Manuscript currently in progress (as of December 2025).
-
+2.  [Analyzing Statistics Students’ Writing Before and After the Emergence of Large Language Models](./teaching/llmwriting/llmwriting.qmd). Presented in collaboration with Sara Colando as part of the Research Satellite poster session at USCOTS 2025. Manuscript currently in progress (as of December 2025).
 
 ## Teaching Experience
 
 **Teaching Assistant**\
 
+-   *36-226*: Introduction to Statistical Inference (*Head TA*) (Spring 2026)
 -   *36-707*: Regression Analysis & *36-617*: Applied Linear Models (Fall 2025)\
 -   Carnegie Mellon Sports Analytics Camp (Summer 2025)\
     -   Co-Guest Lecturer for four sessions

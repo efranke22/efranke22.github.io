@@ -226,15 +226,16 @@ a <- records %>%
   ggplot(aes(x=date, y=time))+
   geom_vline(xintercept = as.Date.character("06-01-2016", tryFormats = c("%m-%d-%Y")),
              linetype = "dashed")+
-  annotate("text",x = as.Date("2009-06-01"),y = 140, color = "black",
+  annotate("text",x = as.Date("2009-01-01"),y = 140, color = "black",
            label = "First super shoe\nreleased",
-           hjust = 0.5, vjust = 1, size = 2.5, fontface = "italic") +
+           hjust = 0.5, vjust = 1, size = 3.5, fontface = "italic") +
   geom_point(alpha=0.6, color = "#3FA0FF")+
   geom_step(direction = "hv", color = "#3FA0FF", alpha = 0.3)+
   scale_y_continuous(labels = minutes_to_hm2)+
-  scale_x_date(limits = as.Date(c("1950-01-01", "2025-01-01")))+
+  scale_x_date(limits = as.Date(c("1950-01-01", "2025-01-01")), breaks = as.Date(c("1950-01-01", "1960-01-01", "1970-01-01", "1980-01-01", "1990-01-01", "2000-01-01", "2010-01-01", "2020-01-01")), labels = c("1950", "1960", "1970", "1980", "1990", "2000", "2010", "2020"))+
   theme_bw()+
-  theme(axis.title = element_blank())
+  theme(axis.text = element_text(size = 10))+
+  labs(x="Year", y="Marathon time (h:mm)")
 
 b <- records %>%
   filter(division == "F") %>%
@@ -244,17 +245,18 @@ b <- records %>%
   geom_vline(xintercept = as.Date.character("01-01-1973", tryFormats = c("%m-%d-%Y")),
              linetype = "dashed", color = "gray47")+
   geom_point(alpha=0.6, color ="#F76D5E")+
-  annotate("text",x = as.Date("1985-01-01"),y = 220, color = "gray47",
+  annotate("text",x = as.Date("1985-06-30"),y = 220, color = "gray47",
            label = "1972-1974: Major marathons\nbegin allowing women",
-           hjust = 0.5, vjust = 1, size = 2.5, fontface = "italic") +
+           hjust = 0.5, vjust = 1, size = 3.5, fontface = "italic") +
   geom_step(direction = "hv", color = "#F76D5E", alpha = 0.3)+
   scale_y_continuous(labels = minutes_to_hm2, breaks = c(130, 150, 170, 190, 210))+
-  scale_x_date(limits = as.Date(c("1950-01-01", "2025-01-01")))+
+  scale_x_date(limits = as.Date(c("1950-01-01", "2025-01-01")), breaks = as.Date(c("1950-01-01", "1960-01-01", "1970-01-01", "1980-01-01", "1990-01-01", "2000-01-01", "2010-01-01", "2020-01-01")), labels = c("1950", "1960", "1970", "1980", "1990", "2000", "2010", "2020"))+
   theme_bw()+
-  theme(axis.title = element_blank())
+  theme(axis.text = element_text(size = 10))+
+  labs(x="Year", y="Marathon time (h:mm)")
 
 library(patchwork)
-a/b
+p <- a/b + plot_layout(axis_titles = "collect")
 ```
 
 In addition to elite runners, the marathon is a popular event for those running as a hobby, whom we will refer to as everyday runners. The marathon's popularity has grown noticeably since the COVID-19 pandemic, with many picking up running as a way to find community or routine. The 2025 London Marathon recently set the world record with a total 56,640 finishers---and over 800,000 individuals had applied to run the race[@london]. Super shoes have become popular among the everyday runner, though their benefit is less certain, specifically at slower paces (such as above 6:00/km). In these cases, some runners may stop saving energy and instead need additional energy to get up and over the carbon plate, though more research is needed[@slow].
@@ -357,10 +359,11 @@ ggplot(combined %>% mutate(`Number of participants` = participants)) +
     axis.line = element_blank(),
     axis.ticks = element_blank(), 
     axis.title = element_blank(),
+    plot.margin = margin(0, 0, 0, 0, "pt"), # Set all margins to 0 points
     panel.background = element_rect(fill = "white"),
-    legend.title = element_text(size = 8), 
+    legend.title = element_text(size = 10), 
     legend.position = "bottom",
-    legend.text = element_text(size = 7))
+    legend.text = element_text(size = 9))
 ```
 
 ## *Super* shoes, *elite* gains
@@ -400,17 +403,22 @@ chicago %>%
   mutate(Gender = case_when(Gender == "F" ~ "Women", TRUE ~ "Men"), 
          Gender = factor(Gender, levels = c("Women", "Men"))) %>%
   ggplot(aes(x = Year, y = avg_time, color = Gender, fill = Gender)) +
-  geom_vline(color = "black", linetype = "dashed", xintercept = 2016.5)+
+  geom_vline(color = "black", linetype = "dashed", xintercept = 2017)+
   geom_line() +
   geom_point()+
+  annotate("text",x = 2020,y = 9900, color = "black",
+           label = "First super shoe\nreleased",
+           hjust = 0.5, vjust = 1, size = 3.5, fontface = "italic") +
   geom_ribbon(aes(ymin = avg_time - se_time, ymax = avg_time + se_time), alpha = 0.2, color = NA) +
   scale_y_continuous(labels = minutes_to_hm, breaks = c(7800, 8400, 9000, 9600))+
   scale_color_manual(values = c("#F76D5E", "#3FA0FF"))+
   scale_fill_manual(values = c("#F76D5E", "#3FA0FF"))+
-  theme_test()+
+  theme_bw()+
   theme(plot.title.position = "plot", 
-        legend.position = "bottom") +
-  labs(y = "Average Finish Time",
+        legend.position = "bottom",
+        axis.text = element_text(size = 10), 
+        legend.text = element_text(size =10)) +
+  labs(y = "Average Finish Time (h:mm)",
        x = "Year", color = "Division", fill = "Division")
 ```
 
@@ -439,7 +447,7 @@ new_pre <- data.frame(
   super_era_elite = "No",
   Age = dennis$Age,
   Gender = "M",
-  temp9 = dennis$temp9,
+  temp9 = 45, #dennis$temp9,
   Year = -4
 )
 
@@ -491,10 +499,13 @@ avg_df <- chicago %>%
          Gender = factor(Gender, levels = c("Women", "Men")))
    
 ggplot() +
-  geom_vline(color = "black", linetype = "dashed", xintercept = 2018.5)+
+  geom_vline(color = "black", linetype = "dashed", xintercept = 2017)+
   geom_point(data=avg_df, aes(x=Year, y = avg_time, color = Gender))+
   geom_col(data=finisher_df, aes(x=Year, y=n2), fill = "lightgray", alpha=0.4)+
   geom_line(data=avg_df, aes(x=Year, y = avg_time, color = Gender)) +
+  annotate("text",x = 2020.5,y = 18000, color = "black",
+           label = "First super shoe\nreleased",
+           hjust = 0.5, vjust = 1, size = 3.5, fontface = "italic") +
   scale_y_continuous(labels = minutes_to_hm, 
                      breaks = c(14400, 15300, 16200, 17100, 18000),
                      sec.axis = sec_axis(trans = ~(.-14000)*(46656/4000),
@@ -504,10 +515,11 @@ ggplot() +
   labs(title = "",
        y = "Average Finish Time",
        x = "Year", color = "Division", fill = "Division") +
-  theme_test()+
+  theme_bw()+
   theme(legend.position = "bottom", 
         axis.title.y.right = element_text(color = "darkgray"), 
-        axis.text.y.right = element_text(color = "darkgray")) 
+        axis.text.y.right = element_text(color = "darkgray", size = 10), 
+        axis.text = element_text(size = 10)) 
 ```
 
 Part of the hypothesis around super shoes for non-elite runners is that there is a tapering effect, meaning slower runners will not benefit as much from the shoes as faster runners. In order to better understand this, we run a quantile regression, which allows us to model the relationship between our predictor variables across different locations in the distribution of our response variable[@quantile]. In the context of our data, we estimate how the effect of super shoes differs for faster and slower runners. For instance, we can estimate the effect of super-shoe era for the 60% quantile of finishing time (around 4 hours and 40 minutes), given our additional covariates participant age, participant sex, and raceday temperature at 9:00 am. For these models, we use data from 2014-2023. We do not have any information on participant training, and therefore have nothing to account for the confounding variable of the potential compositional shift in runners from 1996-2023. Using a smaller number of years for the model will remove much of the period of growth in field size, hopefully making the skill levels of those in the pre-super-shoe era comparable to runners in the super-shoe era. We run separate regressions for each quantile from 10% to 90% in increments of 5%.
