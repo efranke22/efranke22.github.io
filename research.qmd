@@ -9,14 +9,20 @@ listing:
 
 Having the opportunity to collaborate with experts in a wide variety of fields is my favorite part of being a statistician. As I develop as a researcher, my goal is to contribute work that helps understand and solve complex interdisciplinary problems.
 
-### Current Projects
+## Current Projects
 
-1. In the Spring 2026 semester, I am looking forward to starting research advised by [Will Townes](https://willtownes.github.io/) as part of the CMU [Delphi group](https://delphi.cmu.edu/).
+1. I am advised by [Will Townes](https://willtownes.github.io/) and am part of the CMU [Delphi group](https://delphi.cmu.edu/). My current research is centered around statistical methods for wastewater-based epidemiology. 
 
-2. [Stress and Cold Susceptibility: Comparing Z-Score and Latent Measurement Models](research/erinfranke_finalADA.pdf)
+2. Previously, I worked with [Weijing Tang](https://sites.google.com/andrew.cmu.edu/weijingtang/home?authuser=0) and [Phoebe Lam](https://www.lshlab.org/) on a year-long collaboration titled [Stress and Cold Susceptibility: Comparing Z-Score and Latent Measurement Models](research/erinfranke_finalADA.pdf). We are currently working on a continuation of this research that takes further steps to compare the effectiveness of moderated nonlinear factor analysis with commonly used standardization approaches for psychology research. *Manuscript in progress (as of May 2026)*.
 
-- I recently completed this year-long project in collaboration with [Weijing Tang](https://sites.google.com/andrew.cmu.edu/weijingtang/home?authuser=0) (CMU Stats & DS) and Phoebe Lam (CMU Psychology). We integrated existing studies to understand the influence of perceived stress and negative emotion on disease vulnerability using moderated nonlinear factor analysis (Bauer and Hussong, 2009).
-- I am currently working on a spinoff paper, *A Comparison of Moderated Nonlinear Factor Analysis and Standardization Approaches for Psychological Research Using Integrated Data*, that extends our prior work. This paper will take further steps to understand the differences between moderated nonlinear factor analysis and z-scoring approaches through simulations and derivations. 
+3. On the side, I've done a little bit of sports analytics research. This summer, I'll be presenting my work on super shoes and elite marathoning at [JSM](https://ww3.aievolution.com/JSMAnnual2026/index.cfm?do=ev.viewEv&ev=5434).
+
+4. Check out my [Teaching](https://efranke22.github.io/teaching.html) page to learn more about my teaching-related research!
+
+
+
+
+
 
 
 

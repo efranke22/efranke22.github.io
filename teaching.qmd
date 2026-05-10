@@ -8,9 +8,14 @@ My undergraduate experience at Macalester College sparked my interest in teachin
 
 1.  [Teaching Data Cleaning and Wrangling with R’s data.table Package](https://www.causeweb.org/cause/uscots/uscots25/program/posters/poster25). Presented in collaboration with [Sara Colando](https://scolando.github.io/) as part of *Posters and Beyond* at USCOTS 2025. This work was generously funded by [NSF Award Abstract \# 2303612](https://www.nsf.gov/awardsearch/show-award/?AWD_ID=2303612).
 
-2.  [Analyzing Statistics Students’ Writing Before and After the Emergence of Large Language Models](./teaching/llmwriting/llmwriting.qmd). Presented in collaboration with Sara Colando as part of the Research Satellite poster session at USCOTS 2025. Manuscript currently in progress (as of December 2025).
+2.  [Analyzing Statistics Students’ Writing Before and After the Emergence of Large Language Models](./teaching/llmwriting/llmwriting.qmd). This project is in collaboration with [Sara Colando](https://scolando.github.io/) and [Alex Reinhart](https://www.refsmmat.com/). *Manuscript nearing completion (as of May 2026).*
+    - Come learn more about this work at [ECOTS](https://www.causeweb.org/cause/ecots/ecots26/program/breakouts/7D) and [ICOTS12](https://icots12.oa-event.com/programme) this summer!
 
 ## Teaching Experience
+
+**Intructor of Record**\
+
+- Co-intructor for [Carnegie Mellon Sports Analytics Camp](https://www.cmu.edu/dietrich/statistics-datascience/engagement/summer/cmsa-camp.html) (Summer 2026) 
 
 **Teaching Assistant**\
 
