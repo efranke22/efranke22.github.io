@@ -8,7 +8,7 @@ My undergraduate experience at Macalester College sparked my interest in teachin
 
 2\. [Analyzing Statistics Students’ Writing Before and After the Emergence of Large Language Models](https://arxiv.org/abs/2606.22735). This project is in collaboration with [Sara Colando](https://scolando.github.io/), [Alex Reinhart](https://www.refsmmat.com/), and [Gordon Weinberg](https://sites.google.com/andrew.cmu.edu/gordonw/). 
 
-- Come learn more about this work at [ECOTS](https://www.causeweb.org/cause/ecots/ecots26/program/breakouts/7D) and [ICOTS12](https://icots12.oa-event.com/programme) this summer! 
+- It was a fantastic experience to present this work at [ECOTS](https://www.causeweb.org/cause/ecots/ecots26/program/breakouts/7D) and [ICOTS12](https://icots12.oa-event.com/programme) in Summer 2026! 
     
     
 
@@ -18,13 +18,14 @@ My undergraduate experience at Macalester College sparked my interest in teachin
 
 **Instructor of Record**\
 
-- Co-instructor for [Carnegie Mellon Sports Analytics Camp](https://www.cmu.edu/dietrich/statistics-datascience/engagement/summer/cmsa-camp.html) (Summer 2026, [website here](https://36-sure.github.io/2026/)) 
+- Co-instructor for [Carnegie Mellon Sports Analytics Camp](https://www.cmu.edu/dietrich/statistics-datascience/engagement/summer/cmsa-camp.html) (Summer '26, [website here](https://36-sure.github.io/2026/)) 
 
 **Teaching Assistant**\
 
--   *36-226*: Introduction to Statistical Inference (*Head TA*) (Spring 2026)
--   *36-707*: Regression Analysis & *36-617*: Applied Linear Models (Fall 2025)\
--   Carnegie Mellon Sports Analytics Camp (Summer 2025)\
+-   *36-617*: Applied Linear Models (F25, F26)
+-   *36-226*: Introduction to Statistical Inference (*Head TA*) (S26)
+-   *36-707*: Regression Analysis (F25)\
+-   Carnegie Mellon Sports Analytics Camp (Summer '25)\
     -   Co-Guest Lecturer for four sessions
--   *36-236*: Probability and Statistical Inference II (Spring 2025)\
--   *36-401*: Modern Regression (Fall 2024)\
+-   *36-236*: Probability and Statistical Inference II (S25)\
+-   *36-401*: Modern Regression (F24)\
